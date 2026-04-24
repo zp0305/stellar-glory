@@ -35,6 +35,7 @@ import {
   Zap,
   FileText,
   FileCheck,
+  Book,
   Binary,
   Dna,
 } from 'lucide-react'
