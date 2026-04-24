@@ -1,0 +1,10 @@
+{
+  "PHY-M01": {
+    "id": "PHY-M01",
+    "title": "匀变速直线运动",
+    "module": "运动学",
+    "chapter": "运动的描述",
+    "difficulty": 1,
+    "subtitle": "v = v0 + at,  x = v0t + 1/2 at²",
+    "positioning": {
+      "core": 
