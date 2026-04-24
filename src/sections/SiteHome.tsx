@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import {
-  FlaskConical, Atom, Dna, Calculator, BookText, Languages,
+  FlaskConical, Atom, Dna, Calculator, Book, Languages,
   ArrowRight, Star, Target, BookOpen, GitBranch, Trophy,
   TrendingUp, Clock, CheckCircle2, Flame, GraduationCap, Zap, Lightbulb
 } from 'lucide-react'
@@ -47,7 +47,7 @@ const subjects = [
     id: 'math',
     name: '数学',
     description: '函数、几何、概率，从具象到抽象的思维训练',
-    icon: BookText,
+    icon: Book,
     color: '#8b5cf6',
     bg: 'bg-purple-500/10',
     border: 'border-purple-200',
@@ -71,7 +71,7 @@ const subjects = [
     id: 'chinese',
     name: '语文',
     description: '阅读写作、古诗文、语言运用，文化传承与表达能力',
-    icon: BookText,
+    icon: Book,
     color: '#ef4444',
     bg: 'bg-red-500/10',
     border: 'border-red-200',

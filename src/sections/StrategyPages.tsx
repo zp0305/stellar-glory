@@ -9,7 +9,7 @@ import { allRoutines } from '@/data/physics/strategies'
 import { cn } from '@/lib/utils'
 import {
   Lightbulb, ChevronRight, Search,
-  ArrowRight, Zap, AlertTriangle, BookText,
+  ArrowRight, Zap, AlertTriangle, Book,
   Target, ChevronLeft,
 } from 'lucide-react'
 
@@ -175,7 +175,7 @@ export function StrategyDetailPage() {
 
   const sectionsContent = [
     {
-      id: 'steps', label: '核心步骤', Icon: BookText, bg: 'bg-blue-50', color: 'text-blue-600',
+      id: 'steps', label: '核心步骤', Icon: Book, bg: 'bg-blue-50', color: 'text-blue-600',
       content: routine.coreSteps?.length
         ? routine.coreSteps.map((s, i) => `${i + 1}. ${s}`).join('\n')
         : null,

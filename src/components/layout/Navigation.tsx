@@ -112,7 +112,7 @@ const competitionModules = [
   {
     id: 'math',
     label: '数学竞赛',
-    icon: BookText,
+    icon: Book,
     href: '/competition/math',
     description: 'CMO · 联赛/决赛',
     available: false,
