@@ -38,6 +38,10 @@ import {
   Book,
   Binary,
   Dna,
+  Stethoscope,
+  ClipboardList,
+  Brain,
+  Map,
 } from 'lucide-react'
 
 // 六大科目配置
@@ -154,6 +158,31 @@ const chemistryModules = [
     description: '为什么学化学'},
 ]
 
+// 学习工具模块
+const learningToolsModules = [
+  {
+    id: 'diagnosis',
+    label: '诊断评估',
+    icon: Stethoscope,
+    href: '/diagnosis',
+    description: '学科能力诊断',
+  },
+  {
+    id: 'planner',
+    label: '目标规划',
+    icon: ClipboardList,
+    href: '/planner',
+    description: '三年学习规划',
+  },
+  {
+    id: 'methods',
+    label: '学习方法',
+    icon: Brain,
+    href: '/methods',
+    description: '五大高效学习法',
+  },
+]
+
 // 物理学科模块导航
 const physicsModules = [
   {
@@ -249,7 +278,17 @@ function useCurrentSubject() {
   const location = useLocation()
   if (location.pathname.startsWith('/physics')) return subjects[0]
   if (location.pathname.startsWith('/chemistry')) return subjects[1]
+  if (location.pathname.startsWith('/diagnosis') || location.pathname.startsWith('/planner') || location.pathname.startsWith('/methods')) return null
   return subjects[0]
+}
+
+function useCurrentTool() {
+  const location = useLocation()
+  const path = location.pathname
+  if (path.startsWith('/diagnosis')) return 'diagnosis'
+  if (path.startsWith('/planner')) return 'planner'
+  if (path.startsWith('/methods')) return 'methods'
+  return null
 }
 
 function useCurrentModule() {
@@ -292,13 +331,13 @@ export function TopNav() {
           {subjects.map((s) => (
             <Link key={s.id} to={s.href}>
               <Button
-                variant={currentSubject.id === s.id ? 'secondary' : 'ghost'}
+                variant={currentSubject?.id === s.id ? 'secondary' : 'ghost'}
                 size="sm"
                 className={cn(
                   'gap-1.5 text-sm',
-                  currentSubject.id === s.id && 'font-semibold'
+                  currentSubject?.id === s.id && 'font-semibold'
                 )}
-                style={currentSubject.id === s.id && s.available ? { borderColor: s.color, color: s.color } : {}}
+                style={currentSubject?.id === s.id && s.available ? { borderColor: s.color, color: s.color } : {}}
               >
                 <span
                   className="w-2 h-2 rounded-full"
@@ -312,12 +351,12 @@ export function TopNav() {
         </div>
 
         {/* 桌面端：当前学科下拉 */}
-        <div className="hidden lg:flex items-center ml-auto">
-          {currentSubject.available && (
+        <div className="hidden lg:flex items-center ml-auto gap-1">
+          {currentSubject?.available && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="gap-1">
-                  {currentSubject.name}
+                  {currentSubject?.name}
                   <ChevronDown className="w-3.5 h-3.5" />
                 </Button>
               </DropdownMenuTrigger>
@@ -333,72 +372,110 @@ export function TopNav() {
               </DropdownMenuContent>
             </DropdownMenu>
           )}
+
+          {/* 学习工具下拉 */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="gap-1">
+                学习工具
+                <ChevronDown className="w-3.5 h-3.5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-52">
+              {learningToolsModules.map((m) => (
+                <Link key={m.id} to={m.href}>
+                  <DropdownMenuItem className="gap-2">
+                    <m.icon className="w-4 h-4 opacity-60" />
+                    <div>
+                      <div>{m.label}</div>
+                      <div className="text-xs text-muted-foreground font-normal">{m.description}</div>
+                    </div>
+                  </DropdownMenuItem>
+                </Link>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
-        {/* 移动端：左侧菜单 */}
-        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden">
-              <Menu className="w-5 h-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-72 p-0 flex flex-col">
-            {/* 移动端Logo栏 */}
-            <div className="flex items-center gap-2 p-4 border-b">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <Star className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-bold text-lg">星耀</span>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="ml-auto"
-                onClick={() => setMobileOpen(false)}
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+            {/* 移动端：左侧菜单 */}
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="lg:hidden">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-72 p-0 flex flex-col">
+                {/* 移动端Logo栏 */}
+                <div className="flex items-center gap-2 p-4 border-b">
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <Star className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="font-bold text-lg">星耀</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="ml-auto"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
 
-            {/* 学科选择 */}
-            <div className="p-3 border-b">
-              <p className="text-xs font-medium text-muted-foreground mb-2 px-2">选择学科</p>
-              <div className="grid grid-cols-3 gap-1">
-                {subjects.map((s) => (
-                  <Link key={s.id} to={s.href} onClick={() => setMobileOpen(false)}>
-                    <Button
-                      variant={currentSubject.id === s.id ? 'secondary' : 'ghost'}
-                      size="sm"
-                      className="w-full text-xs gap-1.5 justify-start"
-                    >
-                      <span
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: s.color, opacity: s.available ? 1 : 0.4 }}
-                      />
-                      {s.name}
-                    </Button>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* 模块导航 */}
-            <ScrollArea className="flex-1">
-              <nav className="p-3 space-y-1">
-                {currentSubject.available && (currentSubject.id === 'chemistry' ? chemistryModules : physicsModules).map((m) => (
-                  <Link key={m.id} to={m.href} onClick={() => setMobileOpen(false)}>
-                    <div className={cn(
-                      'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors',
-                      'hover:bg-muted'
-                    )}>
-                      <m.icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                      <span>{m.label}</span>
+                <ScrollArea className="flex-1">
+                  {/* 学习工具 */}
+                  <div className="p-3 border-b">
+                    <p className="text-xs font-medium text-muted-foreground mb-2 px-2">学习工具</p>
+                    <div className="space-y-0.5">
+                      {learningToolsModules.map((m) => (
+                        <Link key={m.id} to={m.href} onClick={() => setMobileOpen(false)}>
+                          <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors">
+                            <m.icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                            <span className="flex-1">{m.label}</span>
+                          </div>
+                        </Link>
+                      ))}
                     </div>
-                  </Link>
-                ))}
-              </nav>
-            </ScrollArea>
-          </SheetContent>
-        </Sheet>
+                  </div>
+
+                  {/* 学科选择 */}
+                  <div className="p-3 border-b">
+                    <p className="text-xs font-medium text-muted-foreground mb-2 px-2">选择学科</p>
+                    <div className="grid grid-cols-3 gap-1">
+                      {subjects.map((s) => (
+                        <Link key={s.id} to={s.href} onClick={() => setMobileOpen(false)}>
+                          <Button
+                            variant={currentSubject?.id === s.id ? 'secondary' : 'ghost'}
+                            size="sm"
+                            className="w-full text-xs gap-1.5 justify-start"
+                          >
+                            <span
+                              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: s.color, opacity: s.available ? 1 : 0.4 }}
+                            />
+                            {s.name}
+                          </Button>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 模块导航 */}
+                  <nav className="p-3 space-y-1">
+                    {currentSubject?.available && ((currentSubject.id === 'chemistry' ? chemistryModules : physicsModules)).map((m) => (
+                      <Link key={m.id} to={m.href} onClick={() => setMobileOpen(false)}>
+                        <div className={cn(
+                          'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors',
+                          'hover:bg-muted'
+                        )}>
+                          <m.icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                          <span>{m.label}</span>
+                        </div>
+                      </Link>
+                    ))}
+                  </nav>
+                </ScrollArea>
+              </SheetContent>
+            </Sheet>
 
         {/* 移动端：右侧"我的学习" */}
         <div className="flex items-center gap-2 ml-auto">
@@ -419,8 +496,46 @@ export function LeftSidebar() {
   const location = useLocation()
   const currentModule = useCurrentModule()
   const currentSubject = useCurrentSubject()
+  const currentTool = useCurrentTool()
 
-  if (!currentSubject.available) return null
+  // 工具页：显示学习工具导航
+  if (currentTool) {
+    return (
+      <aside className="hidden lg:flex w-56 flex-col border-r bg-muted/20">
+        <div className="p-3 border-b">
+          <div className="flex items-center gap-2 px-2 py-1.5">
+            <Brain className="w-4 h-4 text-primary" />
+            <span className="font-semibold text-sm">学习工具</span>
+          </div>
+        </div>
+        <ScrollArea className="flex-1 py-2">
+          <nav className="px-2 space-y-0.5">
+            {learningToolsModules.map((m) => {
+              const isActive = currentTool === m.id
+              return (
+                <Link key={m.id} to={m.href}>
+                  <div
+                    className={cn(
+                      'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all',
+                      isActive
+                        ? 'bg-primary/10 text-primary font-semibold'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    )}
+                  >
+                    <m.icon className={cn('w-4 h-4 flex-shrink-0', isActive ? 'text-primary' : '')} />
+                    <span className="flex-1">{m.label}</span>
+                    {isActive && <ChevronRight className="w-3 h-3 text-primary" />}
+                  </div>
+                </Link>
+              )
+            })}
+          </nav>
+        </ScrollArea>
+      </aside>
+    )
+  }
+
+  if (!currentSubject?.available) return null
 
   return (
     <aside className="hidden lg:flex w-56 flex-col border-r bg-muted/20">
@@ -428,9 +543,9 @@ export function LeftSidebar() {
         <div className="flex items-center gap-2 px-2 py-1.5">
           <div
             className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: currentSubject.color }}
+            style={{ backgroundColor: currentSubject?.color }}
           />
-          <span className="font-semibold text-sm">{currentSubject.name}</span>
+          <span className="font-semibold text-sm">{currentSubject?.name}</span>
         </div>
       </div>
       <ScrollArea className="flex-1 py-2">

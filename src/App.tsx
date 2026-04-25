@@ -21,6 +21,10 @@ const FoundationPolicyDetail = lazy(() => import('@/sections/foundation/Foundati
 
 // 静态导入
 import { SiteHome } from '@/sections/SiteHome'
+import { DiagnosisPage } from '@/sections/tools/DiagnosisPage'
+import { PlannerPage } from '@/sections/tools/PlannerPage'
+import { MethodsPage } from '@/sections/tools/MethodsPage'
+import PathDetailPage from '@/sections/tools/PathDetailPage'
 import { PhysicsModuleGrid } from '@/sections/SubjectGuidePage'
 import { PhysicsGuideContent } from '@/sections/PhysicsGuidePage'
 import { CognitionGraphPage } from '@/sections/CognitionGraphPage'
@@ -111,6 +115,12 @@ function App() {
           <Route path="/competition/chemistry" element={<ComingSoon name="化学竞赛" />} />
           <Route path="/competition/biology" element={<ComingSoon name="生物竞赛" />} />
           <Route path="/competition/cs" element={<ComingSoon name="信息学竞赛" />} />
+
+          {/* 学习工具 */}
+          <Route path="/diagnosis" element={<DiagnosisPage />} />
+          <Route path="/planner" element={<PlannerPage />} />
+          <Route path="/planner/:pathId" element={<PathDetailPage />} />
+          <Route path="/methods" element={<MethodsPage />} />
 
           <Route path="*" element={<ComingSoon name="星耀高中教育平台" />} />
         </Routes>
