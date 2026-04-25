@@ -87,24 +87,26 @@ export function MathGuidePage() {
             <div className="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center"><BookOpen className="w-4 h-4 text-yellow-500" /></div>
             <h2 className="text-lg font-bold">掌握每种探索模式必须完成的四次直觉升级</h2>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {[
               { from: '"x是个数"', to: '"x可以变化"', color: '#7c3aed', desc: '初中解方程 2x+3=7，算出 x=2 就完了。高中数学要求你完成一次断裂：x不是数，而是可变量；方程不是"求一个数"，而是"描述量之间的关系"。y=2x+3 不是"x=2时y=7"，而是"x每增1，y增2"。这就是函数思维的生根。' },
               { from: '"看起来垂直"', to: '"向量算出来垂直"', color: '#a855f7', desc: '初中证明线线垂直靠"画辅助线+直觉"，高中用向量坐标计算：方向向量点积为零。证明平行也不靠"看起来平行"，而是方向向量共线。完成了这次升级，你就获得了"把空间问题交给计算机"的能力。' },
               { from: '"只是运气"', to: '"概率可以算"', color: '#06b6d4', desc: '你买彩票觉得"中不中全靠命"。数学告诉你：运气是可以描述的——用概率分布描述随机变量的规律，用期望和方差描述"中心"和"离散"。完成了这次升级，你就不会被"巧合"迷惑，也不会把"相关性"当"因果性"。' },
               { from: '"差一点点"', to: '"极限相等"', color: '#f59e0b', desc: '0.999...和1，直觉说"差一点点"，极限思维说"它们完全相等"。就像电影每秒24帧，每帧都是静止的，但连起来就是运动——微分把曲线切成无数小段，每段近似直线，求和就是精确的面积。这种"知道何时接近就等同于到达"的判断力，是理解现代科学的基本素养。' },
             ].map((u, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 rounded-xl border bg-muted/10">
-                <span className="text-xs text-muted-foreground font-medium w-36 flex-shrink-0 text-right">{u.from}</span>
-                <div className="flex-1 flex items-center gap-1">
-                  <div className="h-px flex-1 bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/0" />
-                  <span className="text-muted-foreground text-xs">→</span>
-                  <div className="h-px flex-1 bg-gradient-to-l from-muted-foreground/30 to-muted-foreground/0" />
+              <div key={i} className="p-4 rounded-xl border bg-muted/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 text-right">
+                    <span className="text-xs text-muted-foreground font-medium bg-muted/30 px-2 py-1 rounded">{u.from}</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white border border-muted flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold px-2 py-1 rounded" style={{ color: u.color, backgroundColor: `${u.color}15` }}>{u.to}</span>
+                  </div>
                 </div>
-                <div className="flex-shrink-0" style={{ color: u.color }}>
-                  <div className="text-xs font-semibold">{u.to}</div>
-                  <div className="text-xs text-muted-foreground leading-relaxed max-w-xs">{u.desc}</div>
-                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed pl-2 border-l-2" style={{ borderColor: u.color }}>{u.desc}</p>
               </div>
             ))}
           </div>

@@ -87,24 +87,26 @@ export function BiologyGuidePage() {
             <div className="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center"><BookOpen className="w-4 h-4 text-yellow-500" /></div>
             <h2 className="text-lg font-bold">进入每个世界，必须完成的四次直觉升级</h2>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {[
               { from: '"记特征"', to: '"追问功能"', color: '#10b981', desc: '初中背"鱼用鳃呼吸"，高中追问"鳃为什么能在水中高效提取氧气"。初中背"红细胞没有细胞核"，高中理解"没有核意味着更多空间装血红蛋白→更强的携氧能力"。完成了这次升级，你看到任何生物特征，都会本能地问："这个特征的生存价值是什么？"' },
               { from: '"个体是孤岛"', to: '"多层级的网络"', color: '#059669', desc: '你不再只看"一个人"，而是看到分子→细胞→组织→器官→系统→个体→种群→群落→生态系统的完整链条。你理解了为什么基因突变（分子层）会影响种群演化（群体层），为什么保护一个物种关系到整个生态网络的稳定性。' },
               { from: '"目的是设计"', to: '"结果是筛选"', color: '#06b6d4', desc: '你不再说"为了适应环境，动物演化出了XX"，而是说"碰巧有XX变异的个体存活率更高"。你理解了演化没有方向、没有目的、没有完美——只有"在当前环境下能活下来就不错了"。这种视角从生物学跃迁为理解任何复杂系统的元认知。' },
               { from: '"人是中心"', to: '"人是节点"', color: '#d97706', desc: '你以为保护生态是为了"救地球"？地球经历过五次大灭绝，它照样转。保护生态本质上是保护人类赖以生存的网络复杂度。你体内的微生物细胞数量超过你自身细胞数量——你甚至不算"人类多数"。从"征服自然"到"我是网络中的节点"，这是生物学给你的最深层觉醒。' },
             ].map((u, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 rounded-xl border bg-muted/10">
-                <span className="text-xs text-muted-foreground font-medium w-36 flex-shrink-0 text-right">{u.from}</span>
-                <div className="flex-1 flex items-center gap-1">
-                  <div className="h-px flex-1 bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/0" />
-                  <span className="text-muted-foreground text-xs">→</span>
-                  <div className="h-px flex-1 bg-gradient-to-l from-muted-foreground/30 to-muted-foreground/0" />
+              <div key={i} className="p-4 rounded-xl border bg-muted/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 text-right">
+                    <span className="text-xs text-muted-foreground font-medium bg-muted/30 px-2 py-1 rounded">{u.from}</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white border border-muted flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold px-2 py-1 rounded" style={{ color: u.color, backgroundColor: `${u.color}15` }}>{u.to}</span>
+                  </div>
                 </div>
-                <div className="flex-shrink-0" style={{ color: u.color }}>
-                  <div className="text-xs font-semibold">{u.to}</div>
-                  <div className="text-xs text-muted-foreground leading-relaxed max-w-xs">{u.desc}</div>
-                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed pl-2 border-l-2" style={{ borderColor: u.color }}>{u.desc}</p>
               </div>
             ))}
           </div>

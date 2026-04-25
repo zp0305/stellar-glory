@@ -87,24 +87,26 @@ export function PhysicsGuideContent() {
             <div className="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center"><BookOpen className="w-4 h-4 text-yellow-500" /></div>
             <h2 className="text-lg font-bold">进入每个世界，必须完成的四次直觉升级</h2>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {[
               { from: '"力是燃料"', to: '"力是改变的指令"', color: '#3b82f6', desc: '蹬地是给滑板加油？错。力不是维持运动的原因，而是改变运动状态的原因。无限光滑的冰面上，蹬一下永远滑下去。建立了新直觉后，你会自动问："什么让它的速度变了？"而不是"什么让它继续走？"' },
               { from: '"不接触就没作用"', to: '"真空也是舞台"', color: '#8b5cf6', desc: '场不是假想线，是真实的物理实在。电磁波可以在真空中传播，把太阳的能量送到地球，近距作用对超距作用的胜利。完成这次升级，你就会用"场"的图像思考问题。' },
               { from: '"随机即混乱"', to: '"统计出铁律"', color: '#10b981', desc: '单个分子完全随机，亿万个分子集合后铁律涌现。熵增不是"宇宙变乱"，而是系统自发走向概率更大的宏观状态。就像洗牌几乎一定会变乱。' },
               { from: '"时空是背景"', to: '"规律有边界"', color: '#f59e0b', desc: '你老了十岁，双胞胎兄弟只老了一岁——这是狭义相对论的预言，已被实验反复证实。牛顿力学不是"错了"，而是知道自己在低速、宏观条件下有效。这种"自知之明"，是科学最珍贵的品质。' },
             ].map((u, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 rounded-xl border bg-muted/10">
-                <span className="text-xs text-muted-foreground font-medium w-36 flex-shrink-0 text-right">{u.from}</span>
-                <div className="flex-1 flex items-center gap-1">
-                  <div className="h-px flex-1 bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/0" />
-                  <span className="text-muted-foreground text-xs">→</span>
-                  <div className="h-px flex-1 bg-gradient-to-l from-muted-foreground/30 to-muted-foreground/0" />
+              <div key={i} className="p-4 rounded-xl border bg-muted/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 text-right">
+                    <span className="text-xs text-muted-foreground font-medium bg-muted/30 px-2 py-1 rounded">{u.from}</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white border border-muted flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold px-2 py-1 rounded" style={{ color: u.color, backgroundColor: `${u.color}15` }}>{u.to}</span>
+                  </div>
                 </div>
-                <div className="flex-shrink-0" style={{ color: u.color }}>
-                  <div className="text-xs font-semibold">{u.to}</div>
-                  <div className="text-xs text-muted-foreground leading-relaxed max-w-xs">{u.desc}</div>
-                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed pl-2 border-l-2" style={{ borderColor: u.color }}>{u.desc}</p>
               </div>
             ))}
           </div>

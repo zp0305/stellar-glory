@@ -87,24 +87,26 @@ export function ChineseGuidePage() {
             <div className="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center"><BookOpen className="w-4 h-4 text-yellow-500" /></div>
             <h2 className="text-lg font-bold">掌握每种对话场域必须完成的四次直觉升级</h2>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {[
               { from: '"读懂字面"', to: '"分层解读"', color: '#ef4444', desc: '读完一篇小说觉得"看懂了故事"就结束——这是初中阅读的直觉。高中语文要求：文本不止一层含义。高考问"这段话有何深意"，考的从来不是字面翻译。建立新直觉后，你会自动问"这段话有几层含义？"而不是"这段话说了什么？"' },
               { from: '"背答题模板"', to: '"文体意识自动化"', color: '#dc2626', desc: '"这句话运用了XX手法，表现了YY"——这是答题术，不是阅读力。真正的能力是：看到文章的前3秒，自动弹出"这是XX文体，应该用XX框架来读"。不依赖模板，而是在阅读过程中自然启动正确的解读框架。' },
               { from: '"好词好句"', to: '"语言逻辑与修辞思维"', color: '#c2410c', desc: '"意境优美，感情真挚"——没有实质信息。正确路径是"手法→效果→情感"三步链条。不只识别"用了什么手法"，还要追问"为什么用这个而不是那个"。完成这次升级后，你看到好文字会自动分析其语言操作路径。' },
               { from: '"想到什么写什么"', to: '"思辨读写与观点建构"', color: '#f59e0b', desc: '堆了三个例子以为就是议论文——这叫"例文"，不是"议论文"。写作的本质是"想清楚"，不是"堆例子"。拿到题目先建构观点，然后用严密逻辑支撑。还要能评测反驳、进行"正-反-合"思辨——这是理性思考的基本模式。' },
             ].map((u, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 rounded-xl border bg-muted/10">
-                <span className="text-xs text-muted-foreground font-medium w-36 flex-shrink-0 text-right">{u.from}</span>
-                <div className="flex-1 flex items-center gap-1">
-                  <div className="h-px flex-1 bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/0" />
-                  <span className="text-muted-foreground text-xs">→</span>
-                  <div className="h-px flex-1 bg-gradient-to-l from-muted-foreground/30 to-muted-foreground/0" />
+              <div key={i} className="p-4 rounded-xl border bg-muted/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 text-right">
+                    <span className="text-xs text-muted-foreground font-medium bg-muted/30 px-2 py-1 rounded">{u.from}</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white border border-muted flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold px-2 py-1 rounded" style={{ color: u.color, backgroundColor: `${u.color}15` }}>{u.to}</span>
+                  </div>
                 </div>
-                <div className="flex-shrink-0" style={{ color: u.color }}>
-                  <div className="text-xs font-semibold">{u.to}</div>
-                  <div className="text-xs text-muted-foreground leading-relaxed max-w-xs">{u.desc}</div>
-                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed pl-2 border-l-2" style={{ borderColor: u.color }}>{u.desc}</p>
               </div>
             ))}
           </div>

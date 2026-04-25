@@ -87,24 +87,26 @@ export function EnglishGuidePage() {
             <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center"><BookOpen className="w-4 h-4 text-sky-500" /></div>
             <h2 className="text-lg font-bold">参与每个维度，必须完成的四次直觉升级</h2>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {[
               { from: '"翻译思维"', to: '"形式-意义-用法三维关联"', color: '#06b6d4', desc: '看到"I have lived here for 10 years"，第一反应不再是"翻译成中文"，而是自动问"这个时态想传递什么隐含信息？"英语不是中文的翻译，而是一套独立的形式-意义-用法系统。建立新直觉后，你看到任何英语句子，都会追问"它为什么用这个形式而非那个"。' },
               { from: '"读懂每个词"', to: '"语篇分析"', color: '#0891b2', desc: '逐句翻译后发现每句都"看懂了"，但主旨题、推理题、态度题全错。阅读理解不是"逐句翻译"的集合，而是"把握语篇逻辑"的过程。完成了这次升级后，看到一篇英语文章，脑子里会自动弹出"它的论证结构是什么？作者在哪个地方转折？哪个地方递进？"' },
               { from: '"中式英语"', to: '"跨语言对比与母语迁移"', color: '#6366f1', desc: '"Teacher Zhang"在中国完全得体，但在英语中是语用错误——英语文化中不用职业头衔作称呼（Doctor/Professor 除外）。你的母语既是资源（正迁移：汉语对仗可转化为英语平行结构），也是干扰（负迁移：汉语意合习惯不能直接搬到英语中）。完成这次升级后，你写任何表达都会自动触发跨语言对比。' },
               { from: '"多读多听就能说会写"', to: '"策略性输入与输出"', color: '#8b5cf6', desc: '输入和输出调用的是不同的认知系统——阅读理解调用语义解码，写作调用语义编码，从解码到编码之间没有自动通道。"输入-重组-输出"三步法是关键桥梁，元认知监控（错题归因→定向训练→效果评估）是你的"学习设计师"能力——不等着老师布置任务，而是根据自己的薄弱环节自主选择学习策略。' },
             ].map((u, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 rounded-xl border bg-muted/10">
-                <span className="text-xs text-muted-foreground font-medium w-28 flex-shrink-0 text-right">{u.from}</span>
-                <div className="flex-1 flex items-center gap-1">
-                  <div className="h-px flex-1 bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/0" />
-                  <span className="text-muted-foreground text-xs">→</span>
-                  <div className="h-px flex-1 bg-gradient-to-l from-muted-foreground/30 to-muted-foreground/0" />
+              <div key={i} className="p-4 rounded-xl border bg-muted/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 text-right">
+                    <span className="text-xs text-muted-foreground font-medium bg-muted/30 px-2 py-1 rounded">{u.from}</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white border border-muted flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold px-2 py-1 rounded" style={{ color: u.color, backgroundColor: `${u.color}15` }}>{u.to}</span>
+                  </div>
                 </div>
-                <div className="flex-shrink-0" style={{ color: u.color }}>
-                  <div className="text-xs font-semibold">{u.to}</div>
-                  <div className="text-xs text-muted-foreground leading-relaxed max-w-xs">{u.desc}</div>
-                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed pl-2 border-l-2" style={{ borderColor: u.color }}>{u.desc}</p>
               </div>
             ))}
           </div>

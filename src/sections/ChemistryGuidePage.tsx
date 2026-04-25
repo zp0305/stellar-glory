@@ -87,24 +87,26 @@ export function ChemistryGuidePage() {
             <div className="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center"><BookOpen className="w-4 h-4 text-yellow-500" /></div>
             <h2 className="text-lg font-bold">进入每个世界，必须完成的四次直觉升级</h2>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {[
               { from: '"物质是实体"', to: '"结构决定性质"', color: '#7c3aed', desc: '金刚石和石墨都是碳（C），但性质天差地别。金刚石sp³三维网状共价键，硬度极高；石墨sp²层状结构，质软能导电。同分异构：C₄H₁₀可以是正丁烷或异丁烷，沸点不同。C₂H₆O可以是乙醇或甲醚——组成完全相同，结构不同，性质天壤之别。建立了这次升级后，看到任何物质，你都会本能地追问：它的微观结构是什么？原子怎么连、怎么排？' },
               { from: '"物质有性质"', to: '"微粒在反应"', color: '#059669', desc: '初中写方程式：BaCl₂ + Na₂SO₄ = BaSO₄↓ + 2NaCl。高中要改写成离子方程式：Ba²⁺ + SO₄²⁻ = BaSO₄↓。Na⁺和Cl⁻是旁观者离子，从头到尾没参与变化。氧化还原要画双线桥：Zn失去2e⁻变成Zn²⁺，Cu²⁺得到2e⁻变成Cu。看到宏观现象，脑子里会自动播放"微观粒子动画"。' },
               { from: '"反应进行到底"', to: '"动态平衡"', color: '#06b6d4', desc: '你把N₂和H₂放进密闭容器，希望全部变成NH₃。化学告诉你：不可能。因为氨气分子也在分解：2NH₃ ⇌ N₂ + 3H₂。当合成氨的速率等于分解氨的速率时，体系达到化学平衡——此时正逆反应仍在疯狂进行，只是"看起来停了"。弱电解质电离、盐类水解、沉淀溶解，都是这个逻辑。' },
               { from: '"解释变化"', to: '"设计变化"', color: '#d97706', desc: '无机化学教你解释世界：铁为什么会生锈？因为电化学腐蚀。有机化学要求你设计世界：怎么从乙烯得到乙酸乙酯？需要在脑子里画出路线图：乙烯→[水化]乙醇→[氧化]乙醛→[氧化]乙酸；乙醇+乙酸→[酯化]乙酸乙酯。每一步都要考虑条件：氧化到醛就停不要过头，酯化反应可逆如何提高产率？这不是背诵，而是分子级的设计思维。' },
             ].map((u, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 rounded-xl border bg-muted/10">
-                <span className="text-xs text-muted-foreground font-medium w-28 flex-shrink-0 text-right">{u.from}</span>
-                <div className="flex-1 flex items-center gap-1">
-                  <div className="h-px flex-1 bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/0" />
-                  <span className="text-muted-foreground text-xs">→</span>
-                  <div className="h-px flex-1 bg-gradient-to-l from-muted-foreground/30 to-muted-foreground/0" />
+              <div key={i} className="p-4 rounded-xl border bg-muted/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 text-right">
+                    <span className="text-xs text-muted-foreground font-medium bg-muted/30 px-2 py-1 rounded">{u.from}</span>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-white border border-muted flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold px-2 py-1 rounded" style={{ color: u.color, backgroundColor: `${u.color}15` }}>{u.to}</span>
+                  </div>
                 </div>
-                <div className="flex-shrink-0" style={{ color: u.color }}>
-                  <div className="text-xs font-semibold">{u.to}</div>
-                  <div className="text-xs text-muted-foreground leading-relaxed max-w-xs">{u.desc}</div>
-                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed pl-2 border-l-2" style={{ borderColor: u.color }}>{u.desc}</p>
               </div>
             ))}
           </div>

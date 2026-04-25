@@ -1,0 +1,6 @@
+fix: unify upgrade section layout across all 6 guide pages
+
+- Replace broken flex-row layout (flex items-center) with card-based timeline
+- Each upgrade card: [from badge] → [circle arrow] → [to badge] on header row
+- Description text in separate row below with colored left border
+- Fixes layout overflow on mobile when descriptions wrap
