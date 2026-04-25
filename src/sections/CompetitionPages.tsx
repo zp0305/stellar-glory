@@ -1628,3 +1628,5 @@ export function CompetitionHomePage() {
 
   return <CompetitionHomePage_ />
 }
+
+export default CompetitionHomePage
