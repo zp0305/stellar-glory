@@ -64,7 +64,7 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/stellar-glory">
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<SiteHome />} />
