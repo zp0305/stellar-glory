@@ -202,7 +202,13 @@ const physicsModules = [
     label: '知识详解',
     icon: BookMarked,
     href: '/physics/models',
-    description: '26个核心模型'},
+    description: '42个核心模型'},
+  {
+    id: 'concepts',
+    label: '知识节点',
+    icon: GitBranch,
+    href: '/physics/concepts',
+    description: '56个知识节点'},
   {
     id: 'strategies',
     label: '解题套路',
@@ -274,6 +280,14 @@ const physicsModules = [
     description: '学习规划'},
 ]
 
+// 按科目ID获取模块导航列表
+function getSubjectModules(subjectId: string) {
+  switch (subjectId) {
+    case 'chemistry': return chemistryModules
+    default: return physicsModules
+  }
+}
+
 function useCurrentSubject() {
   const location = useLocation()
   if (location.pathname.startsWith('/physics')) return subjects[0]
@@ -294,9 +308,12 @@ function useCurrentTool() {
 function useCurrentModule() {
   const location = useLocation()
   const path = location.pathname
-  if (path === '/physics' || path.startsWith('/physics')) return 'guide'
-  if (path === '/chemistry' || path.startsWith('/chemistry')) return 'guide'
+  // 精确匹配：根页/学科首页 → guide
+  if (path === '/physics' || path === '/physics/guide') return 'guide'
+  if (path === '/chemistry' || path === '/chemistry/guide') return 'guide'
+  // 通用子路径匹配（对任何科目生效）
   if (path.includes('/graph')) return 'graph'
+  if (path.includes('/concepts')) return 'concepts'
   if (path.includes('/models')) return 'knowledge'
   if (path.includes('/strategies')) return 'strategies'
   if (path.includes('/vision')) return 'vision'
@@ -361,7 +378,7 @@ export function TopNav() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
-                {physicsModules.map((m) => (
+                {currentSubject && getSubjectModules(currentSubject.id).map((m) => (
                   <Link key={m.id} to={m.href}>
                     <DropdownMenuItem className="gap-2">
                       <m.icon className="w-4 h-4 opacity-60" />
@@ -550,7 +567,7 @@ export function LeftSidebar() {
       </div>
       <ScrollArea className="flex-1 py-2">
         <nav className="px-2 space-y-0.5">
-          {physicsModules.map((m) => {
+          {currentSubject && getSubjectModules(currentSubject.id).map((m) => {
             const isActive = currentModule === m.id
             return (
               <Link key={m.id} to={m.href}>

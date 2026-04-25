@@ -30,6 +30,8 @@ import { PhysicsGuideContent } from '@/sections/PhysicsGuidePage'
 import { CognitionGraphPage } from '@/sections/CognitionGraphPage'
 import { ModelList } from '@/sections/ModelList'
 import { ModelPage } from '@/sections/ModelPage'
+import { ConceptList } from '@/sections/ConceptList'
+import { ConceptPage } from '@/sections/ConceptPage'
 import { StrategyListPage, StrategyDetailPage } from '@/sections/StrategyPages'
 import { VisionListPage, VisionDetailPage } from '@/sections/VisionPages'
 import { WrongQuestionsPage } from '@/sections/LearningPages'
@@ -73,6 +75,8 @@ function App() {
           <Route path="/physics/graph" element={<CognitionGraphPage />} />
           <Route path="/physics/models" element={<ModelList />} />
           <Route path="/physics/models/:modelId" element={<ModelPage />} />
+          <Route path="/physics/concepts" element={<ConceptList />} />
+          <Route path="/physics/concepts/:conceptId" element={<ConceptPage />} />
           <Route path="/physics/strategies" element={<StrategyListPage />} />
           <Route path="/physics/strategies/:strategyId" element={<StrategyDetailPage />} />
           <Route path="/physics/vision" element={<VisionListPage />} />
