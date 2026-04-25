@@ -18,6 +18,7 @@ const GaokaoPolicyDetail = lazy(() => import('@/sections/gaokao/GaokaoZoneHome')
 const GaokaoAdmissionDetail = lazy(() => import('@/sections/gaokao/GaokaoZoneHome').then(m => ({ default: m.GaokaoAdmissionDetail })))
 const FoundationZoneHome = lazy(() => import('@/sections/foundation/FoundationZoneHome').then(m => ({ default: m.FoundationZoneHome })))
 const FoundationPolicyDetail = lazy(() => import('@/sections/foundation/FoundationZoneHome').then(m => ({ default: m.FoundationPolicyDetail })))
+const TransitionZoneHome = lazy(() => import('@/sections/transition/TransitionZoneHome').then(m => ({ default: m.TransitionZoneHome })))
 
 // 静态导入
 import { SiteHome } from '@/sections/SiteHome'
@@ -110,6 +111,7 @@ function App() {
           <Route path="/gaokao/path" element={<GaokaoZoneHome />} />
           <Route path="/foundation" element={<FoundationZoneHome />} />
           <Route path="/foundation/policy/:id" element={<FoundationPolicyDetail />} />
+          <Route path="/transition" element={<TransitionZoneHome />} />
 
           {/* 竞赛专区（共用 chunk） */}
           <Route path="/competition" element={<Competition />} />

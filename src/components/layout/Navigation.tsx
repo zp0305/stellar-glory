@@ -55,6 +55,7 @@ const subjects = [
   { id: 'gaokao', name: '高考', code: 'GAO', color: '#f97316', href: '/gaokao', available: true },
   { id: 'foundation', name: '强基', code: 'FND', color: '#8b5cf6', href: '/foundation', available: true },
   { id: 'competition', name: '竞赛', code: 'CMP', color: '#eab308', href: '/competition', available: true },
+  { id: 'transition', name: '衔接', code: 'TRN', color: '#f59e0b', href: '/transition', available: true },
 ]
 
 const competitionModules = [
