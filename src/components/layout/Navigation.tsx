@@ -48,10 +48,10 @@ import {
 const subjects = [
   { id: 'physics', name: '物理', code: 'PHY', color: '#3b82f6', href: '/physics', available: true },
   { id: 'chemistry', name: '化学', code: 'CHE', color: '#10b981', href: '/chemistry', available: true },
-  { id: 'math', name: '数学', code: 'MAT', color: '#8b5cf6', href: '/math', available: false },
-  { id: 'biology', name: '生物', code: 'BIO', color: '#f59e0b', href: '/biology', available: false },
-  { id: 'chinese', name: '语文', code: 'CHN', color: '#ef4444', href: '/chinese', available: false },
-  { id: 'english', name: '英语', code: 'ENG', color: '#06b6d4', href: '/english', available: false },
+  { id: 'math', name: '数学', code: 'MAT', color: '#8b5cf6', href: '/math', available: true },
+  { id: 'biology', name: '生物', code: 'BIO', color: '#f59e0b', href: '/biology', available: true },
+  { id: 'chinese', name: '语文', code: 'CHN', color: '#ef4444', href: '/chinese', available: true },
+  { id: 'english', name: '英语', code: 'ENG', color: '#06b6d4', href: '/english', available: true },
   { id: 'gaokao', name: '高考', code: 'GAO', color: '#f97316', href: '/gaokao', available: true },
   { id: 'foundation', name: '强基', code: 'FND', color: '#8b5cf6', href: '/foundation', available: true },
   { id: 'competition', name: '竞赛', code: 'CMP', color: '#eab308', href: '/competition', available: true },
@@ -280,10 +280,28 @@ const physicsModules = [
     description: '学习规划'},
 ]
 
+// 数学/生物/语文/英语学科模块导航（当前仅指南页）
+const mathModules = [
+  { id: 'guide', label: '学科指南', icon: BookOpen, href: '/math', description: '为什么学数学' },
+]
+const biologyModules = [
+  { id: 'guide', label: '学科指南', icon: BookOpen, href: '/biology', description: '为什么学生物' },
+]
+const chineseModules = [
+  { id: 'guide', label: '学科指南', icon: BookOpen, href: '/chinese', description: '为什么学语文' },
+]
+const englishModules = [
+  { id: 'guide', label: '学科指南', icon: BookOpen, href: '/english', description: '为什么学英语' },
+]
+
 // 按科目ID获取模块导航列表
 function getSubjectModules(subjectId: string) {
   switch (subjectId) {
     case 'chemistry': return chemistryModules
+    case 'math': return mathModules
+    case 'biology': return biologyModules
+    case 'chinese': return chineseModules
+    case 'english': return englishModules
     default: return physicsModules
   }
 }
@@ -292,6 +310,10 @@ function useCurrentSubject() {
   const location = useLocation()
   if (location.pathname.startsWith('/physics')) return subjects[0]
   if (location.pathname.startsWith('/chemistry')) return subjects[1]
+  if (location.pathname.startsWith('/math')) return subjects[2]
+  if (location.pathname.startsWith('/biology')) return subjects[3]
+  if (location.pathname.startsWith('/chinese')) return subjects[4]
+  if (location.pathname.startsWith('/english')) return subjects[5]
   if (location.pathname.startsWith('/diagnosis') || location.pathname.startsWith('/planner') || location.pathname.startsWith('/methods')) return null
   return subjects[0]
 }
@@ -478,7 +500,7 @@ export function TopNav() {
 
                   {/* 模块导航 */}
                   <nav className="p-3 space-y-1">
-                    {currentSubject?.available && ((currentSubject.id === 'chemistry' ? chemistryModules : physicsModules)).map((m) => (
+                    {currentSubject?.available && getSubjectModules(currentSubject.id).map((m) => (
                       <Link key={m.id} to={m.href} onClick={() => setMobileOpen(false)}>
                         <div className={cn(
                           'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors',

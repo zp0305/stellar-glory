@@ -38,6 +38,10 @@ import { WrongQuestionsPage } from '@/sections/LearningPages'
 import { MyLearning } from '@/sections/MyLearning'
 import { FavoritesPage } from '@/sections/FavoritesPage'
 import { ChemistryGuidePage } from '@/sections/ChemistryGuidePage'
+import { MathGuidePage } from '@/sections/MathGuidePage'
+import { BiologyGuidePage } from '@/sections/BiologyGuidePage'
+import { ChineseGuidePage } from '@/sections/ChineseGuidePage'
+import { EnglishGuidePage } from '@/sections/EnglishGuidePage'
 import PracticeRedirect from '@/sections/PracticeRedirect'
 
 function Loading() {
@@ -96,9 +100,10 @@ function App() {
           <Route path="/chemistry" element={<ChemistryGuidePage />} />
           <Route path="/chemistry/senior" element={<ComingSoon name="化学高考专项" />} />
           <Route path="/chemistry/foundation" element={<ComingSoon name="化学强基专项" />} />
-          <Route path="/math" element={<ComingSoon name="数学" />} />
-          <Route path="/math/senior" element={<ComingSoon name="数学高考专项" />} />
-          <Route path="/math/foundation" element={<ComingSoon name="数学强基专项" />} />
+          <Route path="/math" element={<MathGuidePage />} />
+          <Route path="/biology" element={<BiologyGuidePage />} />
+          <Route path="/chinese" element={<ChineseGuidePage />} />
+          <Route path="/english" element={<EnglishGuidePage />} />
           <Route path="/gaokao" element={<GaokaoZoneHome />} />
           <Route path="/gaokao/policy/:id" element={<GaokaoPolicyDetail />} />
           <Route path="/gaokao/admission/:id" element={<GaokaoAdmissionDetail />} />
