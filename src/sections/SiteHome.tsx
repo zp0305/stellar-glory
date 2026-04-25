@@ -300,6 +300,8 @@ function TopNavLite() {
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <Link to="/gaokao" className="hover:text-foreground transition-colors">高考专区</Link>
           <Link to="/foundation" className="hover:text-foreground transition-colors">强基计划</Link>
+          <Link to="/competition" className="hover:text-foreground transition-colors">学科竞赛</Link>
+          <Link to="/diagnosis" className="hover:text-foreground transition-colors">学习工具</Link>
           <Link to="/physics" className="hover:text-foreground transition-colors text-foreground font-medium">物理</Link>
         </div>
       </div>

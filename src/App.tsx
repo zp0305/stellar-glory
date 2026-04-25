@@ -111,10 +111,10 @@ function App() {
           <Route path="/competition/physics/papers" element={<Competition />} />
           <Route path="/competition/physics/experiment" element={<Competition />} />
           <Route path="/competition/physics/path" element={<Competition />} />
-          <Route path="/competition/math" element={<ComingSoon name="数学竞赛" />} />
-          <Route path="/competition/chemistry" element={<ComingSoon name="化学竞赛" />} />
-          <Route path="/competition/biology" element={<ComingSoon name="生物竞赛" />} />
-          <Route path="/competition/cs" element={<ComingSoon name="信息学竞赛" />} />
+          <Route path="/competition/math" element={<Competition />} />
+          <Route path="/competition/chemistry" element={<Competition />} />
+          <Route path="/competition/biology" element={<Competition />} />
+          <Route path="/competition/cs" element={<Competition />} />
 
           {/* 学习工具 */}
           <Route path="/diagnosis" element={<DiagnosisPage />} />
