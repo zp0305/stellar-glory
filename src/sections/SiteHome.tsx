@@ -279,6 +279,17 @@ export function SiteHome() {
               </CardContent>
             </Card>
           </Link>
+          <Link to="/transition">
+            <Card className="hover:shadow-sm transition-all h-full border-orange-200 bg-orange-50/30 hover:border-orange-300">
+              <CardContent className="p-4 text-center space-y-2">
+                <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center mx-auto">
+                  <TrendingUp className="w-5 h-5 text-orange-500" />
+                </div>
+                <h3 className="font-semibold text-sm">衔接规划</h3>
+                <p className="text-xs text-muted-foreground">初高中衔接，暑假8周方案</p>
+              </CardContent>
+            </Card>
+          </Link>
         </section>
 
       </div>
@@ -301,6 +312,7 @@ function TopNavLite() {
           <Link to="/gaokao" className="hover:text-foreground transition-colors">高考专区</Link>
           <Link to="/foundation" className="hover:text-foreground transition-colors">强基计划</Link>
           <Link to="/competition" className="hover:text-foreground transition-colors">学科竞赛</Link>
+          <Link to="/transition" className="hover:text-foreground transition-colors">衔接规划</Link>
           <Link to="/diagnosis" className="hover:text-foreground transition-colors">学习工具</Link>
           <Link to="/physics" className="hover:text-foreground transition-colors text-foreground font-medium">物理</Link>
         </div>
