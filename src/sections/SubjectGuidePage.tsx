@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import {
   BookOpen, GitBranch, BookMarked, Lightbulb, Eye,
   Target, FlaskConical, BarChart3, Trophy, Route,
-  ChevronRight, Star, Lock, Atom
+  ChevronRight, Star, Lock, Atom, Zap
 } from 'lucide-react'
 import { allRoutines } from '@/data/physics/strategies'
 import { physicsModels } from '@/data/physics/physicsModels'
@@ -17,6 +17,7 @@ const physicsModules = [
   { id: 'graph', label: '认知图谱', icon: GitBranch, href: '/physics/graph', color: '#8b5cf6', badge: null, coming: false },
   { id: 'knowledge', label: '知识详解', icon: BookMarked, href: '/physics/models', color: '#10b981', badge: String(physicsModels.length) + '个', coming: false },
   { id: 'strategies', label: '解题套路', icon: Lightbulb, href: '/physics/strategies', color: '#f59e0b', badge: String(allRoutines.length) + '条', coming: false },
+  { id: 'thinking', label: '思维方法', icon: Zap, href: '/physics/thinking', color: '#7c3aed', badge: '7个', coming: false },
   { id: 'vision', label: '物理视界', icon: Eye, href: '/physics/vision', color: '#06b6d4', badge: String(physicsVisionStories.length) + '个', coming: false },
   { id: 'practice', label: '练习中心', icon: Target, href: '/physics/practice', color: '#ef4444', badge: null, coming: false },
   { id: 'wrong', label: '错题本', icon: FlaskConical, href: '/physics/wrong', color: '#dc2626', badge: null, coming: false },

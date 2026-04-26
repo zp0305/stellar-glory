@@ -218,6 +218,13 @@ const physicsModules = [
     description: '题型规律提炼',
     available: true},
   {
+    id: 'thinking',
+    label: '思维方法',
+    icon: Zap,
+    href: '/physics/thinking',
+    description: '7个核心认知维度',
+    available: true},
+  {
     id: 'vision',
     label: '物理视界',
     icon: Eye,
@@ -339,6 +346,7 @@ function useCurrentModule() {
   if (path.includes('/concepts')) return 'concepts'
   if (path.includes('/models')) return 'knowledge'
   if (path.includes('/strategies')) return 'strategies'
+  if (path.includes('/thinking')) return 'thinking'
   if (path.includes('/vision')) return 'vision'
   if (path.includes('/exercises')) return 'practice'
   if (path.includes('/practice')) return 'practice'

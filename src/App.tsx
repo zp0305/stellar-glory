@@ -34,6 +34,8 @@ import { ModelPage } from '@/sections/ModelPage'
 import { ConceptList } from '@/sections/ConceptList'
 import { ConceptPage } from '@/sections/ConceptPage'
 import { StrategyListPage, StrategyDetailPage } from '@/sections/StrategyPages'
+import { ThinkingMethodList } from '@/sections/physics/ThinkingMethodList'
+import { ThinkingMethodDetail } from '@/sections/physics/ThinkingMethodDetail'
 import { VisionListPage, VisionDetailPage } from '@/sections/VisionPages'
 import { WrongQuestionsPage } from '@/sections/LearningPages'
 import { MyLearning } from '@/sections/MyLearning'
@@ -84,6 +86,8 @@ function App() {
           <Route path="/physics/concepts/:conceptId" element={<ConceptPage />} />
           <Route path="/physics/strategies" element={<StrategyListPage />} />
           <Route path="/physics/strategies/:strategyId" element={<StrategyDetailPage />} />
+          <Route path="/physics/thinking" element={<ThinkingMethodList />} />
+          <Route path="/physics/thinking/:methodId" element={<ThinkingMethodDetail />} />
           <Route path="/physics/vision" element={<VisionListPage />} />
           <Route path="/physics/vision/:storyId" element={<VisionDetailPage />} />
           <Route path="/physics/exercises" element={<QuestionBankListPage />} />
