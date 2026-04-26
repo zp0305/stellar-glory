@@ -37,3 +37,14 @@ build_result.txt
 
 # Office temporary files
 ~$*
+
+# Debug and temporary scripts (not part of project deliverables)
+scripts/debug_*
+scripts/fix_routines*.py
+scripts/check_*
+scripts/test_*
+scripts/split_paradigms.py
+scripts/generate_klayer.py
+scripts/generate-klayer.js
+scripts/fix_routines.js
+scripts/generate_routines_index.py

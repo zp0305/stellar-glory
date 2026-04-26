@@ -1,8 +1,8 @@
 # 星耀项目 — 内容规范
 
-> 版本：v2.0
-> 更新：2026-04-22
-> 状态：**v1.6 固化 · 题库系统写入规范 · 三层归类方案补入**
+> 版本：v2.1
+> 更新：2026-04-26
+> 状态：**范式拆分完毕 · 六科全上线 · 衔接专区上线 · 强基待推进**
 
 ---
 
@@ -16,11 +16,11 @@
 星耀内容体系
 │
 ├── 物理（最完整，是其他学科的模板）
-│   ├── K层  知识节点（K01-K56）  ← 认知网络底层
+│   ├── K层  知识节点（K01-K56）  ← 认知网络底层（骨架就绪）
 │   ├── M层  核心模型（M01-M42）  ← 认知网络主体
-│   ├── R层  解题套路（R01-R86） ← 模型之上的方法层
+│   ├── R层  解题套路（R01-R90） ← 模型之上的方法层（✅已拆分）
 │   ├── V层  物理视界（10分类）    ← 拓展视野
-│   ├── P层  练习中心（B/J/T）    ← 实战训练
+│   ├── P层  练习中心（B/J/T）    ← 实战训练（部分就绪）
 │   └── L层  错题本 + 学习报告    ← 学习追踪
 │
 ├── 化学（待建：复制物理结构）
@@ -115,11 +115,12 @@ export const K01 = {
 
 ---
 
-### 2.3 R层 - 解题套路（R01-R86）
+### 2.3 R层 - 解题套路（R01-R90）
 
 > **定位**：跨模型的通用/特定解题方法。一个套路可以关联多个模型。
+> **状态**：✅ 已从 `strategies.ts` 拆分为 90 个独立文件（R01.ts ~ R90.ts），通过 `src/data/physics/routines/index.ts` 统一导出 `allParadigms` 和 `paradigmMap`。
 
-**文件**：`src/data/physics/routines/R01.ts`（待从 `strategies.ts` 拆分）
+**文件**：`src/data/physics/routines/R01.ts` ~ `R90.ts`
 
 ```ts
 export const R01 = {
@@ -506,12 +507,16 @@ selfCheck: {
 
 | 模块 | 状态 | 说明 |
 |:---|:---:|:---|
-| K01-K56 知识节点 | 待建 | 是认知图谱的底层节点，需梳理高中物理完整K层 |
-| R01-R86 独立文件 | 待拆 | 目前在 strategies.ts，需拆成独立文件便于分工 |
-| 化学 M/R 层 | 待建 | 复制物理结构 |
-| 数学 M/R 层 | 待建 | 复制物理结构 |
-| P层练习题库 | 待建 | 大量题目（B/J/T三层） |
-| 强基面试 FI01-FI04 | 待建 | 面试形式、题库、技巧 |
+| K01-K56 知识节点 | ⚠️ 骨架就绪 | 骨架文件已生成，仅 P01 有完整内容 |
+| R01-R90 独立文件 | ✅ 已拆分 | 90条范式 → R01.ts~R90.ts + index.ts（allParadigms + paradigmMap） |
+| 六科指南页 | ✅ 全部上线 | 物理/化学/数学/生物/语文/英语，均为5段式模板 |
+| 学习工具模块 | ✅ 已上线 | 诊断/规划/方法三页，路由 /diagnosis /planner /methods |
+| 五科竞赛页 | ✅ 已上线 | 物理/化学/数学/生物/信息，含 CMO/CChO/CBO/NOIP 数据 |
+| 初高中衔接专区 | ✅ 已上线 | /transition，4个Tab（暑假计划/六科衔接/高中适应/容错方案） |
+| 化学/生物题库 | ⚠️ 部分就绪 | 物理题库有示例题；化学/生物/语文/英语暂缺 |
+| 强基专区 | 🔄 部分上线 | FP01-07 ✅ / 备考时间线 ✅ / FI01-04 ⚠️ / FK01-18 ❌ / FB01-09 ❌ |
+| 物理题库 | 🔄 部分就绪 | 有示例题，需扩展至全量 |
+| 高考专区 | 🔄 部分上线 | P01-P05 政策 ✅ / A01-A06 升学参考 ✅ / S01-S07 ❌ / T01-T09 ❌ |
 
 ---
 
@@ -648,7 +653,7 @@ selfCheck: {
 
 | 学科 | 状态 | K层节点 | M层模型 | R层套路 |
 |:---|:---:|:---:|:---:|:---:|
-| 物理 | ✅ 已落地 | K01-K56（55个） | M01-M42（42个） | R01-R86（86个） |
+| 物理 | ✅ 已落地 | K01-K56（骨架就绪） | M01-M42（42个完整） | R01-R90（90个，已拆分文件） |
 | 化学 | 🔄 待建 | C-K01-C-K?? | C-M01-C-M?? | C-R01-C-R?? |
 | 数学 | 🔄 待建 | M-K01-M-K?? | M-M01-M-M?? | M-R01-M-R?? |
 | 生物 | 🔄 待建 | B-K01-B-K?? | B-M01-B-M?? | B-R01-B-R?? |
@@ -873,7 +878,7 @@ export const foundationInterviews: FoundationInterview[] = [
 | 内容来源 | 写入位置 | 展示页面 |
 |:---|:---|:---|
 | 内容团队填充 M01-M42 | `src/data/physics/models/M{num}.ts` | 模型详情页 |
-| 内容团队填充 R01-R86 | `src/data/physics/routines/R{num}.ts` | 套路详情页 |
+| 内容团队填充 R01-R90 | `src/data/physics/routines/R{num}.ts` | 套路详情页 |
 | 内容团队填充 V01-V10 | `src/data/physics/visionStories.ts` | 物理视界 |
 | 内容团队填充 P01-P05 | `src/data/gaokao/policies.ts` | 高考政策 |
 | 内容团队填充 A01-A06 | `src/data/gaokao/admission.ts` | 升学参考 |
@@ -883,3 +888,187 @@ export const foundationInterviews: FoundationInterview[] = [
 | 用户收藏模型 | Supabase `favorites` | 收藏夹 |
 | 用户错题 | Supabase `wrong_questions` | 错题本 |
 | 用户自评理解度 | Zustand localStorage | 模型详情页（理解度标签）|
+
+---
+
+## 十三、六科指南页规范
+
+> **定位**：每个学科的入口页面，帮助学生快速了解该学科的学习方法和框架。
+> **状态**：✅ 物理/化学/数学/生物/语文/英语均已上线。
+
+### 13.1 统一5段式模板
+
+所有学科指南页均采用相同结构：
+
+```
+Why（为什么学）→ 四维（四个能力维度）→ 四界（四个认知境界）→ 四习惯（四个学习习惯）→ 学科与你（与你的连接）
+```
+
+### 13.2 各学科颜色主题
+
+| 学科 | 路由 | 颜色 | 图标 |
+|:---|:---|:---|:---|
+| 物理 | `/physics/guide` | blue | Atom |
+| 化学 | `/chemistry` | green | Atom |
+| 数学 | `/math` | violet | Sigma |
+| 生物 | `/biology` | green/emerald | Dna |
+| 语文 | `/chinese` | red/rose | Pencil |
+| 英语 | `/english` | cyan/blue | Globe |
+
+### 13.3 导航集成
+
+`nav-data.ts` 中 subjects 数组均已设置 `available: true`，`useCurrentSubject()` hook 识别各学科路径，`getSubjectModules()` 按科返回对应模块列表。移动端侧边栏调用 `getSubjectModules()` 动态生成，不再硬编码。
+
+---
+
+## 十四、学习工具模块规范
+
+> **定位**：帮助学生进行自我诊断、学习规划和方法改进的独立工具模块。
+> **状态**：✅ 诊断/规划/方法三页已上线。
+
+### 14.1 模块列表
+
+| 路由 | 组件 | 数据文件 | 说明 |
+|:---|:---|:---|:---|
+| `/diagnosis` | DiagnosisPage | `src/data/tools/diagnosis.ts` | 学科选择 → 答题 → 评级 → 薄弱点分析 |
+| `/planner` | PlannerPage | `src/data/tools/planner.ts` | 年级选择 → 目标 → 三年里程碑时间线 |
+| `/methods` | MethodsPage | `src/data/tools/methods.ts` | 五法卡片（费曼/间隔重复/检索练习/联想链接/主动学习）|
+
+### 14.2 诊断工具（DiagnosisPage）
+
+- 学科选择 → 答题（多选） → 评级（A/B/C/D）→ 薄弱点分析 → 推荐跳转
+- 诊断结果和历史记录存储于 localStorage
+
+### 14.3 规划工具（PlannerPage）
+
+- 年级选择 → 目标选择（高考/强基/竞赛）→ 三年里程碑时间线 + 目标分解
+- 跳转到具体学科模块
+
+### 14.4 方法工具（MethodsPage）
+
+五法卡片：费曼技巧 / 间隔重复 / 检索练习 / 联想链接 / 主动学习
+每个方法可展开，含步骤、场景、实例、自评量表；自评结果存 localStorage。
+
+---
+
+## 十五、竞赛内容模块规范
+
+> **定位**：覆盖物理/化学/数学/生物/信息五大学科竞赛的备考内容。
+> **状态**：✅ 五科路由全部注册，数据部分就绪。
+
+### 15.1 路由结构
+
+```
+/competition                    ← 竞赛首页（入口）
+/competition/physics            ← 物理竞赛（CPHO/决赛）
+/competition/math               ← 数学竞赛（CMO）
+/competition/chemistry          ← 化学竞赛（CChO）
+/competition/biology             ← 生物竞赛（CBO）
+/competition/cs                  ← 信息竞赛（NOIP）
+```
+
+全部路由走 `CompetitionPages` 组件（懒加载，共享 chunk）。
+
+### 15.2 数据文件
+
+| 学科 | 数据文件 | 状态 |
+|:---|:---|:---:|
+| 数学 | `src/data/competition/math.ts`（CMO） | contentStatus: 'partial' |
+| 化学 | `src/data/competition/chemistry.ts`（CChO） | contentStatus: 'partial' |
+| 生物 | `src/data/competition/biology.ts`（CBO） | contentStatus: 'partial' |
+| 信息 | `src/data/competition/cs.ts`（NOIP） | contentStatus: 'partial' |
+
+---
+
+## 十六、初高中衔接专区规范
+
+> **定位**：帮助初三升高一学生完成初高中过渡，提供暑假规划和各科衔接指导。
+> **状态**：✅ 已上线。
+
+### 16.1 路由与文件
+
+- 路由：`/transition`
+- 组件：`src/sections/transition/TransitionZoneHome.tsx`
+- 数据文件：`src/data/transition/policy.ts`
+
+### 16.2 四个Tab
+
+| Tab | 内容 |
+|:---|:---|
+| 暑假计划 | 8周时间线 |
+| 六科衔接 | 可展开科目切换 |
+| 高中适应 | 高一5阶段时间线 + 6个坑 |
+| 容错方案 | 6种偏差可展开卡片 |
+
+### 16.3 导航入口
+
+`nav-data.ts` subjects 数组添加 `id: 'transition'`，琥珀色主题。
+
+---
+
+## 十七、团队分工与内容交接规范
+
+> **版本**：v2.0（2026-04-26 确认）
+
+### 17.1 当前团队分工
+
+| 角色 | 职责 |
+|:---|:---|
+| 网站AI（我） | 只负责编码，不负责内容生成 |
+| 项目经理AI | 定规范、定模板、定标准，确保内容能和网站对接 |
+| 内容AI | 负责内容生成 |
+
+### 17.2 内容交接区（docs/）
+
+内容方生成好的内容文档拷贝到 `docs/` 目录，作为网站页面开发的蓝本：
+
+```
+docs/
+├── subjects/          ← 7份学科指南 + 物理模型模板
+├── zones/             ← 高考/强基/竞赛/衔接规划
+├── tools/             ← 学习方法/诊断/规划/路径
+├── cross-cutting/     ← 跨学科网络/知识转化/压轴题
+├── architecture/      ← 规格书/框架/题库架构/开发标准
+└── references/        ← 竞品参考(brilliant/khan/studynotion)
+```
+
+### 17.3 内容命名约定
+
+- **解题套路 = 分析范式**：网站 UI 统一显示"分析范式"
+- **底层数据字段**：仍用 `Paradigm`，文件名/路由仍用 `paradigms`，避免大规模重构
+
+---
+
+## 十八、知识节点页（ConceptPage）规范
+
+> **定位**：认知图谱的底层知识节点页，5段式结构。
+> **状态**：✅ 已实现，P01 有完整内容，P02-P56 为"内容整理中"。
+
+### 18.1 5段式结构
+
+```
+前置检测 → 叙事正文（6段）→ 分层变形 → 公式卡片 → 理解度自评
+```
+
+### 18.2 数据文件
+
+- 类型定义：`src/data/physics/concepts/types.ts`
+- 示例数据：`src/data/physics/concepts/P01_加速度.ts`
+- 索引文件：`src/data/physics/concepts/index.ts`（P01-P56 完整列表）
+
+### 18.3 路由
+
+- `/physics/concepts` — 知识节点列表页
+- `/physics/concepts/:conceptId` — 知识节点详情页
+
+### 18.4 K01-K56 七大板块
+
+| 板块 | 节点数 | 编号 |
+|:---|:---:|:---|
+| 板块1：运动学 | 6个 | K01-K06 |
+| 板块2：力学 | 6个 | K07-K12 |
+| 板块3：曲线运动与万有引力 | 6个 | K13-K18 |
+| 板块4：能量与动量 | 9个 | K19-K27 |
+| 板块5：电磁学 | 17个 | K28-K44 |
+| 板块6：热学·光学·机械波 | 8个 | K45-K52 |
+| 板块7：近代物理 | 4个 | K53-K56 |
