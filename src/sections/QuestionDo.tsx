@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { AppLayout } from '@/components/layout/Navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MarkdownRenderer } from '@/components/MarkdownRenderer'
 import { questionsByModel, DIFF_LABEL, DIFF_COLOR } from '@/data/physics/questions'
+import { useUserStore } from '@/stores/userStore'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle, Lightbulb, Eye, EyeOff } from 'lucide-react'
 import type { Question } from '@/data/physics/questions/types'
@@ -48,11 +49,12 @@ function TypeBadge({ type }: { type: string }) {
 
 // 单题答题卡片
 function QuestionCard({
-  q, allQuestions, currentIndex, onNext,
+  q, allQuestions, currentIndex, modelId, onNext,
 }: {
   q: Question
   allQuestions: Question[]
   currentIndex: number
+  modelId?: string
   onNext?: () => void
 }) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
@@ -61,12 +63,14 @@ function QuestionCard({
   const [timeLeft, setTimeLeft] = useState(q.estimatedMinutes * 60)
   const diffIndex = allQuestions.filter(q2 => q2.difficulty === q.difficulty).findIndex(q2 => q2.id === q.id)
 
+  const { addWrongQuestion, addQuestionAttempt, updateLearningStats } = useUserStore()
+
   useEffect(() => {
     setSelectedOption(null)
     setSubmitted(false)
     setShowHint(false)
     setTimeLeft(q.estimatedMinutes * 60)
-  }, [q.id])
+  }, [q.id, q.estimatedMinutes])
 
   useEffect(() => {
     if (submitted || timeLeft === 0) return
@@ -76,16 +80,49 @@ function QuestionCard({
     return () => clearInterval(timer)
   }, [q.id, submitted])
 
-    // 选择题：标准化比对（去LaTeX/空格/大小写）；填空/计算题不判对错
   const isChoice = !!q.options
 
   const choiceCorrect = submitted && isChoice && normalizeAnswer(selectedOption ?? '') === normalizeAnswer(q.answer)
-  const isCorrect = choiceCorrect  // 填空/计算题时永远 false，不显示红色边框
+  const isCorrect = choiceCorrect
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     if (selectedOption === null) return
     setSubmitted(true)
-  }
+
+    const subject = 'PHY' as const
+
+    if (isChoice && !choiceCorrect) {
+      const wrongRecord = {
+        id: `WT-${subject}-${Date.now()}`,
+        questionId: q.id,
+        subject,
+        modelId,
+        questionContent: q.question.replace(/\$\\$/g, '').replace(/\\/g, '').slice(0, 100),
+        myAnswer: selectedOption,
+        correctAnswer: q.answer,
+        isCorrect: false,
+        points: q.points,
+        isReviewed: false,
+        reviewCount: 0,
+        isMastered: false,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      }
+      addWrongQuestion(wrongRecord)
+    }
+
+    const attempt = {
+      id: `AT-${subject}-${Date.now()}`,
+      questionId: q.id,
+      subject,
+      modelId,
+      isCorrect: isChoice ? choiceCorrect : true,
+      answeredAt: new Date().toISOString(),
+      timeSpent: q.estimatedMinutes * 60 - timeLeft,
+    }
+    addQuestionAttempt(attempt)
+    updateLearningStats(subject)
+  }, [selectedOption, q, modelId, isChoice, choiceCorrect, timeLeft, addWrongQuestion, addQuestionAttempt, updateLearningStats])
 
   return (
     <Card className={cn('transition-all duration-300', submitted && (isCorrect ? 'ring-2 ring-green-400' : 'ring-2 ring-red-400'))}>
@@ -288,6 +325,7 @@ export function QuestionDoPage() {
           q={q}
           allQuestions={allQuestions}
           currentIndex={currentIndex}
+          modelId={modelId}
           onNext={currentIndex < allQuestions.length - 1 ? () => setCurrentIndex(prev => prev + 1) : undefined}
         />
 

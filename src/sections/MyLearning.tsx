@@ -1,65 +1,84 @@
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { AppLayout } from '@/components/layout/Navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
+import { useUserStore } from '@/stores/userStore'
 import {
   BookOpen, FlaskConical, Target, CheckCircle2, XCircle,
-  TrendingUp, Clock, Trophy, Star, ArrowRight, Lightbulb,
-  Flame, Calendar, BarChart3, RefreshCw
+  TrendingUp, Clock, BarChart3, RefreshCw, Lightbulb, Flame
 } from 'lucide-react'
 
-// Mock学习数据
-const mockReport = {
-  totalLearned: 8,
-  totalQuestions: 24,
-  correctRate: 72,
-  weakPoints: [
-    { model: '匀变速直线运动', rate: 60, count: 5 },
-    { model: '牛顿第二定律', rate: 65, count: 3 },
-    { model: '动能定理', rate: 58, count: 4 },
-  ],
-  strongPoints: [
-    { model: '位移与速度', rate: 90, count: 2 },
-    { model: '加速度', rate: 85, count: 3 },
-  ],
-  weeklyProgress: [
-    { day: '周一', rate: 62, time: 30 },
-    { day: '周二', rate: 65, time: 45 },
-    { day: '周三', rate: 68, time: 25 },
-    { day: '周四', rate: 70, time: 50 },
-    { day: '周五', rate: 72, time: 35 },
-    { day: '周六', rate: 72, time: 20 },
-    { day: '周日', rate: 74, time: 40 },
-  ],
-}
-
-const mockWrongQuestions = [
-  {
-    id: 'PHY-Q001',
-    question: '物体从 A 点（x₁=2m）运动到 B 点（x₂=8m），位移大小为多少？',
-    myAnswer: 'A', correctAnswer: 'B',
-    reason: '混淆位移与路程的概念',
-    model: '匀变速直线运动', reviewCount: 2,
-  },
-  {
-    id: 'PHY-Q002',
-    question: '汽车以 72km/h 的速度行驶，刹车后以 4m/s² 的加速度减速，求刹车后 5s 内的位移。',
-    myAnswer: 'C', correctAnswer: 'B',
-    reason: '未判断刹车停止时间',
-    model: '匀变速直线运动', reviewCount: 0,
-  },
-]
-
-const DIFFICULTY_PROGRESS: Record<string, { correct: number; total: number; label: string; color: string }> = {
-  B: { correct: 14, total: 18, label: 'B层 · 基础', color: '#16a34a' },
-  J: { correct: 8, total: 11, label: 'J层 · 进阶', color: '#ca8a04' },
-  T: { correct: 2, total: 5, label: 'T层 · 挑战', color: '#dc2626' },
-}
-
 export function MyLearning() {
-  const maxRate = Math.max(...mockReport.weeklyProgress.map((w) => w.rate))
+  const subjectCode = 'PHY' as const
+
+  const stats = useUserStore(state => state.getLearningStats(subjectCode))
+  const wrongQuestions = useUserStore(state => state.getWrongQuestionsBySubject(subjectCode))
+  const questionAttempts = useUserStore(state => state.questionAttempts)
+
+  const weeklyProgress = useMemo(() => {
+    const now = new Date()
+    const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+    const result: { day: string; rate: number; time: number }[] = []
+
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date(now)
+      date.setDate(date.getDate() - i)
+      const dateStr = date.toISOString().split('T')[0]
+
+      const dayAttempts = questionAttempts.filter(a => {
+        const attemptDate = new Date(a.answeredAt).toISOString().split('T')[0]
+        return attemptDate === dateStr && a.subject === subjectCode
+      })
+
+      const total = dayAttempts.length
+      const correct = dayAttempts.filter(a => a.isCorrect).length
+      const rate = total > 0 ? Math.round((correct / total) * 100) : 0
+      const time = dayAttempts.reduce((sum, a) => sum + (a.timeSpent || 0), 0)
+
+      result.push({
+        day: days[date.getDay()],
+        rate,
+        time: Math.round(time / 60),
+      })
+    }
+
+    return result
+  }, [questionAttempts, subjectCode])
+
+  const weakPoints = useMemo(() => {
+    if (!stats?.modelStats) return []
+    return Object.entries(stats.modelStats)
+      .map(([modelId, data]) => ({
+        model: modelId,
+        rate: data.attempts > 0 ? Math.round((data.correct / data.attempts) * 100) : 0,
+        count: data.attempts,
+      }))
+      .filter(m => m.count > 0)
+      .sort((a, b) => a.rate - b.rate)
+      .slice(0, 3)
+  }, [stats])
+
+  const strongPoints = useMemo(() => {
+    if (!stats?.modelStats) return []
+    return Object.entries(stats.modelStats)
+      .map(([modelId, data]) => ({
+        model: modelId,
+        rate: data.attempts > 0 ? Math.round((data.correct / data.attempts) * 100) : 0,
+        count: data.attempts,
+      }))
+      .filter(m => m.count > 0)
+      .sort((a, b) => b.rate - a.rate)
+      .slice(0, 2)
+  }, [stats])
+
+  const totalAttempts = stats?.totalAttempts || 0
+  const correctRate = totalAttempts > 0 ? Math.round(((stats?.correctCount || 0) / totalAttempts) * 100) : 0
+  const unmasteredCount = wrongQuestions.filter(q => !q.isMastered).length
+
+  const maxRate = Math.max(...weeklyProgress.map(w => w.rate), 1)
 
   return (
     <AppLayout showSubjectNav>
@@ -71,7 +90,7 @@ export function MyLearning() {
               <BarChart3 className="w-6 h-6 text-primary" />
               <h1 className="text-2xl font-bold">我的学习</h1>
             </div>
-            <p className="text-muted-foreground text-sm">数据更新时间：2026-04-20</p>
+            <p className="text-muted-foreground text-sm">数据更新时间：{new Date().toLocaleDateString()}</p>
           </div>
           <Badge variant="outline" className="flex items-center gap-1 text-xs">
             <Flame className="w-3.5 h-3.5 text-orange-500" />
@@ -82,10 +101,10 @@ export function MyLearning() {
         {/* 总体概览卡片 */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { icon: BookOpen, label: '已学知识点', value: mockReport.totalLearned, unit: '个', color: 'text-primary', bg: 'bg-primary/10' },
-            { icon: Target, label: '完成题目', value: mockReport.totalQuestions, unit: '题', color: 'text-blue-600', bg: 'bg-blue-50' },
-            { icon: CheckCircle2, label: '总正确率', value: mockReport.correctRate, unit: '%', color: 'text-green-600', bg: 'bg-green-50' },
-            { icon: XCircle, label: '待复习', value: mockWrongQuestions.length, unit: '题', color: 'text-red-500', bg: 'bg-red-50' },
+            { icon: BookOpen, label: '已学知识点', value: stats?.totalAttempts || 0, unit: '个', color: 'text-primary', bg: 'bg-primary/10' },
+            { icon: Target, label: '完成题目', value: totalAttempts, unit: '题', color: 'text-blue-600', bg: 'bg-blue-50' },
+            { icon: CheckCircle2, label: '总正确率', value: correctRate, unit: '%', color: 'text-green-600', bg: 'bg-green-50' },
+            { icon: XCircle, label: '待复习', value: unmasteredCount, unit: '题', color: 'text-red-500', bg: 'bg-red-50' },
           ].map((item) => (
             <Card key={item.label}>
               <CardContent className="p-4 flex items-center gap-3">
@@ -112,8 +131,8 @@ export function MyLearning() {
             {/* 正确率 */}
             <div className="mb-5">
               <div className="flex items-end gap-2 h-24">
-                {mockReport.weeklyProgress.map((w) => {
-                  const heightPct = (w.rate / 100) * 96
+                {weeklyProgress.map((w) => {
+                  const heightPct = maxRate > 0 ? (w.rate / maxRate) * 88 : 0
                   return (
                     <div key={w.day} className="flex-1 flex flex-col items-center gap-1">
                       <div className="w-full flex flex-col items-center" style={{ height: '88px' }}>
@@ -121,7 +140,7 @@ export function MyLearning() {
                         <div className="w-full bg-muted rounded-t-sm relative" style={{ minHeight: '4px' }}>
                           <div
                             className="absolute bottom-0 w-full rounded-t-sm bg-gradient-to-t from-blue-500 to-blue-400"
-                            style={{ height: `${heightPct}%` }}
+                            style={{ height: `${heightPct}px` }}
                           />
                         </div>
                       </div>
@@ -133,8 +152,8 @@ export function MyLearning() {
             </div>
             {/* 学习时长 */}
             <div className="flex items-end gap-2 h-16">
-              {mockReport.weeklyProgress.map((w) => {
-                const heightPct = (w.time / 60) * 64
+              {weeklyProgress.map((w) => {
+                const heightPct = Math.min((w.time / 60) * 56, 56)
                 return (
                   <div key={w.day} className="flex-1 flex flex-col items-center gap-1">
                     <div className="w-full flex flex-col items-center" style={{ height: '56px' }}>
@@ -161,7 +180,7 @@ export function MyLearning() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {mockReport.weakPoints.map((w) => (
+              {weakPoints.length > 0 ? weakPoints.map((w) => (
                 <div key={w.model}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium">{w.model}</span>
@@ -170,7 +189,9 @@ export function MyLearning() {
                   <Progress value={w.rate} className="h-2" />
                   <p className="text-xs text-muted-foreground mt-0.5">{w.count} 道错题 · <Link to="/physics/wrong" className="underline hover:text-primary">去复习</Link></p>
                 </div>
-              ))}
+              )) : (
+                <p className="text-sm text-muted-foreground">暂无数据</p>
+              )}
             </CardContent>
           </Card>
 
@@ -182,7 +203,7 @@ export function MyLearning() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {mockReport.strongPoints.map((w) => (
+              {strongPoints.length > 0 ? strongPoints.map((w) => (
                 <div key={w.model}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium">{w.model}</span>
@@ -191,7 +212,9 @@ export function MyLearning() {
                   <Progress value={w.rate} className="h-2" />
                   <p className="text-xs text-muted-foreground mt-0.5">{w.count} 道题</p>
                 </div>
-              ))}
+              )) : (
+                <p className="text-sm text-muted-foreground">暂无数据</p>
+              )}
               <Link to="/physics/practice">
                 <Button size="sm" variant="outline" className="w-full mt-2 gap-1">
                   <Target className="w-4 h-4" /> 继续挑战
@@ -206,16 +229,16 @@ export function MyLearning() {
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold text-base flex items-center gap-2">
               <FlaskConical className="w-5 h-5 text-red-500" />
-              待复习错题 ({mockWrongQuestions.length})
+              待复习错题 ({wrongQuestions.filter(q => !q.isMastered).length})
             </h2>
             <Link to="/physics/wrong">
               <Button variant="ghost" size="sm" className="gap-1 text-xs">
-                查看全部 <ArrowRight className="w-3 h-3" />
+                查看全部 <TrendingUp className="w-3 h-3" />
               </Button>
             </Link>
           </div>
           <div className="space-y-2">
-            {mockWrongQuestions.slice(0, 3).map((q) => (
+            {wrongQuestions.filter(q => !q.isMastered).slice(0, 3).map((q) => (
               <Card key={q.id} className="border-red-100">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
@@ -224,10 +247,10 @@ export function MyLearning() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <Badge variant="outline" className="text-xs">{q.model}</Badge>
+                        {q.modelId && <Badge variant="outline" className="text-xs">{q.modelId}</Badge>}
                         <span className="text-xs text-muted-foreground">复习 {q.reviewCount} 次</span>
                       </div>
-                      <p className="text-sm line-clamp-2 mb-1">{q.question.replace(/\$\\$/g, '').replace(/\\/g, '').slice(0, 60)}...</p>
+                      <p className="text-sm line-clamp-2 mb-1">{q.questionContent.slice(0, 60)}...</p>
                       <div className="flex items-center gap-2">
                         <Badge className="bg-red-50 text-red-600 border-red-200 text-xs">
                           我的：{q.myAnswer}
@@ -237,7 +260,7 @@ export function MyLearning() {
                         </Badge>
                       </div>
                     </div>
-                    <Link to={`/physics/practice?question=${q.id}`}>
+                    <Link to={`/physics/exercises/${q.modelId}?q=${q.questionId}`}>
                       <Button size="sm" variant="outline" className="gap-1 text-xs flex-shrink-0">
                         <RefreshCw className="w-3 h-3" /> 重做
                       </Button>
@@ -246,6 +269,12 @@ export function MyLearning() {
                 </CardContent>
               </Card>
             ))}
+            {wrongQuestions.filter(q => !q.isMastered).length === 0 && (
+              <div className="text-center py-8 text-muted-foreground">
+                <CheckCircle2 className="w-8 h-8 mx-auto mb-2 text-green-400" />
+                <p className="text-sm">太棒了！没有待复习的错题</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -257,9 +286,9 @@ export function MyLearning() {
               <h3 className="font-semibold text-sm">提升建议</h3>
             </div>
             {[
-              '「匀变速直线运动」正确率偏低，建议重点复习速度公式和刹车问题',
-              '「动能定理」涉及多个过程，先从单过程题目练起',
-              '本周学习状态良好，建议每天坚持练习 5 道题',
+              weakPoints.length > 0 ? `「${weakPoints[0].model}」正确率偏低，建议重点复习相关知识点` : '继续加油，保持每天练习的好习惯',
+              strongPoints.length > 0 ? `「${strongPoints[0].model}」掌握良好，可以挑战更高难度` : '多做题目，积累经验',
+              '坚持每天练习，逐步提升正确率',
             ].map((tip, i) => (
               <div key={i} className="flex items-start gap-2 text-sm">
                 <span className="text-yellow-500 font-bold mt-0.5">💡</span>

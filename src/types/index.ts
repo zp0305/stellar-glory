@@ -144,11 +144,47 @@ export interface UserProgress {
 }
 
 export interface WrongQuestionRecord {
+  id: string
   questionId: string
+  subject: SubjectCode
+  modelId?: string
+  questionContent: string
+  myAnswer: string
+  correctAnswer: string
+  isCorrect: boolean
   wrongReason?: string
+  points?: string[]
   isReviewed: boolean
-  createdAt: string
   reviewCount: number
+  lastReviewedAt?: string
+  isMastered: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export interface QuestionAttempt {
+  id: string
+  questionId: string
+  subject: SubjectCode
+  modelId?: string
+  isCorrect: boolean
+  answeredAt: string
+  timeSpent?: number
+}
+
+export interface ModelStat {
+  attempts: number
+  correct: number
+}
+
+export interface LearningStats {
+  subject: SubjectCode
+  totalAttempts: number
+  correctCount: number
+  wrongCount: number
+  masteredCount: number
+  lastAttemptAt?: string
+  modelStats: Record<string, ModelStat>
 }
 
 // ==================== 认知图谱 ====================

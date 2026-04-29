@@ -95,7 +95,7 @@ function App() {
           <Route path="/physics/exercises" element={<QuestionBankListPage />} />
           <Route path="/physics/exercises/:modelId" element={<QuestionBankDetailPage />} />
           <Route path="/physics/exercises/:modelId/do" element={<QuestionDoPage />} />
-          <Route path="/physics/wrong" element={<WrongQuestionsPage />} />
+          <Route path="/:subject/wrong" element={<WrongQuestionsPage />} />
           <Route path="/physics/practice" element={<PracticeRedirect />} />
           <Route path="/physics/practice/bank" element={<PracticeRedirect />} />
           <Route path="/physics/practice/do" element={<PracticeRedirect />} />
