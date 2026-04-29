@@ -33,6 +33,7 @@ import { ModelList } from '@/sections/ModelList'
 import { ModelPage } from '@/sections/ModelPage'
 import { ConceptList } from '@/sections/ConceptList'
 import { ConceptPage } from '@/sections/ConceptPage'
+import { FormulaListPage } from '@/sections/FormulaListPage'
 import { StrategyListPage, StrategyDetailPage } from '@/sections/StrategyPages'
 import { ThinkingMethodList } from '@/sections/physics/ThinkingMethodList'
 import { ThinkingMethodDetail } from '@/sections/physics/ThinkingMethodDetail'
@@ -84,6 +85,7 @@ function App() {
           <Route path="/physics/models/:modelId" element={<ModelPage />} />
           <Route path="/physics/concepts" element={<ConceptList />} />
           <Route path="/physics/concepts/:conceptId" element={<ConceptPage />} />
+          <Route path="/physics/formulas" element={<FormulaListPage />} />
           <Route path="/physics/strategies" element={<StrategyListPage />} />
           <Route path="/physics/strategies/:strategyId" element={<StrategyDetailPage />} />
           <Route path="/physics/thinking" element={<ThinkingMethodList />} />
@@ -103,12 +105,70 @@ function App() {
           <Route path="/physics/senior" element={<ComingSoon name="物理高考专项" />} />
           <Route path="/physics/foundation" element={<ComingSoon name="物理强基专项" />} />
           <Route path="/chemistry" element={<ChemistryGuidePage />} />
+          <Route path="/chemistry/models" element={<ModelList />} />
+          <Route path="/chemistry/models/:modelId" element={<ModelPage />} />
+          <Route path="/chemistry/concepts" element={<ConceptList />} />
+          <Route path="/chemistry/concepts/:conceptId" element={<ConceptPage />} />
+          <Route path="/chemistry/formulas" element={<FormulaListPage />} />
+          <Route path="/chemistry/strategies" element={<StrategyListPage />} />
+          <Route path="/chemistry/strategies/:strategyId" element={<StrategyDetailPage />} />
+          <Route path="/chemistry/exercises" element={<QuestionBankListPage />} />
+          <Route path="/chemistry/exercises/:modelId" element={<QuestionBankDetailPage />} />
+          <Route path="/chemistry/exercises/:modelId/do" element={<QuestionDoPage />} />
           <Route path="/chemistry/senior" element={<ComingSoon name="化学高考专项" />} />
           <Route path="/chemistry/foundation" element={<ComingSoon name="化学强基专项" />} />
           <Route path="/math" element={<MathGuidePage />} />
+          <Route path="/math/models" element={<ModelList />} />
+          <Route path="/math/models/:modelId" element={<ModelPage />} />
+          <Route path="/math/concepts" element={<ConceptList />} />
+          <Route path="/math/concepts/:conceptId" element={<ConceptPage />} />
+          <Route path="/math/formulas" element={<FormulaListPage />} />
+          <Route path="/math/strategies" element={<StrategyListPage />} />
+          <Route path="/math/strategies/:strategyId" element={<StrategyDetailPage />} />
+          <Route path="/math/exercises" element={<QuestionBankListPage />} />
+          <Route path="/math/exercises/:modelId" element={<QuestionBankDetailPage />} />
+          <Route path="/math/exercises/:modelId/do" element={<QuestionDoPage />} />
+          <Route path="/math/senior" element={<ComingSoon name="数学高考专项" />} />
+          <Route path="/math/foundation" element={<ComingSoon name="数学强基专项" />} />
           <Route path="/biology" element={<BiologyGuidePage />} />
+          <Route path="/biology/models" element={<ModelList />} />
+          <Route path="/biology/models/:modelId" element={<ModelPage />} />
+          <Route path="/biology/concepts" element={<ConceptList />} />
+          <Route path="/biology/concepts/:conceptId" element={<ConceptPage />} />
+          <Route path="/biology/formulas" element={<FormulaListPage />} />
+          <Route path="/biology/strategies" element={<StrategyListPage />} />
+          <Route path="/biology/strategies/:strategyId" element={<StrategyDetailPage />} />
+          <Route path="/biology/exercises" element={<QuestionBankListPage />} />
+          <Route path="/biology/exercises/:modelId" element={<QuestionBankDetailPage />} />
+          <Route path="/biology/exercises/:modelId/do" element={<QuestionDoPage />} />
+          <Route path="/biology/senior" element={<ComingSoon name="生物高考专项" />} />
+          <Route path="/biology/foundation" element={<ComingSoon name="生物强基专项" />} />
           <Route path="/chinese" element={<ChineseGuidePage />} />
+          <Route path="/chinese/models" element={<ModelList />} />
+          <Route path="/chinese/models/:modelId" element={<ModelPage />} />
+          <Route path="/chinese/concepts" element={<ConceptList />} />
+          <Route path="/chinese/concepts/:conceptId" element={<ConceptPage />} />
+          <Route path="/chinese/formulas" element={<FormulaListPage />} />
+          <Route path="/chinese/strategies" element={<StrategyListPage />} />
+          <Route path="/chinese/strategies/:strategyId" element={<StrategyDetailPage />} />
+          <Route path="/chinese/exercises" element={<QuestionBankListPage />} />
+          <Route path="/chinese/exercises/:modelId" element={<QuestionBankDetailPage />} />
+          <Route path="/chinese/exercises/:modelId/do" element={<QuestionDoPage />} />
+          <Route path="/chinese/senior" element={<ComingSoon name="语文高考专项" />} />
+          <Route path="/chinese/foundation" element={<ComingSoon name="语文强基专项" />} />
           <Route path="/english" element={<EnglishGuidePage />} />
+          <Route path="/english/models" element={<ModelList />} />
+          <Route path="/english/models/:modelId" element={<ModelPage />} />
+          <Route path="/english/concepts" element={<ConceptList />} />
+          <Route path="/english/concepts/:conceptId" element={<ConceptPage />} />
+          <Route path="/english/formulas" element={<FormulaListPage />} />
+          <Route path="/english/strategies" element={<StrategyListPage />} />
+          <Route path="/english/strategies/:strategyId" element={<StrategyDetailPage />} />
+          <Route path="/english/exercises" element={<QuestionBankListPage />} />
+          <Route path="/english/exercises/:modelId" element={<QuestionBankDetailPage />} />
+          <Route path="/english/exercises/:modelId/do" element={<QuestionDoPage />} />
+          <Route path="/english/senior" element={<ComingSoon name="英语高考专项" />} />
+          <Route path="/english/foundation" element={<ComingSoon name="英语强基专项" />} />
           <Route path="/gaokao" element={<GaokaoZoneHome />} />
           <Route path="/gaokao/policy/:id" element={<GaokaoPolicyDetail />} />
           <Route path="/gaokao/admission/:id" element={<GaokaoAdmissionDetail />} />

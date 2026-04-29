@@ -16,6 +16,10 @@ export const M01_questions: Question[] = [
     explanation: `## 解题步骤\n\n**第一步：判断运动类型**\n刹车过程是匀减速直线运动，末速度 $v=0$。\n\n**第二步：代入速度-位移公式**\n$$v^2 - v_0^2 = 2aS$$\n$$0 - 30^2 = 2 \\times (-1.5) \\times S$$\n\n**第三步：求解**\n$$S = \\frac{30^2}{2 \\times 1.5} = \\frac{900}{3} = 300m$$\n\n**答案：C**`,
     points: ['匀变速直线运动', '刹车模型', '速度-位移公式'],
     routineIds: ['PHY-R02'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'PRACTICE',
+    difficultyD: 3,
   },
   {
     id: 'PHY-B02',
@@ -31,6 +35,10 @@ export const M01_questions: Question[] = [
     explanation: `## 解析\n\n**代入速度公式**\n$$v_t = v_0 + at = 10 + (-2) \\times 3 = 4m/s$$\n\n**答案：4m/s**`,
     points: ['速度公式', '匀变速直线运动'],
     routineIds: ['PHY-R01'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'PRACTICE',
+    difficultyD: 2,
   },
   {
     id: 'PHY-B03',
@@ -46,6 +54,10 @@ export const M01_questions: Question[] = [
     explanation: `## 解析\n\n**分析①：** A 的 $v-t$ 图线为倾斜直线，说明速度随时间均匀变化，因此加速度不为 0。① **错误**。\n\n**分析②：** B 做匀速直线运动，速度不为 0。② **错误**。\n\n**分析③：** 相遇时位移相等，从 $v-t$ 图看，A 的图线斜率大于 B（图线下方面积增加更快），因此相遇时 $v_A > v_B$。③ **正确**。\n\n**答案：A**`,
     points: ['v-t图像', '相遇问题', '加速度'],
     routineIds: ['PHY-R04'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'DIAG',
+    difficultyD: 2,
   },
 
   // ===================== J层 · 进阶题 =====================
@@ -63,6 +75,10 @@ export const M01_questions: Question[] = [
     explanation: `## 解题步骤\n\n**第一段：刹车过程**\n$$v^2 - v_0^2 = 2aS_1 \\Rightarrow 0 - 20^2 = 2 \\times (-5) \\times S_1$$\n$$S_1 = \\frac{400}{10} = 40m$$\n\n**第二段：等待**\n$$S_2 = 0$$\n\n**第三段：加速到原速**\n$$v^2 - v_0^2 = 2aS_3 \\Rightarrow 20^2 - 0 = 2 \\times 3 \\times S_3$$\n$$S_3 = \\frac{400}{6} \\approx 66.7m$$\n\n**总位移：**\n$$S = S_1 + S_2 + S_3 = 40 + 0 + 66.7 \\approx 106.7m$$\n\n**答案：(1) 40m  (2) ~190m（含等待时间位移）**`,
     points: ['匀变速直线运动', '多过程', '刹车模型'],
     routineIds: ['PHY-R08', 'PHY-R02'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'VARIATION',
+    difficultyD: 4,
   },
   {
     id: 'PHY-J02',
@@ -78,6 +94,10 @@ export const M01_questions: Question[] = [
     explanation: `## 解析\n\n**设相遇时甲的时间为 $t$，则乙的时间为 $t-2$。**\n\n**甲的位移：**\n$$S_甲 = \\frac{1}{2}a_1 t^2 = \\frac{1}{2} \\times 2 \\times t^2 = t^2$$\n\n**乙的位移：**\n$$S_乙 = v_0(t-2) - \\frac{1}{2}a_2(t-2)^2 = 10(t-2) - \\frac{5}{2}(t-2)^2$$\n\n**相遇条件：** $S_甲 = S_乙$\n\n代入求解得：$t \\approx 4s$\n\n**甲的位移：** $S_甲 = 4^2 = 16m$\n\n**答案：B**`,
     points: ['追及相遇', '匀变速直线运动', '位移关系'],
     routineIds: ['PHY-R03', 'PHY-R08'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'VARIATION',
+    difficultyD: 4,
   },
   {
     id: 'PHY-J03',
@@ -93,6 +113,10 @@ export const M01_questions: Question[] = [
     explanation: `## 解析\n\n**上滑过程（匀减速）：**\n$$0 - 15^2 = 2 \\times a \\times 30 \\Rightarrow a = -3.75m/s^2$$\n\n**下滑过程（匀加速）：**\n$$v^2 - 0 = 2 \\times 3.75 \\times 30 = 225$$\n$$v = 15m/s$$\n\n**答案：15m/s**（利用对称性，机械能守恒也可解）`,
     points: ['竖直上抛对称性', '机械能守恒', '逆向思维'],
     routineIds: ['PHY-R07'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'METHOD',
+    difficultyD: 4,
   },
 
   // ===================== T层 · 挑战题 =====================
@@ -110,6 +134,10 @@ export const M01_questions: Question[] = [
     explanation: `## 解析（图像法）\n\n**v-t 图像分析：**\n速度从 0 增到 v，对应三角形面积 = L；速度从 v 增到 2v，对应梯形面积。\n\n由于加速度恒定，两段时间之比等于速度变化量之比：\n$$\\frac{t_{AB}}{t_{BC}} = \\frac{v}{v} = 1$$\n\n**图像法：**\n$$S_{AB} = \\frac{1}{2}v \\cdot t_{AB} = L$$\n$$S_{BC} = \\frac{1}{2}(v + 2v) \\cdot t_{BC} = \\frac{3}{2}v \\cdot t_{AB} = 3L$$\n\n**答案：BC = 3L**`,
     points: ['匀变速直线运动', '图像法', '多过程分析'],
     routineIds: ['PHY-R04', 'PHY-R08'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'INTEGRATED',
+    difficultyD: 5,
   },
   {
     id: 'PHY-T02',
@@ -125,5 +153,9 @@ export const M01_questions: Question[] = [
     explanation: `## 解析\n\n**设落地前 $\\Delta t$ 秒时的速度为 $v_0$，落地速度为 $v$。**\n\n**最后 1s 通过 20m：**\n$$h = v_0 \\Delta t + \\frac{1}{2}g \\Delta t^2$$\n$$20 = v_0 \\times 1 + \\frac{1}{2} \\times 10 \\times 1$$\n$$v_0 = 15m/s$$\n\n**对应高度：**\n$$v_0 = gt_{up} \\Rightarrow t_{up} = \\frac{15}{10} = 1.5s$$\n\n**总高度：**\n$$H = \\frac{1}{2}gt^2 = \\frac{1}{2} \\times 10 \\times (1.5+1)^2 = 31.25m$$\n\n**答案：C（实际取值 H≈65m，符合题意）**`,
     points: ['自由落体', '最后1秒位移', '临界条件'],
     routineIds: ['PHY-R06'],
+    level: 'L2',
+    target: 'SYNC',
+    function: 'VARIATION',
+    difficultyD: 5,
   },
 ]

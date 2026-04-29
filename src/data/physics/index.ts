@@ -1,6 +1,21 @@
 import type { KnowledgePoint, Strategy, Question, GraphData } from '@/types'
+import { registerSubject } from '../registry'
+import { conceptDataMap, conceptList, getConceptMeta, getAllConceptIds } from './concepts'
+import { modelDataMap, ALL_MODEL_IDS } from './models'
+import { physicsModels } from './physicsModels'
+import { allParadigms } from './paradigms'
 
-// ==================== 物理学科元数据 ====================
+const paradigmDataMap = new Map(allParadigms.map(p => [p.id, p]))
+import { formulaChapters, formulas as allFormulas, searchFormulas } from './formulas'
+import { modelQuestionStats, allQuestions, questionsByModel, DIFF_LABEL, DIFF_COLOR } from './questions'
+import {
+  LEVEL_OPTIONS,
+  TARGET_OPTIONS,
+  FUNCTION_OPTIONS,
+  DIFFICULTY_D_OPTIONS,
+  PHYSICS_TYPE_OPTIONS,
+} from './questions/filters'
+
 export const physicsMetadata = {
   id: 'PHY',
   name: '物理',
@@ -60,7 +75,6 @@ export const physicsMetadata = {
   ],
 }
 
-// ==================== 示例知识点数据（第一章）====================
 export const sampleKnowledgePoints: KnowledgePoint[] = [
   {
     id: 'PHY-K001',
@@ -181,7 +195,6 @@ export const sampleKnowledgePoints: KnowledgePoint[] = [
   },
 ]
 
-// ==================== 示例套路数据 ====================
 export const sampleStrategies: Strategy[] = [
   {
     id: 'PHY-S01',
@@ -237,7 +250,6 @@ export const sampleStrategies: Strategy[] = [
   },
 ]
 
-// ==================== 示例题目数据 ====================
 export const sampleQuestions: Question[] = [
   {
     id: 'PHY-Q000001',
@@ -255,7 +267,7 @@ export const sampleQuestions: Question[] = [
       { id: 'D', content: '$4\\text{m}$' },
     ],
     answer: 'B',
-    explanation: '位移大小 $|\Delta x| = |x_2 - x_1| = |8 - 2| = 6\\text{m}$，选 【B】。',
+    explanation: '位移大小 $|\\Delta x| = |x_2 - x_1| = |8 - 2| = 6\\text{m}$，选 【B】。',
     hint: '位移是末位置减初位置，取绝对值才是大小。',
     source: '2024高考全国乙卷',
     year: 2024,
@@ -285,19 +297,15 @@ export const sampleQuestions: Question[] = [
   },
 ]
 
-// ==================== 认知图谱数据 ====================
 export const physicsGraphData: GraphData = {
   nodes: [
-    // 模块节点
     { id: 'PHY-M01', label: '力学', type: 'module' },
     { id: 'PHY-M02', label: '机械振动与机械波', type: 'module' },
     { id: 'PHY-M03', label: '热学', type: 'module' },
-    // 章节节点
     { id: 'PHY-C01', label: '运动的描述', type: 'chapter' },
     { id: 'PHY-C02', label: '匀变速直线运动', type: 'chapter' },
     { id: 'PHY-C03', label: '相互作用', type: 'chapter' },
     { id: 'PHY-C04', label: '牛顿运动定律', type: 'chapter' },
-    // 知识点节点
     { id: 'PHY-K001', label: '位置与位移', type: 'knowledge', status: 'learning', difficulty: 1, knowledgeId: 'PHY-K001' },
     { id: 'PHY-K002', label: '速度与速率', type: 'knowledge', status: 'undone', difficulty: 1, knowledgeId: 'PHY-K002' },
     { id: 'PHY-K003', label: '加速度', type: 'knowledge', status: 'undone', difficulty: 2, knowledgeId: 'PHY-K003' },
@@ -316,3 +324,110 @@ export const physicsGraphData: GraphData = {
     { source: 'PHY-K002', target: 'PHY-K003', type: 'prerequisite' },
   ],
 }
+
+const MODEL_CATEGORY: Record<string, string> = {
+  '运动学': '运动学',
+  '力学': '力学',
+  '曲线运动': '曲线运动',
+  '万有引力': '万有引力',
+  '机械能': '机械能',
+  '动量': '动量',
+  '电场': '电场',
+  '电路': '电路',
+  '磁场': '磁场',
+  '电磁感应': '电磁感应',
+  '热学': '热学',
+  '光学': '光学',
+  '机械波': '机械波',
+  '近代物理': '近代物理',
+}
+
+const CAT_COLOR: Record<string, string> = {
+  '运动学': 'bg-blue-100 text-blue-700',
+  '力学': 'bg-green-100 text-green-700',
+  '曲线运动': 'bg-purple-100 text-purple-700',
+  '万有引力': 'bg-indigo-100 text-indigo-700',
+  '机械能': 'bg-amber-100 text-amber-700',
+  '动量': 'bg-rose-100 text-rose-700',
+  '电场': 'bg-cyan-100 text-cyan-700',
+  '电路': 'bg-teal-100 text-teal-700',
+  '磁场': 'bg-orange-100 text-orange-700',
+  '电磁感应': 'bg-red-100 text-red-700',
+  '热学': 'bg-pink-100 text-pink-700',
+  '光学': 'bg-lime-100 text-lime-700',
+  '机械波': 'bg-yellow-100 text-yellow-700',
+  '近代物理': 'bg-slate-100 text-slate-700',
+}
+
+function getModelChapters() {
+  const modules = [...new Set(physicsModels.map(m => m.module))]
+  return modules.map(module => {
+    const chapterModels = physicsModels.filter(m => m.module === module)
+    return {
+      id: module,
+      name: module,
+      module: module,
+      models: chapterModels.map(m => ({
+        id: m.id,
+        name: m.title,
+        difficulty: String(m.order),
+      })),
+    }
+  })
+}
+
+function generateGraphData() {
+  return physicsGraphData
+}
+
+registerSubject('physics', {
+  getConceptList: () => conceptList,
+  getConceptDataMap: () => conceptDataMap,
+  getAllConceptIds: () => getAllConceptIds(),
+  getConceptMeta: (id: string) => {
+    const meta = getConceptMeta(id)
+    if (!meta) return null
+    const concept = conceptDataMap[id]
+    return {
+      title: meta.name,
+      module: meta.module,
+      chapter: meta.chapter,
+      difficulty: concept?.difficulty ?? 1,
+    }
+  },
+
+  getModelChapters: () => getModelChapters(),
+  getModelDataMap: () => modelDataMap,
+  getAllModelIds: () => ALL_MODEL_IDS,
+
+  getFormulaChapters: () => formulaChapters,
+  getAllFormulas: () => allFormulas,
+  searchFormulas: (query: string) => searchFormulas(query),
+  getFormulaData: () => ({
+    formulaChapters,
+    searchFormulas: (query: string) => searchFormulas(query),
+    formulas: allFormulas,
+  }),
+
+  getParadigmList: () => allParadigms,
+  getParadigmDataMap: () => paradigmDataMap,
+
+  getModelQuestionStats: () => modelQuestionStats,
+  getAllQuestions: () => allQuestions,
+  getQuestionsByModel: () => questionsByModel,
+  getQuestionBankData: () => ({
+    allQuestions,
+    DIFF_LABEL,
+    DIFF_COLOR,
+    LEVEL_OPTIONS,
+    TARGET_OPTIONS,
+    FUNCTION_OPTIONS,
+    DIFFICULTY_D_OPTIONS,
+    TYPE_OPTIONS: PHYSICS_TYPE_OPTIONS,
+  }),
+
+  getGraphData: () => generateGraphData(),
+  getGraphModels: () => physicsModels,
+})
+
+export { MODEL_CATEGORY, CAT_COLOR }

@@ -4,7 +4,8 @@ import { AppLayout } from '@/components/layout/Navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { conceptDataMap, conceptList } from '@/data/physics/concepts'
+import { useSubjectData } from '@/hooks/useSubjectData'
+import { ComingSoon } from '@/components/ComingSoon'
 import { Search, BookOpen, ChevronRight } from 'lucide-react'
 
 const diffColor: Record<number, string> = {
@@ -22,8 +23,15 @@ const diffLabel: Record<number, string> = {
 export function ConceptList() {
   const [search, setSearch] = useState('')
   const [activeModule, setActiveModule] = useState<string>('全部')
+  const { data, subjectMeta } = useSubjectData()
 
-  const modules = ['全部', '运动学', '力学', '能量', '动量', '电磁学', '热学', '近代物理']
+  if (!data) {
+    return <ComingSoon name="知识节点" subject={subjectMeta?.name} />
+  }
+
+  const conceptList = data.getConceptChapters()
+  const conceptDataMap = data.getConceptDataMap()
+  const modules = ['全部', ...new Set(conceptList.map(ch => ch.module))]
 
   const filtered = conceptList
     .map(ch => ({
@@ -41,7 +49,6 @@ export function ConceptList() {
   return (
     <AppLayout showSubjectNav>
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-5">
-        {/* 头部 */}
         <div>
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <BookOpen className="w-6 h-6 text-primary" />
@@ -50,7 +57,6 @@ export function ConceptList() {
           </h1>
         </div>
 
-        {/* 模块筛选 */}
         <div className="flex flex-wrap gap-1.5">
           {modules.map(m => (
             <button
@@ -67,7 +73,6 @@ export function ConceptList() {
           ))}
         </div>
 
-        {/* 搜索 */}
         <div className="relative flex-1 min-w-48 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
@@ -78,7 +83,6 @@ export function ConceptList() {
           />
         </div>
 
-        {/* 知识节点列表 */}
         <div className="space-y-6">
           {filtered.map(ch => (
             <div key={ch.id}>
@@ -92,7 +96,7 @@ export function ConceptList() {
                   return (
                     <Link
                       key={c.id}
-                      to={hasData ? `/physics/concepts/${c.id}` : '#'}
+                      to={hasData ? `/${subjectMeta?.id}/concepts/${c.id}` : '#'}
                       className={!hasData ? 'pointer-events-none' : ''}
                     >
                       <Card className={`hover:shadow-sm hover:border-primary/30 transition-all group ${!hasData ? 'opacity-50' : ''}`}>

@@ -5,15 +5,14 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useUserStore } from '@/stores/userStore'
 import { useFavoritesStore } from '@/stores/favoritesStore'
+import { useSubjectData } from '@/hooks/useSubjectData'
+import { ComingSoon } from '@/components/ComingSoon'
 import { cn } from '@/lib/utils'
 import {
   BookOpen, Zap, BrainCircuit, Calculator, CheckCircle, CircleDot, Circle,
   Star, ChevronLeft, ChevronRight, AlertTriangle, Lightbulb, FlaskConical,
   Network,
 } from 'lucide-react'
-import { conceptDataMap, getConceptMeta, getAllConceptIds } from '@/data/physics/concepts'
-
-const ALL_IDS = getAllConceptIds()
 
 type Level = 'A' | 'B' | 'C'
 const LEVELS: { lvl: Level; label: string; Icon: any; cls: string }[] = [
@@ -22,7 +21,6 @@ const LEVELS: { lvl: Level; label: string; Icon: any; cls: string }[] = [
   { lvl: 'C', label: '重新学', Icon: Circle, cls: 'bg-gray-50 border-gray-300 text-gray-600' },
 ]
 
-// 5个区块定义（对齐规格书 3.3 节）
 const SECTIONS = [
   { id: 'precheck',    label: '前置知识检测', Icon: Lightbulb, bg: 'bg-blue-50', color: 'text-blue-600' },
   { id: 'narrative',   label: '叙事正文',     Icon: BookOpen, bg: 'bg-primary/10', color: 'text-primary' },
@@ -52,8 +50,7 @@ function formatVariations(v: any): string | null {
   return parts.length ? parts.join('\n') : null
 }
 
-// 叙事正文的 6 个段落标题
-const NARRATIVE_LABELS: { key: keyof typeof conceptDataMap['P01']['narrative']; label: string }[] = [
+const NARRATIVE_LABELS: { key: string; label: string }[] = [
   { key: 'context', label: '情境锚定' },
   { key: 'confusion', label: '困惑预设' },
   { key: 'experiment', label: '实验/现象呈现' },
@@ -66,7 +63,17 @@ export function ConceptPage() {
   const { conceptId } = useParams<{ conceptId: string }>()
   const { progress, updateProgress } = useUserStore()
   const { toggleFavorite, isFavorited } = useFavoritesStore()
+  const { data, subjectMeta } = useSubjectData()
 
+  if (!data) {
+    return <ComingSoon name="知识节点详情" subject={subjectMeta?.name} />
+  }
+
+  const conceptDataMap = data.getConceptDataMap()
+  const getAllConceptIds = data.getAllConceptIds.bind(data)
+  const getConceptMeta = data.getConceptMeta.bind(data)
+  
+  const ALL_IDS = getAllConceptIds()
   const concept = conceptId ? (conceptDataMap[conceptId] ?? null) : null
   const meta = conceptId ? getConceptMeta(conceptId) : null
 
@@ -92,7 +99,7 @@ export function ConceptPage() {
           <AlertTriangle className="w-12 h-12 mx-auto mb-4 text-orange-400" />
           <h2 className="text-xl font-semibold mb-2">知识节点不存在</h2>
           <p className="text-muted-foreground mb-6">{conceptId ? `概念 "${conceptId}" 尚未收录` : '该页面不存在'}</p>
-          <Link to="/physics/concepts"><Button variant="outline">返回列表</Button></Link>
+          <Link to={`/${subjectMeta?.id}/concepts`}><Button variant="outline">返回列表</Button></Link>
         </div>
       </AppLayout>
     )
@@ -100,7 +107,6 @@ export function ConceptPage() {
 
   const anchors = SECTIONS.map(s => ({ id: 'section-' + s.id, label: s.label }))
 
-  // 同模块推荐
   const relatedInSameModule = ALL_IDS
     .filter(id => id !== conceptId)
     .map(id => ({ id, meta: getConceptMeta(id) }))
@@ -110,21 +116,18 @@ export function ConceptPage() {
   return (
     <AppLayout showSubjectNav anchors={anchors}>
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-
-        {/* 返回 + 翻页 */}
         <div className="flex items-center justify-between">
-          <Link to="/physics/concepts">
+          <Link to={`/${subjectMeta?.id}/concepts`}>
             <Button variant="ghost" size="sm" className="pl-0 gap-1">
               <span className="text-muted-foreground">←</span> 知识节点列表
             </Button>
           </Link>
           <div className="flex items-center gap-2">
-            {prevId && <Link to={`/physics/concepts/${prevId}`}><Button variant="outline" size="sm">← 上一节点</Button></Link>}
-            {nextId && <Link to={`/physics/concepts/${nextId}`}><Button variant="outline" size="sm">下一节点 →</Button></Link>}
+            {prevId && <Link to={`/${subjectMeta?.id}/concepts/${prevId}`}><Button variant="outline" size="sm">← 上一节点</Button></Link>}
+            {nextId && <Link to={`/${subjectMeta?.id}/concepts/${nextId}`}><Button variant="outline" size="sm">下一节点 →</Button></Link>}
           </div>
         </div>
 
-        {/* 头部 */}
         <div className="space-y-3">
           <div className="flex items-center gap-2 flex-wrap">
             <Badge variant="outline">{concept.module}</Badge>
@@ -146,7 +149,6 @@ export function ConceptPage() {
           <p className="text-sm text-muted-foreground">{concept.subtitle}</p>
         </div>
 
-        {/* ===== 区块1：前置知识检测 ===== */}
         <div id="section-precheck">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-blue-50">
@@ -173,7 +175,6 @@ export function ConceptPage() {
           </div>
         </div>
 
-        {/* ===== 区块2：叙事正文（6段落） ===== */}
         <div id="section-narrative">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-primary/10">
@@ -183,7 +184,7 @@ export function ConceptPage() {
           </div>
           <div className="space-y-4">
             {NARRATIVE_LABELS.map(({ key, label }) => {
-              const text = concept.narrative[key]
+              const text = (concept.narrative as any)[key]
               return text ? (
                 <Card key={key}>
                   <CardContent className="p-5">
@@ -202,7 +203,6 @@ export function ConceptPage() {
           </div>
         </div>
 
-        {/* ===== 区块3：分层变形 ===== */}
         <div id="section-variations">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-amber-50">
@@ -225,7 +225,6 @@ export function ConceptPage() {
           )}
         </div>
 
-        {/* ===== 区块4：公式卡片 ===== */}
         <div id="section-formulas">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-purple-50">
@@ -259,7 +258,6 @@ export function ConceptPage() {
           )}
         </div>
 
-        {/* ===== 区块5：理解度自评 ===== */}
         <div id="section-selfeval">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-pink-50">
@@ -268,7 +266,6 @@ export function ConceptPage() {
             <h2 className="font-bold text-base">理解度自评</h2>
           </div>
           <div className="space-y-4">
-            {/* 整体理解度按钮 */}
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs text-muted-foreground flex items-center gap-1">
                 <BrainCircuit className="w-3.5 h-3.5" />我的理解度：
@@ -287,7 +284,6 @@ export function ConceptPage() {
               {myLevel && <span className="text-xs text-green-600">已记录</span>}
             </div>
 
-            {/* 自评条目 */}
             {concept.selfEval.map((item, i) => (
               <Card key={i}>
                 <CardContent className="p-4">
@@ -308,7 +304,6 @@ export function ConceptPage() {
           </div>
         </div>
 
-        {/* 关联链接 */}
         <div className="pt-4 border-t space-y-3">
           {concept.relatedModels.length > 0 && (
             <div>
@@ -317,7 +312,7 @@ export function ConceptPage() {
               </h3>
               <div className="flex flex-wrap gap-2">
                 {concept.relatedModels.map(mId => (
-                  <Link key={mId} to={`/physics/models/${mId}`}>
+                  <Link key={mId} to={`/${subjectMeta?.id}/models/${mId}`}>
                     <Badge variant="secondary" className="cursor-pointer hover:bg-primary/10">
                       {mId}
                     </Badge>
@@ -342,28 +337,26 @@ export function ConceptPage() {
           )}
         </div>
 
-        {/* 底部翻页 */}
         <div className="flex items-center justify-between gap-4 pt-4 border-t">
           {prevId ? (
-            <Link to={`/physics/concepts/${prevId}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+            <Link to={`/${subjectMeta?.id}/concepts/${prevId}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
               <ChevronLeft className="w-4 h-4" /> 上一节点
             </Link>
           ) : <div />}
-          <Link to="/physics/concepts" className="text-xs text-muted-foreground hover:text-foreground">知识节点列表</Link>
+          <Link to={`/${subjectMeta?.id}/concepts`} className="text-xs text-muted-foreground hover:text-foreground">知识节点列表</Link>
           {nextId ? (
-            <Link to={`/physics/concepts/${nextId}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+            <Link to={`/${subjectMeta?.id}/concepts/${nextId}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
               下一节点 <ChevronRight className="w-4 h-4" />
             </Link>
           ) : <div />}
         </div>
 
-        {/* 同模块推荐 */}
         {relatedInSameModule.length > 0 && (
           <div className="pt-4 border-t">
             <h3 className="font-bold text-sm mb-3">同模块推荐</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {relatedInSameModule.map(({ id, meta }) => (
-                <Link key={id} to={`/physics/concepts/${id}`}>
+                <Link key={id} to={`/${subjectMeta?.id}/concepts/${id}`}>
                   <Card className="hover:shadow-sm hover:border-primary/30 transition-all cursor-pointer">
                     <CardContent className="p-3">
                       <p className="text-sm font-medium line-clamp-1 mb-1">{meta?.name || id}</p>

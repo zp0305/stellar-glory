@@ -211,6 +211,12 @@ const physicsModules = [
     href: '/physics/concepts',
     description: '56个知识节点'},
   {
+    id: 'formulas',
+    label: '公式库',
+    icon: BookOpen,
+    href: '/physics/formulas',
+    description: '58个核心公式'},
+  {
     id: 'strategies',
     label: '解题套路',
     icon: Lightbulb,
@@ -344,6 +350,7 @@ function useCurrentModule() {
   // 通用子路径匹配（对任何科目生效）
   if (path.includes('/graph')) return 'graph'
   if (path.includes('/concepts')) return 'concepts'
+  if (path.includes('/formulas')) return 'formulas'
   if (path.includes('/models')) return 'knowledge'
   if (path.includes('/strategies')) return 'strategies'
   if (path.includes('/thinking')) return 'thinking'

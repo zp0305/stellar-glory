@@ -4,6 +4,7 @@ import { AppLayout } from '@/components/layout/Navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { questionsByModel, DIFF_LABEL, DIFF_COLOR } from '@/data/physics/questions'
+import { PHYSICS_TYPE_OPTIONS } from '@/data/physics/questions/filters'
 import { cn } from '@/lib/utils'
 import { ChevronRight, ChevronDown, Clock, Tag, Lightbulb } from 'lucide-react'
 import type { Question } from '@/data/physics/questions/types'
@@ -90,12 +91,17 @@ function DiffSection({ label, icon, questions }: { label: string; icon: string; 
 
 export function QuestionBankDetailPage() {
   const { modelId } = useParams<{ modelId: string }>()
+  const [selectedType, setSelectedType] = useState<string>('all')
   const questions = modelId ? (questionsByModel[modelId] ?? null) : null
 
-  // 各难度分组
-  const B_questions = questions?.filter(q => q.difficulty === 'B') ?? []
-  const J_questions = questions?.filter(q => q.difficulty === 'J') ?? []
-  const T_questions = questions?.filter(q => q.difficulty === 'T') ?? []
+  const filteredQuestions = questions?.filter(q => selectedType === 'all' || q.type === selectedType) ?? []
+
+  const B_questions = filteredQuestions.filter(q => q.difficulty === 'B')
+  const J_questions = filteredQuestions.filter(q => q.difficulty === 'J')
+  const T_questions = filteredQuestions.filter(q => q.difficulty === 'T')
+
+  const availableTypes = [...new Set(questions?.map(q => q.type))]
+  const typeOptions = [{ value: 'all', label: '全部题型' }, ...PHYSICS_TYPE_OPTIONS.filter(opt => availableTypes.includes(opt.value))]
 
   if (!questions) {
     return (
@@ -135,6 +141,22 @@ export function QuestionBankDetailPage() {
               <ChevronRight className="w-4 h-4" />
             </Button>
           </Link>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {typeOptions.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => setSelectedType(opt.value)}
+              className={cn(
+                'flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-all',
+                selectedType === opt.value
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              )}>
+              {opt.label}
+            </button>
+          ))}
         </div>
 
         {/* 难度区块 */}
