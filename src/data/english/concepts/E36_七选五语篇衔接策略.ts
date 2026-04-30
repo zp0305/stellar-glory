@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E36_七选五语篇衔接策略: ConceptData = {
   id: 'ENG-E36',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R49",
   name: "电表改装与校准",
   model: "PHY-M11",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+对称与极限",
   level: "J",
   trigger: "把灵敏电流计改装为电压表或大量程电流表",
   path: [

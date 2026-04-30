@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R07",
   name: "平抛分解独立性的检验",
   model: "PHY-M02",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "J",
   trigger: "平抛运动求速度方向、位移方向，或已知角度反推初速度",
   path: [

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R11",
   name: "受力分析顺序法",
   model: "PHY-M03",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "B",
   trigger: "任何受力分析题，先判断分析顺序",
   path: [

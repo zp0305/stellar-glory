@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M48_跨文化交际案例分析: ModelData = {
   id: 'ENG-M48',

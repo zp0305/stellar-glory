@@ -38,15 +38,16 @@ import { M37 } from './M37_机械波'
 import { M38 } from './M38_波的干涉与衍射'
 import { M39 } from './M39_光电效应与波粒二象性'
 import { M40 } from './M40_原子结构'
-import { M41 } from './M41_核反应与核能'
+import { M41 } from './M41_原子能级跃迁'
 import { M42 } from './M42_相对论基础'
+import { M43 } from './M43_核反应与核能'
 
 export {
   M01, M02, M03, M04, M05, M06, M07, M08, M09, M10,
   M11, M12, M13, M14, M15, M16, M17, M18, M19, M20,
   M21, M22, M23, M24, M25, M26, M27, M28, M29, M30,
   M31, M32, M33, M34, M35, M36, M37, M38, M39, M40,
-  M41, M42,
+  M41, M42, M43,
 }
 
 export const modelDataMap: Record<string, any> = {
@@ -92,6 +93,7 @@ export const modelDataMap: Record<string, any> = {
   'PHY-M40': M40,
   'PHY-M41': M41,
   'PHY-M42': M42,
+  'PHY-M43': M43,
 }
 
 export const ALL_MODEL_IDS = Object.keys(modelDataMap)

@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M40_食物链与食物网分析: ModelData = {
   id: 'BIO-M40',

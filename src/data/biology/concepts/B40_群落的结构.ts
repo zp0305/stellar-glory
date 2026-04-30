@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B40_群落的结构: ConceptData = {
   id: 'BIO-B40',

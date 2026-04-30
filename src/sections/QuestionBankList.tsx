@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { ComingSoon } from '@/components/ComingSoon'
+import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/lib/utils'
 import { Search, ChevronRight, ChevronDown, ChevronUp, Target, X } from 'lucide-react'
 
@@ -29,7 +30,18 @@ export function QuestionBankListPage() {
   const [search, setSearch] = useState('')
   const [activeDiff, setActiveDiff] = useState<string>('all')
   const [showFilters, setShowFilters] = useState(false)
-  const { data, subjectMeta } = useSubjectData()
+  const { data, subjectMeta, loading } = useSubjectData()
+
+  if (loading) {
+    return (
+      <AppLayout showSubjectNav>
+        <div className="flex items-center justify-center h-64 gap-3">
+          <Spinner className="w-6 h-6 text-primary" />
+          <span className="text-muted-foreground">{subjectMeta?.name}学科数据加载中...</span>
+        </div>
+      </AppLayout>
+    )
+  }
 
   if (!data) {
     return <ComingSoon name="配套题库" subject={subjectMeta?.name} />

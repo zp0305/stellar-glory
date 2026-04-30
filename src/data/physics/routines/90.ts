@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R90",
   name: "力学实验数据处理",
   model: "PHY-M03",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+微元与累积",
   level: "B",
   trigger: "验证牛顿第二定律或机械能守恒的实验，需要处理纸带数据",
   path: [

@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 import { M01_生物大分子组成 } from './M01_生物大分子组成模型';
 import { M02_蛋白质结构功能分析 } from './M02_蛋白质结构功能分析模型';

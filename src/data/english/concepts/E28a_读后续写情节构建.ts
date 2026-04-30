@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E28a_读后续写情节构建: ConceptData = {
   id: 'ENG-E28a',

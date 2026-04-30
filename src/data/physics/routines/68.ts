@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R68",
   name: "衰变规律与半衰期",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+整体与隔离",
   level: "B",
   trigger: "放射性衰变问题，已知半衰期，求剩余质量或衰变时间",
   path: [

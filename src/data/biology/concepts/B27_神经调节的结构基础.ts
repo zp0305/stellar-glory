@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B27_神经调节的结构基础: ConceptData = {
   id: 'BIO-B27',

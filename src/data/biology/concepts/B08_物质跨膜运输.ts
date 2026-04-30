@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B08_物质跨膜运输: ConceptData = {
   id: 'BIO-B08',

@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B35_特异性免疫: ConceptData = {
   id: 'BIO-B35',

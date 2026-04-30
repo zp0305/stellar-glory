@@ -3,7 +3,7 @@ import { registerSubject } from '../registry'
 import { conceptDataMap, conceptList, getConceptMeta, getAllConceptIds } from './concepts'
 import { modelDataMap, ALL_MODEL_IDS } from './models'
 import { physicsModels } from './physicsModels'
-import { allParadigms } from './paradigms'
+import { allParadigms } from './routines'
 
 const paradigmDataMap = new Map(allParadigms.map(p => [p.id, p]))
 import { formulaChapters, formulas as allFormulas, searchFormulas } from './formulas'

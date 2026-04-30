@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R25",
   name: "机车启动两种方式",
   model: "PHY-M07",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "J",
   trigger: "机车启动问题，判断是恒定功率还是恒定加速度启动",
   path: [

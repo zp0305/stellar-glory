@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B38_种群的特征: ConceptData = {
   id: 'BIO-B38',

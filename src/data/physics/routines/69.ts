@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R69",
   name: "动量与能量综合分析（光电/核反应）",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "T",
   trigger: "光子或粒子碰撞问题，同时满足动量守恒和能量守恒",
   path: [

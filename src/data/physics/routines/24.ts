@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R24",
   name: "三颗星模型",
   model: "PHY-M06",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "T",
   trigger: "三颗星构成的系统（直线排列或等边三角形），求运动特征或周期",
   path: [

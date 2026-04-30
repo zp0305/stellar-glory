@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M01_生物大分子组成: ModelData = {
   id: 'BIO-M01',

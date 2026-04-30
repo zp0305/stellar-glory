@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B22_染色体变异: ConceptData = {
   id: 'BIO-B22',

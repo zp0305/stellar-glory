@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R64",
   name: "光的衍射与干涉综合",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "J",
   trigger: "判断光通过不同障碍物后的图样（单缝/圆孔/光栅）",
   path: [

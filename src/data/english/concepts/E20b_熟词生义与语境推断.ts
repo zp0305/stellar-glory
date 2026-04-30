@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E20b_熟词生义与语境推断: ConceptData = {
   id: 'ENG-E20b',

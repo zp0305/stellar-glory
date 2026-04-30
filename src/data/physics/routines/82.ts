@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R82",
   name: "光的全反射临界条件",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "B",
   trigger: "判断光是否发生全反射，或求全反射临界角",
   path: [

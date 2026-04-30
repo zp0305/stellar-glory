@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R87",
   name: "电磁感应中的图像变换",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "几何直观与代数严格",
   level: "J",
   trigger: "导体棒在磁场中运动，已知某物理量随时间变化图，求其他量图",
   path: [

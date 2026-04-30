@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M39_连贯性与衔接手段运用: ModelData = {
   id: 'ENG-M39',

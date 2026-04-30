@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M19_DNA半保留复制分析: ModelData = {
   id: 'BIO-M19',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R67",
   name: "核反应方程配平",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+整体与隔离",
   level: "B",
   trigger: "核反应方程，已知部分产物，求未知粒子或质量亏损",
   path: [

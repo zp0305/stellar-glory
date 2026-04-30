@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 import { B01_细胞的分子组成 } from './B01_细胞的分子组成';
 import { B02_蛋白质的结构与功能 } from './B02_蛋白质的结构与功能';

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R75",
   name: "光学的波动性与粒子性统一",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "系统分解与局部分析",
   level: "T",
   trigger: "综合光学问题，同时涉及干涉、衍射，光电效应",
   path: [

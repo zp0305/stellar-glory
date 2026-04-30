@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R33",
   name: "碰撞分类判断",
   model: "PHY-M08",
-  thinkingMethod: "",
+  thinkingMethod: "整体与隔离+化归与统一",
   level: "J",
   trigger: "碰撞问题，判断是弹性/非弹性/完全非弹性，求碰撞后速度",
   path: [

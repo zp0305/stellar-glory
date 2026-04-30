@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M35_长难句精读: ModelData = {
   id: 'ENG-M35',

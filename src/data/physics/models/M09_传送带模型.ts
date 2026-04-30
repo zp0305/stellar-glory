@@ -60,4 +60,5 @@ export const M09 = {
   },
 
   lifeApplication: "追及问题在交通安全中无处不在：汽车超车本质就是追及问题；红绿灯切换时机也是追及与让行的博弈。理解追及临界可以避免交通事故。",
+  relatedParadigms: ['PHY-R15', 'PHY-R89'],
 }

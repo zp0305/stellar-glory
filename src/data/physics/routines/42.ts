@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R42",
   name: "电场线与等势线关系",
   model: "PHY-M10",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "B",
   trigger: "已知电场线分布，判断电势高低、电场强度大小",
   path: [

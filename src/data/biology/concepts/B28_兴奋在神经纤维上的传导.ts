@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B28_兴奋在神经纤维上的传导: ConceptData = {
   id: 'BIO-B28',

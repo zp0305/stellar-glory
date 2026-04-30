@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M22_基因突变分析: ModelData = {
   id: 'BIO-M22',

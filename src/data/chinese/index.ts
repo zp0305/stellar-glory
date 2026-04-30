@@ -1,4 +1,5 @@
-import { registerSubject, SubjectDataRegistry } from '@/data/registry';
+import { registerSubject } from '@/data/registry';
+import type { SubjectDataRegistry } from '@/data/registry';
 import { allConcepts, conceptDataMap, conceptList } from './concepts';
 import { allModels, modelDataMap, ALL_MODEL_IDS, chineseModels } from './models';
 import { formulas, formulaChapters } from './formulas';

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R84",
   name: "薄膜干涉厚度计算",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "J",
   trigger: "薄膜干涉问题，已知条纹类型（明/暗），求膜厚度",
   path: [

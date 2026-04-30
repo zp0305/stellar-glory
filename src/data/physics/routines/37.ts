@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R37",
   name: "反冲与火箭模型",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "火箭喷气、炮弹发射、人跳出船，问速度变化",
   path: [

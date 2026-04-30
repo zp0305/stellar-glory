@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { ComingSoon } from '@/components/ComingSoon'
+import { Spinner } from '@/components/ui/spinner'
 import { Search, BookOpen, ChevronRight } from 'lucide-react'
 
 const diffColor: Record<number, string> = {
@@ -23,13 +24,26 @@ const diffLabel: Record<number, string> = {
 export function ConceptList() {
   const [search, setSearch] = useState('')
   const [activeModule, setActiveModule] = useState<string>('全部')
-  const { data, subjectMeta } = useSubjectData()
+  const { data, subjectMeta, loading } = useSubjectData()
+
+  if (loading) {
+    return (
+      <AppLayout showSubjectNav>
+        <div className="flex items-center justify-center h-64 gap-3">
+          <Spinner className="w-6 h-6 text-primary" />
+          <span className="text-muted-foreground">{subjectMeta?.name}学科数据加载中...</span>
+        </div>
+      </AppLayout>
+    )
+  }
 
   if (!data) {
     return <ComingSoon name="知识节点" subject={subjectMeta?.name} />
   }
 
-  const conceptList = data.getConceptChapters()
+  const rawList = data.getConceptList()
+  // getConceptList 返回 { chapter, module, concepts }，统一映射为 { id, name, module, concepts }
+  const conceptList = rawList.map(ch => ({ id: ch.chapter, name: ch.chapter, module: ch.module, concepts: ch.concepts }))
   const conceptDataMap = data.getConceptDataMap()
   const modules = ['全部', ...new Set(conceptList.map(ch => ch.module))]
 

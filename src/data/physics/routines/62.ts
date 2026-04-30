@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R62",
   name: "全反射棱镜应用",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "整体与隔离",
   level: "J",
   trigger: "全反射棱镜、玻璃砖的光路分析，求出射光方向或位移",
   path: [

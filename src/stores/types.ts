@@ -1,5 +1,5 @@
 // 共享类型定义，供多个 store 使用
-export type FavoriteType = 'model' | 'strategy' | 'vision' | 'question'
+export type FavoriteType = 'model' | 'strategy' | 'vision' | 'question' | 'concept'
 
 export interface Favorite {
   id: string

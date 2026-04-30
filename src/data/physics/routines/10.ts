@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R10",
   name: "抛体运动中绳子/杆约束的投影分析",
   model: "PHY-M02",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "T",
   trigger: "物体被绳子牵着或杆约束，做圆周或曲线运动",
   path: [

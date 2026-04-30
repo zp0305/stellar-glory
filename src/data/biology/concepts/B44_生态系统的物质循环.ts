@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B44_生态系统的物质循环: ConceptData = {
   id: 'BIO-B44',

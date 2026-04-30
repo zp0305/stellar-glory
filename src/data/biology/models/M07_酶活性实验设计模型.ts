@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M07_酶活性实验设计: ModelData = {
   id: 'BIO-M07',

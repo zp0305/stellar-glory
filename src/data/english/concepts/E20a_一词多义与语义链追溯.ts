@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E20a_一词多义与语义链追溯: ConceptData = {
   id: 'ENG-E20a',

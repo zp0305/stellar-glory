@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R32",
   name: "板块系统能量分析",
   model: "PHY-M08",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "T",
   trigger: "板块系统运动后，求系统能量变化、热量、或判断最终状态",
   path: [

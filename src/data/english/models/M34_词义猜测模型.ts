@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M34_词义猜测: ModelData = {
   id: 'ENG-M34',

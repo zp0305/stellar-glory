@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R74",
   name: "回旋加速器原理分析",
   model: "PHY-M12",
-  thinkingMethod: "",
+  thinkingMethod: "类比推理",
   level: "T",
   trigger: "回旋加速器问题，求最大速度、能量或加速次数",
   path: [

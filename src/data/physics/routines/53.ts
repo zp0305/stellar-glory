@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R53",
   name: "带电粒子在组合场运动",
   model: "PHY-M12",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "带电粒子先经过电场加速，再进入磁场偏转（速度选择器、质谱仪）",
   path: [

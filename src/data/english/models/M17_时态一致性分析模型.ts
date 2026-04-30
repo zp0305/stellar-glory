@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M17_时态一致性分析: ModelData = {
   id: 'ENG-M17',

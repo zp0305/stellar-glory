@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M04_主从复合句解析: ModelData = {
   id: 'ENG-M04',

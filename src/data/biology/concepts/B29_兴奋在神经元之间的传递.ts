@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B29_兴奋在神经元之间的传递: ConceptData = {
   id: 'BIO-B29',

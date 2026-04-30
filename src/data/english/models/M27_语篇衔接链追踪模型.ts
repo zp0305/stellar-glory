@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M27_语篇衔接链追踪: ModelData = {
   id: 'ENG-M27',

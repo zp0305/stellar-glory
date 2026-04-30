@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M41_读后续写语言润色: ModelData = {
   id: 'ENG-M41',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R02",
   name: "v-t 图像面积法",
   model: "PHY-M01",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "B",
   trigger: "看到 v-t 图像，求位移或比较两物体运动关系",
   path: [

@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M13_细胞分化与全能性: ModelData = {
   id: 'BIO-M13',

@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E29a_概要写作信息提取: ConceptData = {
   id: 'ENG-E29a',

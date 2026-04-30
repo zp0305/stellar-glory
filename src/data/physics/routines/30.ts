@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R30",
   name: "摩擦生热计算",
   model: "PHY-M08",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "有摩擦力做功的问题，需要区分\"摩擦力对物体做的功\"和\"摩擦生热\"",
   path: [

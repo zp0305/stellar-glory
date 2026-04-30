@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B41_群落的演替: ConceptData = {
   id: 'BIO-B41',

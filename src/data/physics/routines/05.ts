@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R05",
   name: "追及相遇条件分析法",
   model: "PHY-M01",
-  thinkingMethod: "",
+  thinkingMethod: "几何直观与代数严格",
   level: "J",
   trigger: "追及或相遇问题，判断能否追上、相遇次数",
   path: [

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R52",
   name: "洛伦兹力五步分析",
   model: "PHY-M12",
-  thinkingMethod: "",
+  thinkingMethod: "类比推理",
   level: "B",
   trigger: "带电粒子在磁场中运动，求半径、周期或速度分量",
   path: [

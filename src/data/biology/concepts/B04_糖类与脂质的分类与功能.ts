@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B04_糖类与脂质的分类与功能: ConceptData = {
   id: 'BIO-B04',

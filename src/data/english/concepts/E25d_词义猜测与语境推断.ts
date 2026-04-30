@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E25d_词义猜测与语境推断: ConceptData = {
   id: 'ENG-E25d',

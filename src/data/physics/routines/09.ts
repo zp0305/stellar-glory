@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R09",
   name: "平抛运动的临界角度法",
   model: "PHY-M02",
-  thinkingMethod: "",
+  thinkingMethod: "整体与隔离",
   level: "J",
   trigger: "平抛运动恰好擦过某点或恰好落在某边界",
   path: [

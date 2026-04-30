@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R65",
   name: "光电效应方程应用",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "B",
   trigger: "光电效应问题，已知入射光频率或波长，求遏止电压或最大初动能",
   path: [

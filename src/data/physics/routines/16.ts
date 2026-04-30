@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R16",
   name: "传送带问题动力学分析",
   model: "PHY-M04",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "J",
   trigger: "传送带上物体运动，判断相对滑动、摩擦力方向，求运动时间",
   path: [

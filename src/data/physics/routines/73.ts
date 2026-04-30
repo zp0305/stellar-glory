@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R73",
   name: "磁场偏转与速度选择器",
   model: "PHY-M12",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "J",
   trigger: "速度选择器或磁流体发电机，求电场和磁场的平衡条件",
   path: [

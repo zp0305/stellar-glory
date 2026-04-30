@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B03_核酸的结构与功能: ConceptData = {
   id: 'BIO-B03',

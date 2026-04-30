@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M23_熟词生义语境推断: ModelData = {
   id: 'ENG-M23',

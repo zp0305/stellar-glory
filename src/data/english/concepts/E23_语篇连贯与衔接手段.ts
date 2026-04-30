@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E23_语篇连贯与衔接手段: ConceptData = {
   id: 'ENG-E23',

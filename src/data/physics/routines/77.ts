@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R77",
   name: "非惯性系中的等效重力",
   model: "PHY-M03",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "J",
   trigger: "系统有加速度（电梯/车厢），在非惯性系中分析力学问题",
   path: [

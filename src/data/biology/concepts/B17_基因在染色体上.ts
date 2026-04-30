@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B17_基因在染色体上: ConceptData = {
   id: 'BIO-B17',

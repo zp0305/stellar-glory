@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E25b_细节定位与信息提取: ConceptData = {
   id: 'ENG-E25b',

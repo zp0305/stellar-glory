@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R57",
   name: "交流电四值分析",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "J",
   trigger: "交流电问题求最大值、有效值、平均值、瞬时值",
   path: [

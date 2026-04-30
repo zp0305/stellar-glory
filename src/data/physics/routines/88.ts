@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R88",
   name: "功能原理综合应用",
   model: "PHY-M08",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "复杂过程涉及多种能量转化，求某力做功或能量变化",
   path: [

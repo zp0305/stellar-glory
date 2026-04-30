@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M08_ATPADP能量循环: ModelData = {
   id: 'BIO-M08',

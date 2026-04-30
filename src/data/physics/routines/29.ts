@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R29",
   name: "弹簧能量分析",
   model: "PHY-M08",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化+守恒思想",
   level: "J",
   trigger: "弹簧连接物体问题，判断能量转化或求最大速度/最大势能",
   path: [

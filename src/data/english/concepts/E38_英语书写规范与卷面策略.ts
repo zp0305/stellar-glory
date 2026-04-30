@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E38_英语书写规范与卷面策略: ConceptData = {
   id: 'ENG-E38',

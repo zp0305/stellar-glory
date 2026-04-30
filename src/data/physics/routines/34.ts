@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R34",
   name: "速度增量法解人船模型",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "J",
   trigger: "人船模型（人在船上走，船反向运动），求船位移或人位移",
   path: [

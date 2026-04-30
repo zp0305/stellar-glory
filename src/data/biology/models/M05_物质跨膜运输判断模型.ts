@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M05_物质跨膜运输判断: ModelData = {
   id: 'BIO-M05',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R27",
   name: "动能定理单物体应用",
   model: "PHY-M07",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "B",
   trigger: "单个物体受多个力，过程复杂，已知部分力做功和初末速度",
   path: [

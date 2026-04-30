@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R21",
   name: "万有引力三步法",
   model: "PHY-M06",
-  thinkingMethod: "",
+  thinkingMethod: "系统分解与局部分析",
   level: "B",
   trigger: "万有引力问题，已知轨道半径/线速度/周期之一，求其他量",
   path: [

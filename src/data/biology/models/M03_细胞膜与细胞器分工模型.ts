@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M03_细胞膜与细胞器分工: ModelData = {
   id: 'BIO-M03',

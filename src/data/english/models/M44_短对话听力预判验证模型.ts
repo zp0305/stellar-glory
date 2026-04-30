@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M44_短对话听力预判验证: ModelData = {
   id: 'ENG-M44',

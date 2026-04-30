@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B45_生态系统的信息传递: ConceptData = {
   id: 'BIO-B45',

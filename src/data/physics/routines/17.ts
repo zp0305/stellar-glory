@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R17",
   name: "板块模型临界判断",
   model: "PHY-M04",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "T",
   trigger: "板块模型中判断是否发生相对滑动，或求摩擦力突变时机",
   path: [

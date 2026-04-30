@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R79",
   name: "带电粒子在复合场中的螺旋运动",
   model: "PHY-M12",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "T",
   trigger: "带电粒子在匀强电场和磁场叠加区域运动",
   path: [

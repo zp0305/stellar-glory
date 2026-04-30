@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R55",
   name: "楞次定律应用",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "B",
   trigger: "判断感应电流方向，或判断导体运动趋势",
   path: [

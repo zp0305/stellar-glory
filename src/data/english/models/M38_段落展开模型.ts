@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M38_段落展开: ModelData = {
   id: 'ENG-M38',

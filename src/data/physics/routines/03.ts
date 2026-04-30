@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R03",
   name: "相对运动换参考系法",
   model: "PHY-M01",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化+整体与隔离",
   level: "J",
   trigger: "两物体同时运动，追及或相遇问题中条件复杂",
   path: [

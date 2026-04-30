@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R63",
   name: "光的干涉条纹计算",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "几何直观与代数严格",
   level: "B",
   trigger: "双缝干涉或薄膜干涉，求条纹间距或某处是明纹还是暗纹",
   path: [

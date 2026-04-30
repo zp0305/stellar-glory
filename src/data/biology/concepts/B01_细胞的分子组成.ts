@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B01_细胞的分子组成: ConceptData = {
   id: 'BIO-B01',

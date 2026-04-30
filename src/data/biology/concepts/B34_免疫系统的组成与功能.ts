@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B34_免疫系统的组成与功能: ConceptData = {
   id: 'BIO-B34',

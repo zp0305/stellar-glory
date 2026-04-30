@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M26_内环境稳态分析: ModelData = {
   id: 'BIO-M26',

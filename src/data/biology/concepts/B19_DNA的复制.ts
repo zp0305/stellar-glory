@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B19_DNA的复制: ConceptData = {
   id: 'BIO-B19',

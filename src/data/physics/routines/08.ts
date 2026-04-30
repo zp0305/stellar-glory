@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R08",
   name: "斜面平抛射程最值分析",
   model: "PHY-M02",
-  thinkingMethod: "",
+  thinkingMethod: "系统分解与局部分析",
   level: "T",
   trigger: "从斜面顶端平抛，落在斜面上，求射程或初速度最值条件",
   path: [

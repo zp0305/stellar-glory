@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R58",
   name: "变压器与远距离输电",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "系统分解与局部分析",
   level: "J",
   trigger: "变压器变比问题，或远距离输电中求线路损耗",
   path: [

@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B31_体液调节: ConceptData = {
   id: 'BIO-B31',

@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E26_长难句分析方法: ConceptData = {
   id: 'ENG-E26',

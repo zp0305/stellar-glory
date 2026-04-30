@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R81",
   name: "交变电流有效值定义应用",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "非正弦交流电求有效值，或利用有效值计算电功率",
   path: [

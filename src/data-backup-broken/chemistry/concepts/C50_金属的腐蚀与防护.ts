@@ -1,0 +1,40 @@
+// C50 金属的腐蚀与防- 知识节点（占位模板）
+// 待内容AI填充六段式内容
+export const C50 = {
+  id: 'C50',
+  title: '金属的腐蚀与防',
+  subtitle: '吸氧腐蚀·析氢腐蚀',
+  module: '电化',
+  chapter: '电化',
+  difficulty: 1,
+
+  preCheck: [
+    { question: '本节点前置检测（待填充）', options: ['A', 'B', 'C', 'D'], answer: 'A', explanation: '待填空' },
+  ],
+
+  narrative: {
+    context: '内容整理中...',
+    confusion: '内容整理中...',
+    experiment: '内容整理中...',
+    concept: '内容整理中...',
+    derivation: '内容整理中...',
+    transfer: '内容整理中...',
+  },
+
+  variations: {
+    basic: [{ label: '待填空', note: '内容整理中...' }],
+    advanced: [{ label: '待填空', note: '内容整理中...' }],
+    challenge: [{ label: '待填空', note: '内容整理中...' }],
+  },
+
+  formulas: [
+    { name: '待填空', formula: '', usage: '内容整理中...' },
+  ],
+
+  selfEval: [
+    { question: '内容整理中...', level: 'A', description: '待填空' },
+  ],
+
+  relatedModels: [] as string[],
+  crossLinks: [] as any[],
+} as const

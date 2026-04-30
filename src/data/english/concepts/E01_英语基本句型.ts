@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E01_英语基本句型: ConceptData = {
   id: 'ENG-E01',

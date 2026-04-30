@@ -4,11 +4,12 @@ import { AppLayout } from '@/components/layout/Navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MarkdownRenderer } from '@/components/MarkdownRenderer'
-import { questionsByModel, DIFF_LABEL, DIFF_COLOR } from '@/data/physics/questions'
+import { Spinner } from '@/components/ui/spinner'
 import { useUserStore } from '@/stores/userStore'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle, Lightbulb, Eye, EyeOff } from 'lucide-react'
 import type { Question } from '@/data/physics/questions/types'
+import { useSubjectData } from '@/hooks/useSubjectData'
 
 function formatTime(s: number) {
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
@@ -49,13 +50,15 @@ function TypeBadge({ type }: { type: string }) {
 
 // 单题答题卡片
 function QuestionCard({
-  q, allQuestions, currentIndex, modelId, onNext,
+  q, allQuestions, currentIndex, modelId, onNext, DIFF_LABEL, DIFF_COLOR,
 }: {
   q: Question
   allQuestions: Question[]
   currentIndex: number
   modelId?: string
   onNext?: () => void
+  DIFF_LABEL: Record<string, string>
+  DIFF_COLOR: Record<string, string>
 }) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
@@ -279,6 +282,13 @@ export function QuestionDoPage() {
   const [searchParams] = useSearchParams()
   const questionId = searchParams.get('q')
 
+  const { data, loading, subject } = useSubjectData()
+  const subjectId = subject ?? 'physics'
+  const questionsByModel = data?.getQuestionsByModel() ?? {}
+  const questionBankData = data?.getQuestionBankData()
+  const DIFF_LABEL = questionBankData?.DIFF_LABEL ?? {}
+  const DIFF_COLOR = questionBankData?.DIFF_COLOR ?? {}  
+
   const allQuestions = modelId ? (questionsByModel[modelId] ?? []) : []
 
   const initialIndex = questionId
@@ -288,12 +298,23 @@ export function QuestionDoPage() {
 
   const q = allQuestions[currentIndex]
 
+  if (loading) {
+    return (
+      <AppLayout showSubjectNav>
+        <div className="flex items-center justify-center h-64 gap-3">
+          <Spinner className="w-6 h-6 text-primary" />
+          <span className="text-muted-foreground">题库数据加载中...</span>
+        </div>
+      </AppLayout>
+    )
+  }
+
   if (!q) {
     return (
       <AppLayout showSubjectNav>
         <div className="max-w-2xl mx-auto px-4 py-16 text-center">
           <p className="text-muted-foreground mb-4">题目不存在</p>
-          <Link to={`/physics/exercises/${modelId}`}><Button variant="outline">返回题库</Button></Link>
+          <Link to={`/${subjectId}/exercises/${modelId}`}><Button variant="outline">返回题库</Button></Link>
         </div>
       </AppLayout>
     )
@@ -305,7 +326,7 @@ export function QuestionDoPage() {
 
         {/* 顶部栏 */}
         <div className="flex items-center justify-between flex-wrap gap-3">
-          <Link to={`/physics/exercises/${modelId}`}>
+          <Link to={`/${subjectId}/exercises/${modelId}`}>
             <Button variant="ghost" size="sm" className="pl-0 gap-1 text-muted-foreground">
               <ChevronLeft className="w-4 h-4" /> 返回
             </Button>
@@ -327,6 +348,8 @@ export function QuestionDoPage() {
           currentIndex={currentIndex}
           modelId={modelId}
           onNext={currentIndex < allQuestions.length - 1 ? () => setCurrentIndex(prev => prev + 1) : undefined}
+          DIFF_LABEL={DIFF_LABEL}
+          DIFF_COLOR={DIFF_COLOR}
         />
 
         {/* 底部翻题 */}
@@ -334,7 +357,7 @@ export function QuestionDoPage() {
           <Button variant="outline" size="sm" onClick={() => setCurrentIndex(p => p - 1)} disabled={currentIndex === 0} className="gap-1">
             <ChevronLeft className="w-4 h-4" /> 上一题
           </Button>
-          <Link to={`/physics/exercises/${modelId}`}>
+          <Link to={`/${subjectId}/exercises/${modelId}`}>
             <Button variant="ghost" size="sm" className="text-muted-foreground">返回题库</Button>
           </Link>
           <Button variant="outline" size="sm" onClick={() => setCurrentIndex(p => p + 1)} disabled={currentIndex === allQuestions.length - 1} className="gap-1">

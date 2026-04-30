@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M33_推理判断与态度推断: ModelData = {
   id: 'ENG-M33',

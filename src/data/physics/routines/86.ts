@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R86",
   name: "核聚变与核裂变能量比较",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "系统分解与局部分析",
   level: "J",
   trigger: "比较不同核反应的能量释放，或求聚变/裂变的能量",
   path: [

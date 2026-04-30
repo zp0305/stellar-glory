@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R28",
   name: "机械能守恒判断",
   model: "PHY-M08",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "B",
   trigger: "判断系统机械能是否守恒，或已知守恒条件求某量",
   path: [

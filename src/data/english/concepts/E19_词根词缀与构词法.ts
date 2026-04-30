@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E19_词根词缀与构词法: ConceptData = {
   id: 'ENG-E19',

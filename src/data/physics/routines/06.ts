@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R06",
   name: "竖直抛体时间对称性",
   model: "PHY-M02",
-  thinkingMethod: "",
+  thinkingMethod: "对称与极限",
   level: "B",
   trigger: "竖直上抛运动，已知某时刻的位置或速度，求上升时间或高度",
   path: [

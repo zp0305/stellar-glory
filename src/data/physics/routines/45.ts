@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R45",
   name: "电容器动态分析",
   model: "PHY-M10",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "电容器连接电源或与电阻串联，分析 U/Q/C/E 变化",
   path: [

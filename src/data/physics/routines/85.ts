@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R85",
   name: "原子核衰变类型判断",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "B",
   trigger: "给定衰变类型（α/β⁻/β⁺/γ），写出衰变方程或推断产物",
   path: [

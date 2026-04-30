@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M47_口语话题展开: ModelData = {
   id: 'ENG-M47',

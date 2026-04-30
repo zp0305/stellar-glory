@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R39",
   name: "一维碰撞速度求解",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "J",
   trigger: "一维弹性碰撞或完全非弹性碰撞，求碰撞后速度",
   path: [

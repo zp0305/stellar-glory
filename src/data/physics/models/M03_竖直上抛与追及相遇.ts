@@ -60,4 +60,5 @@ export const M03 = {
   },
 
   lifeApplication: "竖直上抛模型用于计算运动员投篮、抛铅球的最高点；喷泉喷水的高度估算；建筑工地物料提升后的下落时间计算。",
+  relatedParadigms: ['PHY-R03', 'PHY-R08'],
 }

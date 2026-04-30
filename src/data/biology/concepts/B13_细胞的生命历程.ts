@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B13_细胞的生命历程: ConceptData = {
   id: 'BIO-B13',

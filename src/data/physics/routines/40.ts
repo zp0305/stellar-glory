@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R40",
   name: "动量守恒与能量守恒的协同使用",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+系统分解与局部分析",
   level: "T",
   trigger: "复杂系统问题，需要同时用动量守恒和能量守恒",
   path: [

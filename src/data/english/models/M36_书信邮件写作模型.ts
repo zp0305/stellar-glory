@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M36_书信邮件写作: ModelData = {
   id: 'ENG-M36',

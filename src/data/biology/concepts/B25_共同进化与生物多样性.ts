@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B25_共同进化与生物多样性: ConceptData = {
   id: 'BIO-B25',

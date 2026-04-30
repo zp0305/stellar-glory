@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R76",
   name: "碰撞中的速度交换分析",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "J",
   trigger: "两物体弹性碰撞后速度计算，或完全非弹性碰撞共速分析",
   path: [

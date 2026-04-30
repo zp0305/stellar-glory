@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M22_一词多义语义链追溯: ModelData = {
   id: 'ENG-M22',

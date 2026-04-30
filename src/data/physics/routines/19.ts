@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R19",
   name: "单摆周期公式应用",
   model: "PHY-M05",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "B",
   trigger: "单摆问题求周期、频率，或通过周期求 g/摆长",
   path: [

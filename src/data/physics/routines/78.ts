@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R78",
   name: "变质量问题火箭推力",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "T",
   trigger: "变质量问题（火箭喷气、流水、链条落下），求推力或速度",
   path: [

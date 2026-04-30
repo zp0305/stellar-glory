@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E30_翻译技巧: ConceptData = {
   id: 'ENG-E30',

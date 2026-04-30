@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M30_议论文阅读: ModelData = {
   id: 'ENG-M30',

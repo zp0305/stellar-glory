@@ -1,0 +1,13 @@
+import type { ConceptData } from './types';
+
+export const B37_植物的激素调: ConceptData = {
+  id: 'BIO-B37',
+  name: '植物的激素调',
+  chapter: '稳态与调节',
+  module: '选择性必',
+  difficulty: 'core',
+  prerequisites: [],
+  relatedModels: ['BIO-M38'],
+  relatedStrategies: [],
+  status: 'coming_soon',
+};

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R35",
   name: "动量定理全程法",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "变质量问题、流体问题、连续作用问题，求冲击力或平均力",
   path: [

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R60",
   name: "电磁感应图像分析",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "J",
   trigger: "电磁感应问题中给 B-t 图或 x-t 图，判断 E 或 I 的变化",
   path: [

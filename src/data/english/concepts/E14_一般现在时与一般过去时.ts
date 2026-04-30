@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E14_一般现在时与一般过去时: ConceptData = {
   id: 'ENG-E14',

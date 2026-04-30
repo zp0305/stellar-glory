@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R61",
   name: "折射率与光路计算",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "B",
   trigger: "已知折射率或入射角，求折射角、光速、比值",
   path: [

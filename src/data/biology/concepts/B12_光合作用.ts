@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B12_光合作用: ConceptData = {
   id: 'BIO-B12',

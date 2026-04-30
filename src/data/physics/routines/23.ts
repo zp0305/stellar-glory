@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R23",
   name: "双星系统模型",
   model: "PHY-M06",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "J",
   trigger: "两颗恒星互相吸引做圆周运动，求质量比或轨道半径比",
   path: [

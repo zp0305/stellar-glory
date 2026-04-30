@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M02_成分分析法: ModelData = {
   id: 'ENG-M02',

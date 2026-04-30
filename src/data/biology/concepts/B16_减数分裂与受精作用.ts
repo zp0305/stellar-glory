@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B16_减数分裂与受精作用: ConceptData = {
   id: 'BIO-B16',

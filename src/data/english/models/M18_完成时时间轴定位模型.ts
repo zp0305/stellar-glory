@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M18_完成时时间轴定位: ModelData = {
   id: 'ENG-M18',

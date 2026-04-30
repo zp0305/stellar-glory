@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M43_概要写作语言浓缩: ModelData = {
   id: 'ENG-M43',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R80",
   name: "电容器的动态电容变化",
   model: "PHY-M10",
-  thinkingMethod: "",
+  thinkingMethod: "几何直观与代数严格",
   level: "J",
   trigger: "电容器电路中，改变电容值，分析各物理量的连锁变化",
   path: [

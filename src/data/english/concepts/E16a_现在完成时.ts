@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E16a_现在完成时: ConceptData = {
   id: 'ENG-E16a',

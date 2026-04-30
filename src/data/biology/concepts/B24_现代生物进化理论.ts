@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B24_现代生物进化理论: ConceptData = {
   id: 'BIO-B24',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R12",
   name: "正交分解标准流程",
   model: "PHY-M03",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化+整体与隔离",
   level: "B",
   trigger: "斜面上物体受多力作用，求加速度或某个力",
   path: [

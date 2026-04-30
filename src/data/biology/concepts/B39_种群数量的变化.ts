@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B39_种群数量的变化: ConceptData = {
   id: 'BIO-B39',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R83",
   name: "杨氏双缝干涉实验分析",
   model: "PHY-M14",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "J",
   trigger: "双缝干涉实验问题，条纹位置、间距或条纹变化",
   path: [

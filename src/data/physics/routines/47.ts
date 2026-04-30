@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R47",
   name: "欧姆定律与电功率",
   model: "PHY-M11",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+系统分解与局部分析",
   level: "B",
   trigger: "电路分析中求某电阻的功率、电压或电流",
   path: [

@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B21_基因突变与基因重组: ConceptData = {
   id: 'BIO-B21',

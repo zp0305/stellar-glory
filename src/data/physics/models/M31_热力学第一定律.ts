@@ -14,4 +14,5 @@ export const M31 = {
   methodology: { approach: "内容建设中。", decisionTree: ["第一步：分析已知量", "第二步：选择公式", "第三步：代入计算"], commonPitfalls: ["易错点1"] },
   selfCheck: { questions: [], confidenceLevel: 1 },
   lifeApplication: "内容建设中。",
+  relatedParadigms: ['PHY-R66', 'PHY-R67', 'PHY-R87', 'PHY-R88', 'PHY-R89', 'PHY-R90'],
 }

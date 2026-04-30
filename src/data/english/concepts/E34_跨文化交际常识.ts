@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E34_跨文化交际常识: ConceptData = {
   id: 'ENG-E34',

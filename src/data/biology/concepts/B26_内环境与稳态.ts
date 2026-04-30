@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B26_内环境与稳态: ConceptData = {
   id: 'BIO-B26',

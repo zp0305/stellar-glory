@@ -7,7 +7,9 @@ import { useUserStore } from '@/stores/userStore'
 import { useFavoritesStore } from '@/stores/favoritesStore'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { ComingSoon } from '@/components/ComingSoon'
+import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/lib/utils'
+import { MarkdownRenderer } from '@/components/MarkdownRenderer'
 import {
   BookOpen, Zap, BrainCircuit, Calculator, CheckCircle, CircleDot, Circle,
   Star, ChevronLeft, ChevronRight, AlertTriangle, Lightbulb, FlaskConical,
@@ -39,11 +41,11 @@ function formatVariations(v: any): string | null {
   ]) {
     const arr = v[key]
     if (arr?.length) {
-      parts.push(label)
+      parts.push(`\n**${label}**\n`)
       arr.forEach((item: any) => {
-        parts.push(`  · ${item.label || ''}`)
-        if (item.formula) parts.push(`    公式：${item.formula}`)
-        if (item.note) parts.push(`    说明：${item.note}`)
+        parts.push(`- **${item.label || ''}**`)
+        if (item.formula) parts.push(`  - 公式：${item.formula}`)
+        if (item.note) parts.push(`  - 说明：${item.note}`)
       })
     }
   }
@@ -63,7 +65,18 @@ export function ConceptPage() {
   const { conceptId } = useParams<{ conceptId: string }>()
   const { progress, updateProgress } = useUserStore()
   const { toggleFavorite, isFavorited } = useFavoritesStore()
-  const { data, subjectMeta } = useSubjectData()
+  const { data, subjectMeta, loading } = useSubjectData()
+
+  if (loading) {
+    return (
+      <AppLayout showSubjectNav>
+        <div className="flex items-center justify-center h-64 gap-3">
+          <Spinner className="w-6 h-6 text-primary" />
+          <span className="text-muted-foreground">{subjectMeta?.name}学科数据加载中...</span>
+        </div>
+      </AppLayout>
+    )
+  }
 
   if (!data) {
     return <ComingSoon name="知识节点详情" subject={subjectMeta?.name} />
@@ -116,18 +129,14 @@ export function ConceptPage() {
   return (
     <AppLayout showSubjectNav anchors={anchors}>
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-        <div className="flex items-center justify-between">
-          <Link to={`/${subjectMeta?.id}/concepts`}>
-            <Button variant="ghost" size="sm" className="pl-0 gap-1">
-              <span className="text-muted-foreground">←</span> 知识节点列表
-            </Button>
-          </Link>
-          <div className="flex items-center gap-2">
-            {prevId && <Link to={`/${subjectMeta?.id}/concepts/${prevId}`}><Button variant="outline" size="sm">← 上一节点</Button></Link>}
-            {nextId && <Link to={`/${subjectMeta?.id}/concepts/${nextId}`}><Button variant="outline" size="sm">下一节点 →</Button></Link>}
-          </div>
-        </div>
-
+        {/* 面包屑 */}
+        <nav className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Link to={`/${subjectMeta?.id}`} className="hover:text-foreground transition-colors">{subjectMeta?.name}</Link>
+          <ChevronRight className="w-3 h-3 flex-shrink-0" />
+          <Link to={`/${subjectMeta?.id}/concepts`} className="hover:text-foreground transition-colors">知识节点</Link>
+          <ChevronRight className="w-3 h-3 flex-shrink-0" />
+          <span className="text-foreground font-medium truncate">{concept.title}</span>
+        </nav>
         <div className="space-y-3">
           <div className="flex items-center gap-2 flex-wrap">
             <Badge variant="outline">{concept.module}</Badge>
@@ -189,7 +198,7 @@ export function ConceptPage() {
                 <Card key={key}>
                   <CardContent className="p-5">
                     <h3 className="text-sm font-semibold text-primary mb-2">{label}</h3>
-                    <p className="text-sm leading-relaxed">{text}</p>
+                    <MarkdownRenderer content={text} className="text-base leading-relaxed" />
                   </CardContent>
                 </Card>
               ) : (
@@ -212,8 +221,8 @@ export function ConceptPage() {
           </div>
           {formatVariations(concept.variations) ? (
             <Card>
-              <CardContent className="p-5 text-sm leading-relaxed whitespace-pre-wrap">
-                {formatVariations(concept.variations)}
+              <CardContent className="p-5">
+                <MarkdownRenderer content={formatVariations(concept.variations) || ''} className="text-base leading-relaxed" />
               </CardContent>
             </Card>
           ) : (
@@ -241,7 +250,7 @@ export function ConceptPage() {
                       <span className="text-xs font-bold text-purple-700">{i + 1}</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold mb-1">{f.formula}</p>
+                      <MarkdownRenderer content={f.formula} className="text-base font-semibold mb-1" />
                       <p className="text-xs text-muted-foreground">{f.name}</p>
                       <p className="text-xs text-muted-foreground mt-1">💡 {f.usage}</p>
                     </div>
@@ -294,7 +303,7 @@ export function ConceptPage() {
                       item.level === 'B' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-600'
                     )}>{item.level}</div>
                     <div className="flex-1">
-                      <p className="text-sm">{item.question}</p>
+                      <p className="text-base">{item.question}</p>
                       <p className="text-xs text-muted-foreground mt-1">{item.description}</p>
                     </div>
                   </div>
@@ -343,7 +352,7 @@ export function ConceptPage() {
               <ChevronLeft className="w-4 h-4" /> 上一节点
             </Link>
           ) : <div />}
-          <Link to={`/${subjectMeta?.id}/concepts`} className="text-xs text-muted-foreground hover:text-foreground">知识节点列表</Link>
+          <div />
           {nextId ? (
             <Link to={`/${subjectMeta?.id}/concepts/${nextId}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
               下一节点 <ChevronRight className="w-4 h-4" />

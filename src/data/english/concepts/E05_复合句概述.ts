@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E05_复合句概述: ConceptData = {
   id: 'ENG-E05',

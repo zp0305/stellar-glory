@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M27_反射弧分析: ModelData = {
   id: 'BIO-M27',

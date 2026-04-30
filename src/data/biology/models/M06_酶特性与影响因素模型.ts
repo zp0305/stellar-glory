@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M06_酶特性与影响因素: ModelData = {
   id: 'BIO-M06',

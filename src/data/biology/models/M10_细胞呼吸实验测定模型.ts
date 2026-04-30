@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M10_细胞呼吸实验测定: ModelData = {
   id: 'BIO-M10',

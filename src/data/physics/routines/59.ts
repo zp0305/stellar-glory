@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R59",
   name: "LC 振荡电路分析",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "J",
   trigger: "LC 振荡电路中电容器和电感线圈的电量、电流、能量变化",
   path: [

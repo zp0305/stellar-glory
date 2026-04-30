@@ -61,4 +61,5 @@ export const M02 = {
   },
 
   lifeApplication: "自由落体无处不在：雨滴下落（受空气阻力，实际速度趋于收尾速度）、蹦极跳伞运动员的初始加速阶段。竖直上抛的物理原理用于估算炮弹发射后的飞行时间。",
+  relatedParadigms: ['PHY-R06', 'PHY-R07'],
 }

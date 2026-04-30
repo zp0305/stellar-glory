@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R01",
   name: "匀变速公式三步选择法",
   model: "PHY-M01",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "B",
   trigger: "看到匀变速直线运动题，求 v/v₀/a/t/x 任一未知量",
   path: [

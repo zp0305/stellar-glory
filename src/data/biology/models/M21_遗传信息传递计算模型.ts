@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M21_遗传信息传递计算: ModelData = {
   id: 'BIO-M21',

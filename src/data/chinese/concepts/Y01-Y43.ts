@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const Y01_小说三要素: ConceptData = {
   id: 'CHN-Y01',

@@ -1,32 +1,42 @@
-// KaTeX 本地资源已准备好（CSS + 字体 + JS）
-// 但 CDN/jsdelivr 在部分网络下不稳定，暂不自动渲染
-// 如需启用 KaTeX 渲染：把 ENABLE_KATEX 改为 true
-const ENABLE_KATEX = false
-
+// KaTeX 公式渲染组件
+// 使用 katex.renderToString 预处理公式，ReactMarkdown 渲染其余 Markdown
 import React, { useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
 
 interface Props {
   content: string
-  enableKaTeX?: boolean
   className?: string
 }
 
 function preProcess(content: string): string {
-  return content
+  // 先处理行间公式 $$...$$
+  let result = content.replace(/\$\$([\s\S]*?)\$\$/g, (_m, eq) => {
+    try {
+      return katex.renderToString(eq.trim(), { displayMode: true, throwOnError: false })
+    } catch {
+      return `<code>$${eq}$$</code>`
+    }
+  })
+  // 再处理行内公式 $...$
+  result = result.replace(/\$([^\$\n]+?)\$/g, (_m, eq) => {
+    try {
+      return katex.renderToString(eq.trim(), { displayMode: false, throwOnError: false })
+    } catch {
+      return `<code>$${eq}$</code>`
+    }
+  })
+  return result
 }
 
-export function MarkdownRenderer({ content, enableKaTeX = false, className }: Props) {
+export function MarkdownRenderer({ content, className }: Props) {
   const processed = useMemo(() => preProcess(content), [content])
-
-  if (enableKaTeX && !ENABLE_KATEX) {
-    // KaTeX 暂不启用，原文显示 LaTeX
-    return <div className={className}>{content}</div>
-  }
 
   return (
     <div className={className}>
-      <ReactMarkdown>{processed}</ReactMarkdown>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>{processed}</ReactMarkdown>
     </div>
   )
 }

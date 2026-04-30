@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M43_生态系统稳定性分析: ModelData = {
   id: 'BIO-M43',

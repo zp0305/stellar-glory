@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R89",
   name: "复杂电路的等效电源变换",
   model: "PHY-M11",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化+守恒思想",
   level: "T",
   trigger: "复杂电路化简，包括电压源和电流源的互换",
   path: [

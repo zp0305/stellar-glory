@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M02_蛋白质结构功能分析: ModelData = {
   id: 'BIO-M02',

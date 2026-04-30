@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M21_词根词缀拆解: ModelData = {
   id: 'ENG-M21',

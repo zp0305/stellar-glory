@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M40_读后续写情节构建: ModelData = {
   id: 'ENG-M40',

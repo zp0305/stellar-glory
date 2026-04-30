@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B15_孟德尔遗传定律: ConceptData = {
   id: 'BIO-B15',

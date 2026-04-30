@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M01_句型识别与转换: ModelData = {
   id: 'ENG-M01',

@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M20_中心法则与基因表达: ModelData = {
   id: 'BIO-M20',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R56",
   name: "法拉第电磁感应定律求解",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "J",
   trigger: "线圈磁通量变化，求感应电动势大小",
   path: [

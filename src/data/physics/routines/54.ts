@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R54",
   name: "电磁感应中的电路分析",
   model: "PHY-M13",
-  thinkingMethod: "",
+  thinkingMethod: "化归与统一",
   level: "J",
   trigger: "导体棒切割磁感线产生感应电动势，形成闭合电路",
   path: [

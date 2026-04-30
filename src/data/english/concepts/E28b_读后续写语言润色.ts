@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E28b_读后续写语言润色: ConceptData = {
   id: 'ENG-E28b',

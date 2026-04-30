@@ -46,3 +46,7 @@ export function registerSubject(id: string, data: SubjectDataRegistry) {
 export function getSubjectData(id: string): SubjectDataRegistry | undefined {
   return registry.get(id)
 }
+
+export function isSubjectRegistered(id: string): boolean {
+  return registry.has(id)
+}

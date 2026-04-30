@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M04_分泌蛋白合成运输: ModelData = {
   id: 'BIO-M04',

@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M34_免疫防线与抗原识别: ModelData = {
   id: 'BIO-M34',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R50",
   name: "磁感应强度三公式选用",
   model: "PHY-M12",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "B",
   trigger: "已知电流或磁体，求某点磁感应强度",
   path: [

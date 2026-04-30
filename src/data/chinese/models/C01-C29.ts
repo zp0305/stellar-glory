@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const C01_小说叙事分析: ModelData = {
   id: 'CHN-C01',

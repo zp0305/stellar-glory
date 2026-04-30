@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B48_基因工程的操作步骤: ConceptData = {
   id: 'BIO-B48',

@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M32_体温与水盐调节: ModelData = {
   id: 'BIO-M32',

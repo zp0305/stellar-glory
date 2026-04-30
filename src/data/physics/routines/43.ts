@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R43",
   name: "电场力做功与电势能",
   model: "PHY-M10",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "B",
   trigger: "电荷在电场中移动，求电场力做功或电势能变化",
   path: [

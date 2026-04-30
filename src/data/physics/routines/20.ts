@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R20",
   name: "竖直平面圆周运动绳杆临界",
   model: "PHY-M05",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "J",
   trigger: "竖直圆周运动最高点或最低点，判断是绳模型还是杆模型，求临界速度",
   path: [

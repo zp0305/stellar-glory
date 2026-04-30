@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M38_植物激素两重性分析: ModelData = {
   id: 'BIO-M38',

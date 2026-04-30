@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R48",
   name: "含电动机的电路分析",
   model: "PHY-M11",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+对称与极限",
   level: "J",
   trigger: "电路中有电动机（非纯电阻），求电流、效率或功率",
   path: [

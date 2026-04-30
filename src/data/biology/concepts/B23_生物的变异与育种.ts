@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B23_生物的变异与育种: ConceptData = {
   id: 'BIO-B23',

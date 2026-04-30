@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M41_能量流动计算: ModelData = {
   id: 'BIO-M41',

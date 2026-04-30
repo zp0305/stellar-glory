@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M45_转基因生物安全性评价: ModelData = {
   id: 'BIO-M45',

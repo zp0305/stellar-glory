@@ -61,4 +61,5 @@ export const M06 = {
   },
 
   lifeApplication: "工厂生产线的传送带是传送带模型的典型应用。物品在传送带上从静止被加速到与传送带同速。物品与传送带之间的动摩擦系数u决定加速度。表面有油或水时，u减小，物品可能滑落。",
+  relatedParadigms: ['PHY-R12', 'PHY-R21'],
 }

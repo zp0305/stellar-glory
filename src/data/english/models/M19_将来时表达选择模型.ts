@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M19_将来时表达选择: ModelData = {
   id: 'ENG-M19',

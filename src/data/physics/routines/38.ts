@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R38",
   name: "弹簧连接体动量与能量",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "T",
   trigger: "两物体通过弹簧连接，动量守恒+机械能守恒联合问题",
   path: [

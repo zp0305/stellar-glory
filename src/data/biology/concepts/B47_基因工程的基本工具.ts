@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B47_基因工程的基本工具: ConceptData = {
   id: 'BIO-B47',

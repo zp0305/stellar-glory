@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M25_搭配网络构建: ModelData = {
   id: 'ENG-M25',

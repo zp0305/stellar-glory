@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R46",
   name: "电阻串并联等效",
   model: "PHY-M11",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想+整体与隔离",
   level: "B",
   trigger: "复杂电阻网络化简，求等效电阻",
   path: [

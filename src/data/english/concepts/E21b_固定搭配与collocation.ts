@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E21b_固定搭配与collocation: ConceptData = {
   id: 'ENG-E21b',

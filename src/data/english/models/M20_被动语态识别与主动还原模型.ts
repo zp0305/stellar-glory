@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M20_被动语态识别与主动还原: ModelData = {
   id: 'ENG-M20',

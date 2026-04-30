@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E16b_过去完成时与将来完成时: ConceptData = {
   id: 'ENG-E16b',

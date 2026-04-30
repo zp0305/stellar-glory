@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M12_非谓语动词作主宾语: ModelData = {
   id: 'ENG-M12',

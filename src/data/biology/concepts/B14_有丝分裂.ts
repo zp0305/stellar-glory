@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B14_有丝分裂: ConceptData = {
   id: 'BIO-B14',

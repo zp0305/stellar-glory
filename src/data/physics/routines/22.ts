@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R22",
   name: "卫星变轨对接分析",
   model: "PHY-M06",
-  thinkingMethod: "",
+  thinkingMethod: "整体与隔离",
   level: "T",
   trigger: "卫星从低轨道变到高轨道，或椭圆轨道与圆轨道对接",
   path: [

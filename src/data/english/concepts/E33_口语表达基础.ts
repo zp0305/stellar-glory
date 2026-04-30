@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E33_口语表达基础: ConceptData = {
   id: 'ENG-E33',

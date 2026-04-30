@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R71",
   name: "弹簧双振子模型",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "系统分解与局部分析",
   level: "T",
   trigger: "两个物体通过弹簧连接，在光滑水平面上运动",
   path: [

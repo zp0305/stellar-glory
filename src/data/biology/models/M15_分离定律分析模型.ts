@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M15_分离定律分析: ModelData = {
   id: 'BIO-M15',

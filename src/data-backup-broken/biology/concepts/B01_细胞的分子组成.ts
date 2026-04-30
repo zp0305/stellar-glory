@@ -1,0 +1,13 @@
+import type { ConceptData } from './types';
+
+export const B01_细胞的分子组: ConceptData = {
+  id: 'BIO-B01',
+  name: '细胞的分子组',
+  chapter: '分子与细',
+  module: '必修1',
+  difficulty: 'core',
+  prerequisites: [],
+  relatedModels: ['BIO-M01'],
+  relatedStrategies: [],
+  status: 'coming_soon',
+};

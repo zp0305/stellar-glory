@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 import { M01_句型识别与转换 } from './M01_句型识别与转换模型';
 import { M02_成分分析法 } from './M02_成分分析法';

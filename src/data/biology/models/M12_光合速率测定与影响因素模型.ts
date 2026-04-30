@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M12_光合速率测定: ModelData = {
   id: 'BIO-M12',

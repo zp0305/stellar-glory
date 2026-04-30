@@ -1,4 +1,4 @@
-// 分析范式汇总（R01-R90）
+// 分析范式汇总（R01-R103）
 // 自动生成: 2026-04-26
 
 import R01 from './01'
@@ -91,6 +91,19 @@ import R87 from './87'
 import R88 from './88'
 import R89 from './89'
 import R90 from './90'
+import R91 from './91'
+import R92 from './92'
+import R93 from './93'
+import R94 from './94'
+import R95 from './95'
+import R96 from './96'
+import R97 from './97'
+import R98 from './98'
+import R99 from './99'
+import R100 from './100'
+import R101 from './101'
+import R102 from './102'
+import R103 from './103'
 
 export const allParadigms = [
   R01,
@@ -183,6 +196,19 @@ export const allParadigms = [
   R88,
   R89,
   R90,
+  R91,
+  R92,
+  R93,
+  R94,
+  R95,
+  R96,
+  R97,
+  R98,
+  R99,
+  R100,
+  R101,
+  R102,
+  R103,
 ]
 
 export const paradigmMap = {
@@ -276,4 +302,17 @@ export const paradigmMap = {
   'PHY-R88': R88,
   'PHY-R89': R89,
   'PHY-R90': R90,
+  'PHY-R91': R91,
+  'PHY-R92': R92,
+  'PHY-R93': R93,
+  'PHY-R94': R94,
+  'PHY-R95': R95,
+  'PHY-R96': R96,
+  'PHY-R97': R97,
+  'PHY-R98': R98,
+  'PHY-R99': R99,
+  'PHY-R100': R100,
+  'PHY-R101': R101,
+  'PHY-R102': R102,
+  'PHY-R103': R103,
 }

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R31",
   name: "子弹打木块模型",
   model: "PHY-M08",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "J",
   trigger: "子弹射入木块，求共同速度、热量、相对位移",
   path: [

@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E27b_演讲稿通知与倡议书写作: ConceptData = {
   id: 'ENG-E27b',

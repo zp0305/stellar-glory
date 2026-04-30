@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R13",
   name: "摩擦力方向三步判断",
   model: "PHY-M03",
-  thinkingMethod: "",
+  thinkingMethod: "整体与隔离",
   level: "B",
   trigger: "摩擦力方向不确定，或需要判断静摩擦还是动摩擦",
   path: [

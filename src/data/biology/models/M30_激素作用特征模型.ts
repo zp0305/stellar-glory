@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M30_激素作用特征: ModelData = {
   id: 'BIO-M30',

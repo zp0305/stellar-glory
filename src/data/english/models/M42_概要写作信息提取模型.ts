@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M42_概要写作信息提取: ModelData = {
   id: 'ENG-M42',

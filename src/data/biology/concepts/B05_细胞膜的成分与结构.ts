@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B05_细胞膜的成分与结构: ConceptData = {
   id: 'BIO-B05',

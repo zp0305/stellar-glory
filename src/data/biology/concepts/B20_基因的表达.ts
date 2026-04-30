@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B20_基因的表达: ConceptData = {
   id: 'BIO-B20',

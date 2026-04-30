@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E29b_概要写作语言浓缩: ConceptData = {
   id: 'ENG-E29b',

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { ComingSoon } from '@/components/ComingSoon'
 import { useSubjectData } from '@/hooks/useSubjectData'
+import { Spinner } from '@/components/ui/spinner'
 import { Search, BookOpen, Clock, ChevronRight } from 'lucide-react'
 
 const diffColor: Record<string, string> = {
@@ -15,10 +16,21 @@ const diffColor: Record<string, string> = {
 }
 
 export function ModelList() {
-  const { data, subjectMeta } = useSubjectData()
+  const { data, subjectMeta, loading } = useSubjectData()
   const [search, setSearch] = useState('')
   const [activeModule, setActiveModule] = useState<string>('全部')
   const [selectedDiff, setSelectedDiff] = useState<string | null>(null)
+
+  if (loading) {
+    return (
+      <AppLayout showSubjectNav>
+        <div className="flex items-center justify-center h-64 gap-3">
+          <Spinner className="w-6 h-6 text-primary" />
+          <span className="text-muted-foreground">{subjectMeta?.name}学科数据加载中...</span>
+        </div>
+      </AppLayout>
+    )
+  }
 
   if (!data) {
     return <ComingSoon name="模型详解" subject={subjectMeta?.name} />

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R18",
   name: "等时圆模型速破",
   model: "PHY-M05",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "B",
   trigger: "从竖直圆顶点、圆环上任一点、圆心正上方某点释放小球",
   path: [

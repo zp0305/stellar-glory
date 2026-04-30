@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E22_语义场与近义词辨析: ConceptData = {
   id: 'ENG-E22',

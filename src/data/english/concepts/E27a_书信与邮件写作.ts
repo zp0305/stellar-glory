@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E27a_书信与邮件写作: ConceptData = {
   id: 'ENG-E27a',

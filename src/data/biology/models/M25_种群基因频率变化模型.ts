@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M25_种群基因频率变化: ModelData = {
   id: 'BIO-M25',

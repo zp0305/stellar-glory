@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R36",
   name: "动量守恒三条件检验",
   model: "PHY-M09",
-  thinkingMethod: "",
+  thinkingMethod: "微元与累积",
   level: "B",
   trigger: "系统是否满足动量守恒不确定，或需要判断守恒方向",
   path: [

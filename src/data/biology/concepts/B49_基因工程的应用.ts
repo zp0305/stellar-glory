@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B49_基因工程的应用: ConceptData = {
   id: 'BIO-B49',

@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M26_近义词辨析四维: ModelData = {
   id: 'ENG-M26',

@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B32_激素调节的实例: ConceptData = {
   id: 'BIO-B32',

@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R26",
   name: "求功三法选择",
   model: "PHY-M07",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "B",
   trigger: "求某个力的功或合力的功，条件不同时选不同方法",
   path: [

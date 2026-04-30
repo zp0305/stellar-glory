@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E09_不定式: ConceptData = {
   id: 'ENG-E09',

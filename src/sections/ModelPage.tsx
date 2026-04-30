@@ -7,7 +7,9 @@ import { useUserStore } from '@/stores/userStore'
 import { useFavoritesStore } from '@/stores/favoritesStore'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { ComingSoon } from '@/components/ComingSoon'
+import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/lib/utils'
+import { MarkdownRenderer } from '@/components/MarkdownRenderer'
 import {
   BookOpen, Zap, Network, Lightbulb, FlaskConical,
   CheckCircle, CircleDot, Circle,
@@ -39,11 +41,11 @@ function formatVariations(v: any): string | null {
   ]) {
     const arr = v[key]
     if (arr?.length) {
-      parts.push(label)
+      parts.push(`\n**${label}**\n`)
       arr.forEach((item: any) => {
-        parts.push(`  · ${item.label || ''}`)
-        if (item.formula) parts.push(`    公式：${item.formula}`)
-        if (item.note) parts.push(`    说明：${item.note}`)
+        parts.push(`- **${item.label || ''}**`)
+        if (item.formula) parts.push(`  - 公式：${item.formula}`)
+        if (item.note) parts.push(`  - 说明：${item.note}`)
       })
     }
   }
@@ -53,21 +55,24 @@ function formatVariations(v: any): string | null {
 function formatNetwork(net: any): string | null {
   if (!net) return null
   const parts: string[] = []
-  if (net.parents?.length) parts.push(`前置模型：${net.parents.join('、')}`)
-  if (net.children?.length) parts.push(`后续模型：${net.children.join('、')}`)
-  if (net.related?.length) parts.push(`相关模型：${net.related.join('、')}`)
-  if (net.coreFormula) parts.push(`核心公式：${net.coreFormula}`)
-  return parts.length ? parts.join('\n') : null
+  if (net.parents?.length) parts.push(`**前置模型：**\n${net.parents.map((id: string) => `- ${id}`).join('\n')}`)
+  if (net.children?.length) parts.push(`**后续模型：**\n${net.children.map((id: string) => `- ${id}`).join('\n')}`)
+  if (net.related?.length) parts.push(`**相关模型：**\n${net.related.map((id: string) => `- ${id}`).join('\n')}`)
+  if (net.coreFormula) parts.push(`**核心公式：**\n${net.coreFormula}`)
+  return parts.length ? parts.join('\n\n') : null
 }
 
 function formatMethodology(m: any): string | null {
   if (!m) return null
   const parts: string[] = []
-  if (m.approach) parts.push(m.approach)
-  if (m.decisionTree?.length) m.decisionTree.forEach((s: string, i: number) => parts.push(`${i + 1}. ${s}`))
+  if (m.approach) parts.push(`- **方法说明**：${m.approach}`)
+  if (m.decisionTree?.length) {
+    parts.push('**决策树：**')
+    m.decisionTree.forEach((s: string, i: number) => parts.push(`${i + 1}. ${s}`))
+  }
   if (m.commonPitfalls?.length) {
-    parts.push('常见陷阱：')
-    m.commonPitfalls.forEach((p: string) => parts.push(`  · ${p}`))
+    parts.push('**常见陷阱：**')
+    m.commonPitfalls.forEach((p: string) => parts.push(`- ${p}`))
   }
   return parts.length ? parts.join('\n') : null
 }
@@ -76,7 +81,18 @@ export function ModelPage() {
   const { modelId } = useParams<{ modelId: string }>()
   const { progress, updateProgress } = useUserStore()
   const { toggleFavorite, isFavorited } = useFavoritesStore()
-  const { data, subjectMeta } = useSubjectData()
+  const { data, subjectMeta, loading } = useSubjectData()
+
+  if (loading) {
+    return (
+      <AppLayout showSubjectNav>
+        <div className="flex items-center justify-center h-64 gap-3">
+          <Spinner className="w-6 h-6 text-primary" />
+          <span className="text-muted-foreground">{subjectMeta?.name}学科数据加载中...</span>
+        </div>
+      </AppLayout>
+    )
+  }
 
   if (!data) {
     return <ComingSoon name="模型详情" subject={subjectMeta?.name} />
@@ -156,18 +172,14 @@ export function ModelPage() {
   return (
     <AppLayout showSubjectNav anchors={[]}>
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-        <div className="flex items-center justify-between">
-          <Link to={`/${subjectMeta?.id}/models`}>
-            <Button variant="ghost" size="sm" className="pl-0 gap-1">
-              <span className="text-muted-foreground">←</span> 模型列表
-            </Button>
-          </Link>
-          <div className="flex items-center gap-2">
-            {prevId && <Link to={`/${subjectMeta?.id}/models/${prevId}`}><Button variant="outline" size="sm">← 上一模型</Button></Link>}
-            {nextId && <Link to={`/${subjectMeta?.id}/models/${nextId}`}><Button variant="outline" size="sm">下一模型 →</Button></Link>}
-          </div>
-        </div>
-
+        {/* 面包屑 */}
+        <nav className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Link to={`/${subjectMeta?.id}`} className="hover:text-foreground transition-colors">{subjectMeta?.name}</Link>
+          <ChevronRight className="w-3 h-3 flex-shrink-0" />
+          <Link to={`/${subjectMeta?.id}/models`} className="hover:text-foreground transition-colors">模型详解</Link>
+          <ChevronRight className="w-3 h-3 flex-shrink-0" />
+          <span className="text-foreground font-medium truncate">{model.title}</span>
+        </nav>
         <div className="space-y-3">
           <div className="flex items-center gap-2 flex-wrap">
             <span className={"text-xs px-2.5 py-1 rounded-full font-medium " + (DIFF_CLS[model.difficulty] || 'bg-gray-100')}>
@@ -224,8 +236,8 @@ export function ModelPage() {
             </div>
             {sec.content ? (
               <Card>
-                <CardContent className="p-5 text-sm leading-relaxed whitespace-pre-wrap">
-                  {sec.content}
+                <CardContent className="p-5">
+                  <MarkdownRenderer content={sec.content} className="text-base leading-relaxed" />
                 </CardContent>
               </Card>
             ) : (
@@ -244,7 +256,7 @@ export function ModelPage() {
               <ChevronLeft className="w-4 h-4" /> 上一模型
             </Link>
           ) : <div />}
-          <Link to={`/${subjectMeta?.id}/models`} className="text-xs text-muted-foreground hover:text-foreground">模型列表</Link>
+          <div />
           {nextId ? (
             <Link to={`/${subjectMeta?.id}/models/${nextId}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
               下一模型 <ChevronRight className="w-4 h-4" />

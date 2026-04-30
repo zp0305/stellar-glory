@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M17_减数分裂与遗传定律对应: ModelData = {
   id: 'BIO-M17',

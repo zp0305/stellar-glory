@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R66",
   name: "氢原子光谱与能级跃迁",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "B",
   trigger: "氢原子跃迁问题，已知能级或谱线，求吸收/辐射光子能量",
   path: [

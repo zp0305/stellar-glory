@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E32a_短对话听力策略: ConceptData = {
   id: 'ENG-E32a',

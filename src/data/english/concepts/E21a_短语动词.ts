@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const E21a_短语动词: ConceptData = {
   id: 'ENG-E21a',

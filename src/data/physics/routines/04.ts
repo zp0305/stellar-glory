@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R04",
   name: "初零比法解比例问题",
   model: "PHY-M01",
-  thinkingMethod: "",
+  thinkingMethod: "几何直观与代数严格",
   level: "B",
   trigger: "初速度为零的匀加速直线运动，比较速度、位移、时间比例",
   path: [

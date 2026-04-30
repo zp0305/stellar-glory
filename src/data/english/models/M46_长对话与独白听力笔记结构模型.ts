@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M46_长对话与独白听力笔记结构: ModelData = {
   id: 'ENG-M46',

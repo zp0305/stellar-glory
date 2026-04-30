@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R72",
   name: "传送带能量流分析",
   model: "PHY-M04",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "T",
   trigger: "传送带系统求总能量转化、效率或最终速度",
   path: [

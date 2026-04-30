@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B30_神经系统的分级调节与人脑高级功能: ConceptData = {
   id: 'BIO-B30',

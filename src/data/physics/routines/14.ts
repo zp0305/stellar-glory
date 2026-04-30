@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R14",
   name: "整体法与隔离法选择",
   model: "PHY-M04",
-  thinkingMethod: "",
+  thinkingMethod: "等效替代",
   level: "J",
   trigger: "连接体问题（两物体绑在一起或有相同加速度），求内力或外力",
   path: [

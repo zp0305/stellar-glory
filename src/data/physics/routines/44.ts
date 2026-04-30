@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R44",
   name: "带电粒子在电场中运动",
   model: "PHY-M10",
-  thinkingMethod: "",
+  thinkingMethod: "微元与累积",
   level: "J",
   trigger: "带电粒子在匀强电场中加速或偏转，求速度、位移、偏转角",
   path: [

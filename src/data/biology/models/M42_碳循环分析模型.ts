@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M42_碳循环分析: ModelData = {
   id: 'BIO-M42',

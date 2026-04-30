@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M24_短语动词语义推断: ModelData = {
   id: 'ENG-M24',

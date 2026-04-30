@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R70",
   name: "光的粒子性综合",
   model: "PHY-M15",
-  thinkingMethod: "",
+  thinkingMethod: "几何直观与代数严格",
   level: "J",
   trigger: "光电效应和康普顿效应综合问题，比较光子能量和动量",
   path: [

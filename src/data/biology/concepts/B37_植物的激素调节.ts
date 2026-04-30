@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 export const B37_植物的激素调节: ConceptData = {
   id: 'BIO-B37',

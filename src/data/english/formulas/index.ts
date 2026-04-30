@@ -1,4 +1,4 @@
-import { FormulaCard, FormulaChapter } from './types';
+import type { FormulaCard, FormulaChapter } from './types';
 
 export const formulas: FormulaCard[] = [];
 

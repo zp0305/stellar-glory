@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/collapsible'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { ComingSoon } from '@/components/ComingSoon'
+import { Spinner } from '@/components/ui/spinner'
 import { Search, BookOpen, ChevronDown, ChevronRight, Hash, BookMarked } from 'lucide-react'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
@@ -19,7 +20,18 @@ import 'katex/dist/katex.min.css'
 export function FormulaListPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeSection, setActiveSection] = useState<string>('全部')
-  const { data, subjectMeta } = useSubjectData()
+  const { data, subjectMeta, loading } = useSubjectData()
+
+  if (loading) {
+    return (
+      <AppLayout showSubjectNav>
+        <div className="flex items-center justify-center h-64 gap-3">
+          <Spinner className="w-6 h-6 text-primary" />
+          <span className="text-muted-foreground">{subjectMeta?.name}学科数据加载中...</span>
+        </div>
+      </AppLayout>
+    )
+  }
 
   if (!data) {
     return <ComingSoon name="公式库" subject={subjectMeta?.name} />

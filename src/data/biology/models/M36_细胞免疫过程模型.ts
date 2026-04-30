@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M36_细胞免疫过程: ModelData = {
   id: 'BIO-M36',

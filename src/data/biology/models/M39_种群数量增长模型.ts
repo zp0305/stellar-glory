@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M39_种群数量增长: ModelData = {
   id: 'BIO-M39',

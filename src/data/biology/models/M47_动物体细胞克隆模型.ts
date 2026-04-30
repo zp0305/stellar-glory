@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M47_动物体细胞克隆: ModelData = {
   id: 'BIO-M47',

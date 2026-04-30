@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R41",
   name: "电场强度三公式选用",
   model: "PHY-M10",
-  thinkingMethod: "",
+  thinkingMethod: "守恒思想",
   level: "B",
   trigger: "已知电荷分布，求某点电场强度，选合适公式",
   path: [

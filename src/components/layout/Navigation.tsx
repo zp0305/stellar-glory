@@ -30,6 +30,7 @@ import {
   BookMarked,
   Lightbulb,
   ChevronRight,
+  ChevronLeft,
   Star,
   GraduationCap,
   Zap,
@@ -186,112 +187,22 @@ const learningToolsModules = [
 
 // 物理学科模块导航
 const physicsModules = [
-  {
-    id: 'guide',
-    label: '学科指南',
-    icon: BookOpen,
-    href: '/physics/guide',
-    description: '为什么学物理'},
-  {
-    id: 'graph',
-    label: '认知图谱',
-    icon: GitBranch,
-    href: '/physics/graph',
-    description: '知识结构可视化'},
-  {
-    id: 'knowledge',
-    label: '知识详解',
-    icon: BookMarked,
-    href: '/physics/models',
-    description: '42个核心模型'},
-  {
-    id: 'concepts',
-    label: '知识节点',
-    icon: GitBranch,
-    href: '/physics/concepts',
-    description: '56个知识节点'},
-  {
-    id: 'formulas',
-    label: '公式库',
-    icon: BookOpen,
-    href: '/physics/formulas',
-    description: '58个核心公式'},
-  {
-    id: 'strategies',
-    label: '解题套路',
-    icon: Lightbulb,
-    href: '/physics/strategies',
-    description: '题型规律提炼',
-    available: true},
-  {
-    id: 'thinking',
-    label: '思维方法',
-    icon: Zap,
-    href: '/physics/thinking',
-    description: '7个核心认知维度',
-    available: true},
-  {
-    id: 'vision',
-    label: '物理视界',
-    icon: Eye,
-    href: '/physics/vision',
-    description: '物理学史与故事',
-    available: true},
-  {
-    id: 'practice',
-    label: '练习中心',
-    icon: Target,
-    href: '/physics/exercises',
-    description: '配套题库',
-    available: true},
-  {
-    id: 'wrong',
-    label: '错题本',
-    icon: FlaskConical,
-    href: '/physics/wrong',
-    description: '错题追踪',
-    available: true},
-  {
-    id: 'report',
-    label: '学习报告',
-    icon: BarChart3,
-    href: '/learning',
-    description: '学习数据',
-    available: true},
-  {
-    id: 'favorites',
-    label: '收藏夹',
-    icon: Star,
-    href: '/physics/favorites',
-    description: '收藏的知识与套路',
-    available: true},
-  {
-    id: 'senior',
-    label: '高考专项',
-    icon: GraduationCap, href: '/gaokao',
-    description: '高考政策与备考',
-    available: true,
-  },
-  {
-    id: 'foundation',
-    label: '强基专项',
-    icon: Zap, href: '/foundation',
-    description: '强基计划备考',
-    available: true,
-  },
-  {
-    id: 'competition',
-    label: '学科竞赛',
-    icon: Trophy, href: '/competition',
-    description: '五大学科竞赛',
-    available: true,
-  },
-  {
-    id: 'paths',
-    label: '学习路径',
-    icon: Route,
-    href: '/physics/paths',
-    description: '学习规划'},
+  { id: 'guide',       label: '学科指南', icon: BookOpen,    href: '/physics/guide',    description: '为什么学物理' },
+  { id: 'concepts',    label: '知识节点', icon: GitBranch,   href: '/physics/concepts', description: '56个知识节点' },
+  { id: 'knowledge',   label: '模型详解', icon: BookMarked,  href: '/physics/models',   description: '43个核心模型' },
+  { id: 'strategies',  label: '分析范式', icon: Lightbulb,   href: '/physics/strategies',description: '题型规律提炼', available: true },
+  { id: 'thinking',    label: '思维方法', icon: Zap,         href: '/physics/thinking', description: '7个核心认知维度', available: true },
+  { id: 'graph',       label: '认知图谱', icon: GitBranch,   href: '/physics/graph',    description: '知识结构可视化' },
+  { id: 'formulas',    label: '公式库',   icon: BookOpen,    href: '/physics/formulas', description: '58个核心公式' },
+  { id: 'vision',      label: '物理视界', icon: Eye,         href: '/physics/vision',   description: '物理学史与故事', available: true },
+  { id: 'practice',    label: '练习中心', icon: Target,      href: '/physics/exercises',description: '配套题库', available: true },
+  { id: 'wrong',       label: '错题本',   icon: FlaskConical,href: '/physics/wrong',    description: '错题追踪', available: true },
+  { id: 'favorites',   label: '收藏夹',   icon: Star,        href: '/physics/favorites',description: '收藏的知识与套路', available: true },
+  { id: 'report',      label: '学习报告', icon: BarChart3,   href: '/learning',          description: '学习数据', available: true },
+  { id: 'senior',      label: '高考专项', icon: GraduationCap,href: '/gaokao',          description: '高考政策与备考', available: true },
+  { id: 'foundation',  label: '强基专项', icon: Zap,         href: '/foundation',        description: '强基计划备考', available: true },
+  { id: 'competition', label: '学科竞赛', icon: Trophy,      href: '/competition',       description: '五大学科竞赛', available: true },
+  { id: 'paths',       label: '学习路径', icon: Route,       href: '/physics/paths',    description: '学习规划' },
 ]
 
 // 数学/生物/语文/英语学科模块导航（当前仅指南页）
@@ -363,6 +274,62 @@ function useCurrentModule() {
   if (path.includes('/report')) return 'report'
   if (path.includes('/paths')) return 'paths'
   return 'guide'
+}
+
+// ==================== 移动端抄屉内容（模块导航在前，学习工具在后） ====================
+function MobileDrawerContent({
+  currentSubject,
+  onClose,
+}: {
+  currentSubject: ReturnType<typeof useCurrentSubject>
+  onClose: () => void
+}) {
+  const currentModule = useCurrentModule()
+  const modules = currentSubject?.available ? getSubjectModules(currentSubject.id) : []
+
+  return (
+    <ScrollArea className="flex-1">
+      {/* 学科模块导航 */}
+      {modules.length > 0 && (
+        <div className="p-3 border-b">
+          <div className="flex items-center gap-2 px-2 mb-2">
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: currentSubject?.color }} />
+            <p className="text-xs font-medium text-muted-foreground">{currentSubject?.name}模块</p>
+          </div>
+          <nav className="space-y-0.5">
+            {modules.map((m) => (
+              <Link key={m.id} to={m.href} onClick={onClose}>
+                <div className={cn(
+                  'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors',
+                  currentModule === m.id
+                    ? 'bg-primary/10 text-primary font-semibold'
+                    : 'hover:bg-muted text-foreground'
+                )}>
+                  <m.icon className={cn('w-4 h-4 flex-shrink-0', currentModule === m.id ? 'text-primary' : 'text-muted-foreground')} />
+                  <span>{m.label}</span>
+                </div>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      {/* 学习工具 */}
+      <div className="p-3">
+        <p className="text-xs font-medium text-muted-foreground mb-2 px-2">学习工具</p>
+        <div className="space-y-0.5">
+          {learningToolsModules.map((m) => (
+            <Link key={m.id} to={m.href} onClick={onClose}>
+              <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors">
+                <m.icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                <span className="flex-1">{m.label}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </ScrollArea>
+  )
 }
 
 // ==================== 顶部导航 ====================
@@ -476,59 +443,7 @@ export function TopNav() {
                   </Button>
                 </div>
 
-                <ScrollArea className="flex-1">
-                  {/* 学习工具 */}
-                  <div className="p-3 border-b">
-                    <p className="text-xs font-medium text-muted-foreground mb-2 px-2">学习工具</p>
-                    <div className="space-y-0.5">
-                      {learningToolsModules.map((m) => (
-                        <Link key={m.id} to={m.href} onClick={() => setMobileOpen(false)}>
-                          <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors">
-                            <m.icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                            <span className="flex-1">{m.label}</span>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* 学科选择 */}
-                  <div className="p-3 border-b">
-                    <p className="text-xs font-medium text-muted-foreground mb-2 px-2">选择学科</p>
-                    <div className="grid grid-cols-3 gap-1">
-                      {subjects.map((s) => (
-                        <Link key={s.id} to={s.href} onClick={() => setMobileOpen(false)}>
-                          <Button
-                            variant={currentSubject?.id === s.id ? 'secondary' : 'ghost'}
-                            size="sm"
-                            className="w-full text-xs gap-1.5 justify-start"
-                          >
-                            <span
-                              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: s.color, opacity: s.available ? 1 : 0.4 }}
-                            />
-                            {s.name}
-                          </Button>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* 模块导航 */}
-                  <nav className="p-3 space-y-1">
-                    {currentSubject?.available && getSubjectModules(currentSubject.id).map((m) => (
-                      <Link key={m.id} to={m.href} onClick={() => setMobileOpen(false)}>
-                        <div className={cn(
-                          'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors',
-                          'hover:bg-muted'
-                        )}>
-                          <m.icon className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                          <span>{m.label}</span>
-                        </div>
-                      </Link>
-                    ))}
-                  </nav>
-                </ScrollArea>
+                <MobileDrawerContent currentSubject={currentSubject} onClose={() => setMobileOpen(false)} />
               </SheetContent>
             </Sheet>
 
@@ -592,15 +507,29 @@ export function LeftSidebar() {
 
   if (!currentSubject?.available) return null
 
+  const currentModuleItem = getSubjectModules(currentSubject.id).find(m => m.id === currentModule)
+
   return (
     <aside className="hidden lg:flex w-56 flex-col border-r bg-muted/20">
       <div className="p-3 border-b">
-        <div className="flex items-center gap-2 px-2 py-1.5">
+        <Link to={`/${currentSubject.id}`}>
+          <div className="flex items-center gap-1 px-2 py-1 rounded text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors mb-1.5 w-fit">
+            <ChevronLeft className="w-3 h-3" />
+            <span>返回主页</span>
+          </div>
+        </Link>
+        <div className="flex items-center gap-2 px-2 py-1">
           <div
-            className="w-2 h-2 rounded-full"
+            className="w-2 h-2 rounded-full flex-shrink-0"
             style={{ backgroundColor: currentSubject?.color }}
           />
           <span className="font-semibold text-sm">{currentSubject?.name}</span>
+          {currentModuleItem && currentModuleItem.id !== 'guide' && (
+            <>
+              <ChevronRight className="w-3 h-3 text-muted-foreground flex-shrink-0" />
+              <span className="text-xs text-muted-foreground truncate">{currentModuleItem.label}</span>
+            </>
+          )}
         </div>
       </div>
       <ScrollArea className="flex-1 py-2">

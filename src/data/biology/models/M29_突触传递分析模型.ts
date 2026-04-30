@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M29_突触传递分析: ModelData = {
   id: 'BIO-M29',

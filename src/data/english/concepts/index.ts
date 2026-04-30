@@ -1,4 +1,4 @@
-import { ConceptData } from './types';
+import type { ConceptData } from './types';
 
 import { E01_英语基本句型 } from './E01_英语基本句型';
 import { E02_句子成分识别 } from './E02_句子成分识别';

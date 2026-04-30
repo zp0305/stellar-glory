@@ -1,4 +1,4 @@
-import { ModelData } from './types';
+import type { ModelData } from './types';
 
 export const M16_自由组合定律分析: ModelData = {
   id: 'BIO-M16',

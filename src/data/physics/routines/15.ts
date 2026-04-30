@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R15",
   name: "系统牛顿第二定律",
   model: "PHY-M04",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "T",
   trigger: "多物体系统，有内力和外力同时作用，求系统总加速度或内力关系",
   path: [

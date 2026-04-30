@@ -5,7 +5,7 @@ const entry = {
   id: "PHY-R51",
   name: "安培力方向与大小",
   model: "PHY-M12",
-  thinkingMethod: "",
+  thinkingMethod: "建模与理想化",
   level: "B",
   trigger: "通电导线在磁场中受安培力，求力的大小或方向",
   path: [
